@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mastermind Minimal</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; }
+        #game-board { background: #333; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .slot { width: 30px; height: 30px; border-radius: 50%; background: #555; border: 2px solid #222; }
+        .indices { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-left: 15px; }
+        .mini-dot { width: 10px; height: 10px; border-radius: 50%; background: #444; }
+        
+        .palette { display: flex; gap: 10px; margin-top: 20px; }
+        .color-choice { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; }
+        .color-choice:hover { transform: scale(1.1); }
+        .selected { border-color: white; }
+
+        /* Couleurs du jeu */
+        .red { background: #ff5252; } .blue { background: #448aff; } .green { background: #4caf50; }
+        .yellow { background: #ffeb3b; } .orange { background: #ff9800; } .purple { background: #9c27b0; }
+        .black { background: #000; } .white { background: #fff; }
+
+        button { margin-top: 20px; padding: 10px 20px; cursor: pointer; background: #448aff; color: white; border: none; border-radius: 5px; font-weight: bold; }
+        button:disabled { background: #ccc; }
+    </style>
+</head>
+<body>
+
+    <h1>Mastermind</h1>
+    
+    <div id="game-board">
+        <!-- Les lignes s'afficheront ici -->
+        <div id="rows-container"></div>
+    </div>
+
+    <div class="palette">
+        <div class="color-choice red" onclick="selectColor('red')"></div>
+        <div class="color-choice blue" onclick="selectColor('blue')"></div>
+        <div class="color-choice green" onclick="selectColor('green')"></div>
+        <div class="color-choice yellow" onclick="selectColor('yellow')"></div>
+        <div class="color-choice orange" onclick="selectColor('orange')"></div>
+        <div class="color-choice purple" onclick="selectColor('purple')"></div>
+    </div>
+
+    <button id="validate-btn" onclick="validateRow()" disabled>Valider la ligne</button>
+
+    <script>
+        const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
+        let secretCode = [];
+        let currentRow = [];
+        let turn = 0;
+
+        // 1. Initialisation : Créer le code secret
+        function initGame() {
+            for(let i=0; i<4; i++) {
+                secretCode.push(colors[Math.floor(Math.random() * colors.length)]);
+            }
+            console.log("Secret (pour tricher) :", secretCode);
+            createEmptyBoard();
+        }
+
+        // 2. Créer le plateau visuel
+        function createEmptyBoard() {
+            const container = document.getElementById('rows-container');
+            for (let i = 0; i < 10; i++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'row';
+                rowDiv.id = `row-${i}`;
+                rowDiv.innerHTML = `
+                    <div class="slot"></div><div class="slot"></div>
+                    <div class="slot"></div><div class="slot"></div>
+                    <div class="indices"><div class="mini-dot"></div><div class="mini-dot"></div><div class="mini-dot"></div><div class="mini-dot"></div></div>
+                `;
+                container.prepend(rowDiv); // La ligne 0 est en bas
+            }
+        }
+
+        // 3. Sélectionner une couleur et remplir
+        function selectColor(color) {
+            if (currentRow.length < 4) {
+                currentRow.push(color);
+                updateVisualRow();
+            }
+            if (currentRow.length === 4) {
+                document.getElementById('validate-btn').disabled = false;
+            }
+        }
+
+        function updateVisualRow() {
+            const rowSlots = document.getElementById(`row-${turn}`).querySelectorAll('.slot');
+            currentRow.forEach((color, index) => {
+                rowSlots[index].className = `slot ${color}`;
+            });
+        }
+
+        // 4. Valider et comparer
+        function validateRow() {
+            let blackPegs = 0;
+            let whitePegs = 0;
+            let tempSecret = [...secretCode];
+            let tempCurrent = [...currentRow];
+
+            // Trouver les pions noirs (bien placés)
+            for (let i = 0; i < 4; i++) {
+                if (tempCurrent[i] === tempSecret[i]) {
+                    blackPegs++;
+                    tempSecret[i] = null;
+                    tempCurrent[i] = null;
+                }
+            }
+
+            // Trouver les pions blancs (mal placés)
+            for (let i = 0; i < 4; i++) {
+                if (tempCurrent[i] !== null) {
+                    let indexInSecret = tempSecret.indexOf(tempCurrent[i]);
+                    if (indexInSecret !== -1) {
+                        whitePegs++;
+                        tempSecret[indexInSecret] = null;
+                    }
+                }
+            }
+
+            showIndices(blackPegs, whitePegs);
+
+            if (blackPegs === 4) {
+                alert("Victoire !");
+                location.reload();
+            } else if (turn === 9) {
+                alert("Perdu ! Le code était : " + secretCode.join(', '));
+                location.reload();
+            } else {
+                turn++;
+                currentRow = [];
+                document.getElementById('validate-btn').disabled = true;
+            }
+        }
+
+        function showIndices(black, white) {
+            const dots = document.getElementById(`row-${turn}`).querySelectorAll('.mini-dot');
+            let i = 0;
+            for (i; i < black; i++) dots[i].className = 'mini-dot black';
+            for (let j = 0; j < white; j++) dots[i + j].className = 'mini-dot white';
+        }
+
+        initGame();
+    </script>
+</body>
+</html>

@@ -2,148 +2,267 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mastermind Minimal</title>
+    <title>Mastermind Pro - Admin System</title>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; }
-        #game-board { background: #333; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        .row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
-        .slot { width: 30px; height: 30px; border-radius: 50%; background: #555; border: 2px solid #222; }
-        .indices { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-left: 15px; }
-        .mini-dot { width: 10px; height: 10px; border-radius: 50%; background: #444; }
+        :root { --p: #4caf50; --s: #448aff; --danger: #f44336; --bg: #121212; --card: #2a2a2a; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; justify-content: center; }
         
-        .palette { display: flex; gap: 10px; margin-top: 20px; }
-        .color-choice { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; }
-        .color-choice:hover { transform: scale(1.1); }
-        .selected { border-color: white; }
+        .page { display: none; flex-direction: column; align-items: center; width: 100%; max-width: 550px; padding: 20px; animation: fadeIn 0.3s; }
+        .active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Couleurs du jeu */
-        .red { background: #ff5252; } .blue { background: #448aff; } .green { background: #4caf50; }
-        .yellow { background: #ffeb3b; } .orange { background: #ff9800; } .purple { background: #9c27b0; }
-        .black { background: #000; } .white { background: #fff; }
+        .card { background: var(--card); padding: 25px; border-radius: 20px; width: 100%; box-sizing: border-box; border: 1px solid #333; text-align: center; }
+        h1 { color: var(--p); text-transform: uppercase; margin-bottom: 10px; }
+        input { padding: 12px; border-radius: 10px; border: 1px solid #444; width: 85%; margin: 10px 0; background: #1a1a1a; color: white; }
+        
+        button { padding: 12px 20px; cursor: pointer; border-radius: 30px; border: none; font-weight: bold; margin: 5px; transition: 0.2s; }
+        .btn-p { background: var(--p); color: white; }
+        .btn-s { background: var(--s); color: white; }
+        .btn-d { background: var(--danger); color: white; }
+        button:hover { transform: scale(1.05); filter: brightness(1.2); }
+        
+        /* TABLEAUX */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+        th, td { padding: 12px 8px; border-bottom: 1px solid #444; text-align: left; }
+        tr:hover { background: rgba(255,255,255,0.05); }
 
-        button { margin-top: 20px; padding: 10px 20px; cursor: pointer; background: #448aff; color: white; border: none; border-radius: 5px; font-weight: bold; }
-        button:disabled { background: #ccc; }
+        /* JEU */
+        .ligne { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; padding: 8px; background: #333; border-radius: 10px; }
+        .emp { width: 30px; height: 30px; border-radius: 50%; background: #1a1a1a; border: 2px solid #444; }
+        .bloc-ind { display: grid; gap: 3px; margin-left: 10px; background: #222; padding: 5px; border-radius: 5px; }
+        .pt { width: 10px; height: 10px; border-radius: 50%; background: #444; }
+        .palette { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .choix { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+
+        .rouge { background: #ff5252; } .bleu { background: #448aff; } .vert { background: #4caf50; }
+        .jaune { background: #ffeb3b; } .orange { background: #ff9800; } .violet { background: #9c27b0; }
+        .noir { background: #000; } .blanc { background: #fff; }
     </style>
 </head>
 <body>
 
-    <h1>Mastermind</h1>
-    
-    <div id="game-board">
-        <!-- Les lignes s'afficheront ici -->
-        <div id="rows-container"></div>
+    <!-- PAGE: LOGIN -->
+    <div id="p-login" class="page active">
+        <h1>Mastermind</h1>
+        <div class="card">
+            <input type="text" id="pseudo" placeholder="Pseudo">
+            <input type="password" id="mdp" placeholder="Mot de passe">
+            <button class="btn-p" onclick="connexion()">Se connecter</button>
+            <p style="font-size: 0.7rem; color: #777;">Admin : admin / admin123</p>
+        </div>
     </div>
 
-    <div class="palette">
-        <div class="color-choice red" onclick="selectColor('red')"></div>
-        <div class="color-choice blue" onclick="selectColor('blue')"></div>
-        <div class="color-choice green" onclick="selectColor('green')"></div>
-        <div class="color-choice yellow" onclick="selectColor('yellow')"></div>
-        <div class="color-choice orange" onclick="selectColor('orange')"></div>
-        <div class="color-choice purple" onclick="selectColor('purple')"></div>
+    <!-- PAGE: MENU -->
+    <div id="p-menu" class="page">
+        <h1 id="txt-bienvenue">Salut !</h1>
+        <div class="card">
+            <button class="btn-p" onclick="nav('p-mode')" style="width:80%">JOUER</button><br>
+            <button class="btn-s" onclick="voirScores()" style="width:80%">SCORES</button><br>
+            <div id="section-admin" style="display:none; border-top: 1px solid #444; margin-top:15px; padding-top:15px;">
+                <button class="btn-d" onclick="ouvrirAdmin()" style="width:80%">PANEL ADMIN</button>
+            </div>
+            <button onclick="location.reload()" style="background:#555; color:white; width:80%">DÉCONNEXION</button>
+        </div>
     </div>
 
-    <button id="validate-btn" onclick="validateRow()" disabled>Valider la ligne</button>
+    <!-- PAGE: ADMIN -->
+    <div id="p-admin" class="page">
+        <h1>Gestion Utilisateurs</h1>
+        <div class="card">
+            <table>
+                <thead><tr><th>Pseudo</th><th>Action</th></tr></thead>
+                <tbody id="liste-users"></tbody>
+            </table>
+            <br>
+            <button class="btn-s" onclick="nav('p-menu')">Retour</button>
+        </div>
+    </div>
+
+    <!-- PAGE: DIFFICULTÉ -->
+    <div id="p-mode" class="page">
+        <h1>Mode de jeu</h1>
+        <div class="card">
+            <button class="btn-s" onclick="lancer(4)">Normal (4 emplacements)</button><br>
+            <button class="btn-p" style="background:var(--danger)" onclick="lancer(6)">HARDCORE (6 emplacements)</button><br>
+            <button onclick="nav('p-menu')">Retour</button>
+        </div>
+    </div>
+
+    <!-- PAGE: JEU -->
+    <div id="p-jeu" class="page">
+        <div style="display:flex; justify-content: space-between; width:100%; margin-bottom:10px;">
+            <span id="chrono" style="color:var(--s); font-weight:bold;">00:00</span>
+            <span id="txt-mode">Mode: 4</span>
+        </div>
+        <div id="plateau" style="background:#2a2a2a; padding:15px; border-radius:15px;">
+            <div id="lignes-c"></div>
+        </div>
+        <div class="palette" id="pal"></div>
+        <button id="btn-v" class="btn-p" onclick="valider()" disabled>Valider la ligne</button>
+    </div>
+
+    <!-- PAGE: SCORES -->
+    <div id="p-score" class="page">
+        <h1>Classement</h1>
+        <div class="card">
+            <table id="table-scores">
+                <thead><tr><th>Joueur</th><th>Mode</th><th>Essais</th><th>Temps</th></tr></thead>
+                <tbody id="corps-scores"></tbody>
+            </table>
+            <br>
+            <button class="btn-s" onclick="nav('p-menu')">Retour</button>
+        </div>
+    </div>
 
     <script>
-        const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
-        let secretCode = [];
-        let currentRow = [];
-        let turn = 0;
+        let utilisateurActuel = null;
+        let config = { nb: 4, tours: 10 };
+        let jeu = { code: [], essai: [], tour: 0, timer: null, debut: 0 };
+        const couleurs = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
 
-        // 1. Initialisation : Créer le code secret
-        function initGame() {
-            for(let i=0; i<4; i++) {
-                secretCode.push(colors[Math.floor(Math.random() * colors.length)]);
-            }
-            console.log("Secret (pour tricher) :", secretCode);
-            createEmptyBoard();
+        function nav(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        // 2. Créer le plateau visuel
-        function createEmptyBoard() {
-            const container = document.getElementById('rows-container');
-            for (let i = 0; i < 10; i++) {
-                const rowDiv = document.createElement('div');
-                rowDiv.className = 'row';
-                rowDiv.id = `row-${i}`;
-                rowDiv.innerHTML = `
-                    <div class="slot"></div><div class="slot"></div>
-                    <div class="slot"></div><div class="slot"></div>
-                    <div class="indices"><div class="mini-dot"></div><div class="mini-dot"></div><div class="mini-dot"></div><div class="mini-dot"></div></div>
-                `;
-                container.prepend(rowDiv); // La ligne 0 est en bas
-            }
-        }
+        // --- GESTION COMPTES ---
+        function connexion() {
+            const p = document.getElementById('pseudo').value.trim();
+            const m = document.getElementById('mdp').value;
+            if(!p || !m) return alert("Champs vides !");
 
-        // 3. Sélectionner une couleur et remplir
-        function selectColor(color) {
-            if (currentRow.length < 4) {
-                currentRow.push(color);
-                updateVisualRow();
-            }
-            if (currentRow.length === 4) {
-                document.getElementById('validate-btn').disabled = false;
-            }
-        }
-
-        function updateVisualRow() {
-            const rowSlots = document.getElementById(`row-${turn}`).querySelectorAll('.slot');
-            currentRow.forEach((color, index) => {
-                rowSlots[index].className = `slot ${color}`;
-            });
-        }
-
-        // 4. Valider et comparer
-        function validateRow() {
-            let blackPegs = 0;
-            let whitePegs = 0;
-            let tempSecret = [...secretCode];
-            let tempCurrent = [...currentRow];
-
-            // Trouver les pions noirs (bien placés)
-            for (let i = 0; i < 4; i++) {
-                if (tempCurrent[i] === tempSecret[i]) {
-                    blackPegs++;
-                    tempSecret[i] = null;
-                    tempCurrent[i] = null;
-                }
+            // Cas Admin
+            if(p === "admin" && m === "admin123") {
+                utilisateurActuel = "admin";
+                document.getElementById('section-admin').style.display = "block";
+                document.getElementById('txt-bienvenue').innerText = "Mode Administrateur";
+                return nav('p-menu');
             }
 
-            // Trouver les pions blancs (mal placés)
-            for (let i = 0; i < 4; i++) {
-                if (tempCurrent[i] !== null) {
-                    let indexInSecret = tempSecret.indexOf(tempCurrent[i]);
-                    if (indexInSecret !== -1) {
-                        whitePegs++;
-                        tempSecret[indexInSecret] = null;
-                    }
-                }
-            }
-
-            showIndices(blackPegs, whitePegs);
-
-            if (blackPegs === 4) {
-                alert("Victoire !");
-                location.reload();
-            } else if (turn === 9) {
-                alert("Perdu ! Le code était : " + secretCode.join(', '));
-                location.reload();
+            let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
+            if(comptes[p]) {
+                if(comptes[p] !== m) return alert("Mot de passe incorrect");
             } else {
-                turn++;
-                currentRow = [];
-                document.getElementById('validate-btn').disabled = true;
+                comptes[p] = m;
+                localStorage.setItem('m_comptes', JSON.stringify(comptes));
+            }
+            utilisateurActuel = p;
+            document.getElementById('section-admin').style.display = "none";
+            document.getElementById('txt-bienvenue').innerText = "Salut " + p + " !";
+            nav('p-menu');
+        }
+
+        function ouvrirAdmin() {
+            let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
+            const liste = document.getElementById('liste-users');
+            liste.innerHTML = Object.keys(comptes).map(u => `
+                <tr>
+                    <td>${u}</td>
+                    <td><button class="btn-d" onclick="supprimerUser('${u}')" style="padding:5px 10px; font-size:0.7rem;">Supprimer</button></td>
+                </tr>
+            `).join('');
+            nav('p-admin');
+        }
+
+        function supprimerUser(u) {
+            if(confirm("Supprimer l'utilisateur " + u + " et ses scores ?")) {
+                // Supprimer compte
+                let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
+                delete comptes[u];
+                localStorage.setItem('m_comptes', JSON.stringify(comptes));
+                
+                // Supprimer ses scores
+                let scores = JSON.parse(localStorage.getItem('m_scores') || "[]");
+                scores = scores.filter(s => s.pseudo !== u);
+                localStorage.setItem('m_scores', JSON.stringify(scores));
+                
+                ouvrirAdmin(); // Refresh
             }
         }
 
-        function showIndices(black, white) {
-            const dots = document.getElementById(`row-${turn}`).querySelectorAll('.mini-dot');
-            let i = 0;
-            for (i; i < black; i++) dots[i].className = 'mini-dot black';
-            for (let j = 0; j < white; j++) dots[i + j].className = 'mini-dot white';
+        // --- LOGIQUE JEU ---
+        function lancer(n) {
+            config.nb = n;
+            jeu.code = Array.from({length:n}, () => couleurs[Math.floor(Math.random()*6)]);
+            jeu.essai = []; jeu.tour = 0; jeu.debut = 0;
+            clearInterval(jeu.timer);
+            document.getElementById('chrono').innerText = "00:00";
+            document.getElementById('txt-mode').innerText = "Mode: " + (n==6?'HARD':'NORM');
+            
+            const cont = document.getElementById('lignes-c');
+            cont.innerHTML = "";
+            for(let i=0; i<10; i++) {
+                const l = document.createElement('div');
+                l.className = 'ligne'; l.id = 't-'+i;
+                let pions = ""; for(let j=0; j<n; j++) pions += '<div class="emp"></div>';
+                l.innerHTML = pions + `<div class="bloc-ind" style="grid-template-columns:repeat(${n==6?3:2},1fr)">${'<div class="pt"></div>'.repeat(n)}</div>`;
+                cont.prepend(l);
+            }
+
+            const pal = document.getElementById('pal');
+            pal.innerHTML = couleurs.map(c => `<div class="choix ${c}" onclick="ajouter('${c}')"></div>`).join('');
+            nav('p-jeu');
         }
 
-        initGame();
+        function ajouter(c) {
+            if(jeu.debut === 0) {
+                jeu.debut = Date.now();
+                jeu.timer = setInterval(() => {
+                    let s = Math.floor((Date.now() - jeu.debut)/1000);
+                    document.getElementById('chrono').innerText = Math.floor(s/60).toString().padStart(2,'0') + ":" + (s%60).toString().padStart(2,'0');
+                }, 1000);
+            }
+            if(jeu.essai.length < config.nb) {
+                jeu.essai.push(c);
+                document.getElementById('t-'+jeu.tour).querySelectorAll('.emp')[jeu.essai.length-1].className = 'emp ' + c;
+            }
+            document.getElementById('btn-v').disabled = jeu.essai.length !== config.nb;
+        }
+
+        function valider() {
+            let n = 0, b = 0;
+            let cS = [...jeu.code], cE = [...jeu.essai];
+            for(let i=0; i<config.nb; i++) if(cE[i]===cS[i]) { n++; cS[i]=null; cE[i]=null; }
+            for(let i=0; i<config.nb; i++) if(cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])]=null; }
+
+            const pts = document.getElementById('t-'+jeu.tour).querySelectorAll('.pt');
+            for(let i=0; i<n; i++) pts[i].className = 'pt noir';
+            for(let i=0; i<b; i++) pts[n+i].className = 'pt blanc';
+
+            if(n === config.nb) {
+                clearInterval(jeu.timer);
+                if(utilisateurActuel !== "admin") sauverScore();
+                alert("VICTOIRE !");
+                nav('p-menu');
+            } else if(jeu.tour === 9) {
+                alert("PERDU ! Le code était : " + jeu.code.join('-'));
+                nav('p-menu');
+            } else {
+                jeu.tour++; jeu.essai = [];
+                document.getElementById('btn-v').disabled = true;
+            }
+        }
+
+        function sauverScore() {
+            let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
+            sc.push({
+                pseudo: utilisateurActuel,
+                mode: config.nb,
+                essais: jeu.tour + 1,
+                temps: document.getElementById('chrono').innerText,
+                sec: Math.floor((Date.now() - jeu.debut)/1000)
+            });
+            localStorage.setItem('m_scores', JSON.stringify(sc));
+        }
+
+        function voirScores() {
+            let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
+            sc.sort((a,b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
+            document.getElementById('corps-scores').innerHTML = sc.map(s => `
+                <tr><td>${s.pseudo}</td><td>${s.mode===6?'HARD':'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>
+            `).join('');
+            nav('p-score');
+        }
     </script>
 </body>
 </html>

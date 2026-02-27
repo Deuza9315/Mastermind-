@@ -5,25 +5,202 @@
     <meta charset="UTF-8">
     <title>Mastermind - Ultimate Edition</title>
     <style>
-        /* =========================================
-           DA MASTERMIND - MODERN GLASSMORPHISM & NEON
-        ========================================= */
-
         :root {
             --primary: #8b5cf6;
-            /* Violet Neon */
             --secondary: #ec4899;
-            /* Rose Neon */
             --bg-color: #0f172a;
-            /* Bleu très foncé (Slate) */
             --glass-bg: rgba(30, 41, 59, 0.6);
             --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
 
+        /* ══════════════════════════════════════
+   THÈME CASINO
+══════════════════════════════════════ */
+        body.theme-casino {
+            --primary: #f59e0b;
+            --secondary: #ef4444;
+            --bg-color: #080500;
+            --glass-bg: rgba(15, 8, 0, 0.9);
+            --glass-border: rgba(245, 158, 11, 0.35);
+        }
+
+        body.theme-casino::before {
+            background: rgba(180, 120, 0, 0.18) !important;
+        }
+
+        body.theme-casino::after {
+            background: rgba(200, 20, 20, 0.14) !important;
+        }
+
+        body.theme-casino .ligne {
+            border-color: rgba(245, 158, 11, 0.18) !important;
+            background: rgba(25, 12, 0, 0.5) !important;
+        }
+
+        body.theme-casino .board-section,
+        body.theme-casino .rules-section,
+        body.theme-casino .card {
+            border-color: rgba(245, 158, 11, 0.35) !important;
+            background: rgba(12, 6, 0, 0.92) !important;
+            box-shadow: 0 4px 30px rgba(245, 158, 11, 0.2), inset 0 0 60px rgba(180, 100, 0, 0.05) !important;
+        }
+
+        body.theme-casino .palette {
+            border-color: rgba(245, 158, 11, 0.35) !important;
+            background: rgba(18, 9, 0, 0.6) !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME NOËL — neige qui tombe
+══════════════════════════════════════ */
+        body.theme-noel {
+            --primary: #22c55e;
+            --secondary: #ef4444;
+            --bg-color: #04100a;
+            --glass-bg: rgba(5, 18, 8, 0.88);
+            --glass-border: rgba(34, 197, 94, 0.22);
+        }
+
+        body.theme-noel::before {
+            background: rgba(20, 120, 40, 0.15) !important;
+        }
+
+        body.theme-noel::after {
+            background: rgba(180, 20, 20, 0.12) !important;
+        }
+
+        body.theme-noel .ligne {
+            border-color: rgba(34, 197, 94, 0.12) !important;
+            background: rgba(3, 14, 5, 0.55) !important;
+        }
+
+        body.theme-noel .board-section,
+        body.theme-noel .rules-section,
+        body.theme-noel .card {
+            border-color: rgba(34, 197, 94, 0.28) !important;
+            background: rgba(3, 12, 5, 0.92) !important;
+            box-shadow: 0 4px 30px rgba(34, 197, 94, 0.12) !important;
+        }
+
+        body.theme-noel .palette {
+            border-color: rgba(220, 40, 40, 0.35) !important;
+            background: rgba(3, 14, 5, 0.6) !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME GALAXY — étoiles filantes
+══════════════════════════════════════ */
+        body.theme-galaxy {
+            --primary: #a78bfa;
+            --secondary: #38bdf8;
+            --bg-color: #00000a;
+            --glass-bg: rgba(5, 2, 20, 0.88);
+            --glass-border: rgba(167, 139, 250, 0.2);
+        }
+
+        body.theme-galaxy::before {
+            background: rgba(80, 0, 200, 0.12) !important;
+        }
+
+        body.theme-galaxy::after {
+            background: rgba(0, 180, 255, 0.08) !important;
+        }
+
+        body.theme-galaxy .ligne {
+            border-color: rgba(167, 139, 250, 0.1) !important;
+            background: rgba(2, 0, 12, 0.55) !important;
+        }
+
+        body.theme-galaxy .board-section,
+        body.theme-galaxy .rules-section,
+        body.theme-galaxy .card {
+            border-color: rgba(167, 139, 250, 0.2) !important;
+            background: rgba(2, 0, 12, 0.92) !important;
+            box-shadow: 0 0 30px rgba(80, 0, 200, 0.15) !important;
+        }
+
+        body.theme-galaxy .palette {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(2, 0, 12, 0.65) !important;
+        }
+
+        body.theme-galaxy #snow-canvas {
+            display: block;
+        }
+
+        body.theme-galaxy .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        #snow-canvas {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.theme-noel #snow-canvas {
+            display: block;
+        }
+
+        body.theme-noel .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        html {
+            overflow-x: hidden !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME ARCADE RÉTRO
+══════════════════════════════════════ */
+        body.theme-arcade {
+            --primary: #00ffcc;
+            --secondary: #ff00ff;
+            --bg-color: #060010;
+            --glass-bg: rgba(0, 0, 18, 0.9);
+            --glass-border: rgba(0, 255, 204, 0.2);
+        }
+
+        body.theme-arcade::before {
+            background: rgba(0, 255, 204, 0.1) !important;
+        }
+
+        body.theme-arcade::after {
+            background: rgba(255, 0, 255, 0.1) !important;
+        }
+
+        body.theme-arcade .ligne {
+            border-color: rgba(0, 255, 204, 0.1) !important;
+            background: rgba(0, 0, 14, 0.55) !important;
+        }
+
+        body.theme-arcade .board-section,
+        body.theme-arcade .rules-section,
+        body.theme-arcade .card {
+            border-color: rgba(0, 255, 204, 0.22) !important;
+            background: rgba(0, 0, 12, 0.92) !important;
+            box-shadow: 0 0 28px rgba(0, 255, 204, 0.12) !important;
+        }
+
+        body.theme-arcade .palette {
+            border-color: rgba(255, 0, 255, 0.3) !important;
+            background: rgba(0, 0, 14, 0.65) !important;
+        }
+
+        /* ══════════════════════════════════════
+   BASE
+══════════════════════════════════════ */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -31,9 +208,9 @@
             justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 0.3s ease;
         }
 
-        /* Taches de lumière en arrière-plan (Effet d'ambiance) */
         body::before,
         body::after {
             content: '';
@@ -59,15 +236,14 @@
             background: rgba(236, 72, 153, 0.15);
         }
 
-        /* SYSTÈME DE PAGES */
         .page {
             display: none;
             flex-direction: column;
             align-items: center;
             width: 100%;
             max-width: 900px;
-            padding: 10px 20px;
-            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
+            animation: fadeIn 0.4s ease;
         }
 
         .active {
@@ -77,22 +253,20 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(15px)
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0)
             }
         }
 
-        /* CARTES EN VERRE (Glassmorphism) */
         .card,
         .board-section,
         .rules-section {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             padding: 25px;
             border-radius: 24px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -106,39 +280,32 @@
             text-align: center;
         }
 
-        /* TITRES DEGRADÉS */
         h1 {
-            background: linear-gradient(to right, #a855f7, #ec4899);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 20px;
             font-weight: 900;
-            text-align: center;
         }
 
-        /* INPUTS MODERNES */
         input {
-            padding: 14px 20px;
+            padding: 12px 15px;
             border-radius: 12px;
             border: 1px solid var(--glass-border);
             width: 85%;
             margin: 8px 0;
             background: rgba(0, 0, 0, 0.2);
             color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
+            box-sizing: border-box;
         }
 
         input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-            background: rgba(0, 0, 0, 0.4);
         }
 
-        /* BOUTONS NEON */
         button {
             padding: 12px 24px;
             cursor: pointer;
@@ -146,9 +313,8 @@
             border: none;
             font-weight: bold;
             margin: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .btn-p {
@@ -174,14 +340,105 @@
         }
 
         button:disabled {
-            background: rgba(255, 255, 255, 0.05);
-            color: #555;
-            box-shadow: none;
+            opacity: 0.3;
             cursor: not-allowed;
-            border: 1px solid transparent;
         }
 
-        /* JEU & REGLES */
+        .coin-banner {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 99px;
+            color: #fbbf24;
+            font-weight: bold;
+            border: 1px solid #fbbf24;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        #admin-badge {
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .shop-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .shop-tab {
+            flex: 1;
+            padding: 9px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            transition: 0.2s;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .shop-tab.active-tab {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .shop-section {
+            display: none;
+        }
+
+        .shop-section.active-section {
+            display: block;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            width: 100%;
+            max-height: 370px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .shop-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .shop-item h4,
+        .shop-item p {
+            margin: 0;
+        }
+
+        .shop-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .shop-item button {
+            padding: 8px 16px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
         .game-layout {
             display: flex;
             gap: 20px;
@@ -210,11 +467,6 @@
             font-weight: 600;
         }
 
-        .rules-section ul {
-            padding-left: 20px;
-        }
-
-        /* LE PLATEAU (Lignes épurées) */
         .ligne {
             display: flex;
             gap: 10px;
@@ -228,23 +480,19 @@
             transition: 0.3s;
         }
 
-        .ligne:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .pions-container {
             display: flex;
             gap: 8px;
         }
 
         .emp {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
         }
 
         .bloc-ind {
@@ -261,7 +509,6 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* PALETTE DE SÉLECTION */
         .palette {
             display: flex;
             flex-wrap: wrap;
@@ -279,54 +526,44 @@
             height: 34px;
             border-radius: 50%;
             cursor: pointer;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.3s ease;
         }
 
         .choix:hover {
             transform: scale(1.2);
         }
 
-        /* COULEURS NEON (Glow effect) */
-        .rouge,
-        .bleu,
-        .vert,
-        .jaune,
-        .orange,
-        .violet {
-            border: none !important;
-        }
-
+        /* COULEURS BASE */
         .rouge {
             background: #ef4444;
-            box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
         }
 
         .bleu {
             background: #3b82f6;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
         }
 
         .vert {
             background: #10b981;
-            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
         }
 
         .jaune {
             background: #f59e0b;
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
         }
 
         .orange {
             background: #f97316;
-            box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
+            box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
         }
 
         .violet {
             background: #8b5cf6;
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
         }
 
-        /* Indices */
         .noir {
             background: #000;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.8), inset 0 0 2px rgba(255, 255, 255, 0.3) !important;
@@ -339,7 +576,304 @@
             border: none;
         }
 
-        /* BARRE DE COMMENTAIRES */
+        /* ══════════════════════════════════════
+   SKIN ZÈBRE
+══════════════════════════════════════ */
+        body.skin-zebre .emp,
+        body.skin-zebre .choix {
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        }
+
+        body.skin-zebre .emp::before,
+        body.skin-zebre .choix::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background-image: repeating-linear-gradient(-40deg, transparent 0px, transparent 5px, rgba(0, 0, 0, 0.75) 5px, rgba(0, 0, 0, 0.75) 10px, transparent 10px, transparent 16px, rgba(0, 0, 0, 0.55) 16px, rgba(0, 0, 0, 0.55) 20px);
+        }
+
+        body.skin-zebre .emp::after,
+        body.skin-zebre .choix::after {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 12%;
+            width: 42%;
+            height: 32%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.45) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN FRUITS
+══════════════════════════════════════ */
+        body.skin-fruits .emp,
+        body.skin-fruits .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2) !important;
+            box-shadow: none !important;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.skin-fruits .rouge::after {
+            content: '🍎';
+        }
+
+        body.skin-fruits .bleu::after {
+            content: '🫐';
+        }
+
+        body.skin-fruits .vert::after {
+            content: '🍏';
+        }
+
+        body.skin-fruits .jaune::after {
+            content: '🍋';
+        }
+
+        body.skin-fruits .orange::after {
+            content: '🍊';
+        }
+
+        body.skin-fruits .violet::after {
+            content: '🍇';
+        }
+
+        /* ══════════════════════════════════════
+   SKIN PLANÈTES
+══════════════════════════════════════ */
+        body.skin-planetes .emp,
+        body.skin-planetes .choix {
+            background-size: cover !important;
+            background-position: center !important;
+            box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        body.skin-planetes .rouge {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/120px-OSIRIS_Mars_true_color.jpg') !important;
+        }
+
+        body.skin-planetes .bleu {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/120px-The_Earth_seen_from_Apollo_17.jpg') !important;
+        }
+
+        body.skin-planetes .vert {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Uranus2.jpg/120px-Uranus2.jpg') !important;
+        }
+
+        body.skin-planetes .jaune {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/120px-Venus-real_color.jpg') !important;
+        }
+
+        body.skin-planetes .orange {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter.jpg/120px-Jupiter.jpg') !important;
+        }
+
+        body.skin-planetes .violet {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/120px-Neptune_Full.jpg') !important;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN GALAXIE
+══════════════════════════════════════ */
+        @keyframes rotateGal {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body.skin-galaxie .rouge {
+            background: radial-gradient(circle at 35% 35%, #ff2200 0%, #6b0000 50%, #0a0000 100%) !important;
+        }
+
+        body.skin-galaxie .bleu {
+            background: radial-gradient(circle at 35% 35%, #0066ff 0%, #000d4d 50%, #00000a 100%) !important;
+        }
+
+        body.skin-galaxie .vert {
+            background: radial-gradient(circle at 35% 35%, #00ff88 0%, #004d22 50%, #000a04 100%) !important;
+        }
+
+        body.skin-galaxie .jaune {
+            background: radial-gradient(circle at 35% 35%, #ffcc00 0%, #664d00 50%, #0a0800 100%) !important;
+        }
+
+        body.skin-galaxie .orange {
+            background: radial-gradient(circle at 35% 35%, #ff6600 0%, #662200 50%, #0a0300 100%) !important;
+        }
+
+        body.skin-galaxie .violet {
+            background: radial-gradient(circle at 35% 35%, #aa00ff 0%, #3d0066 50%, #07000a 100%) !important;
+        }
+
+        body.skin-galaxie .emp,
+        body.skin-galaxie .choix {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.12), inset 0 0 8px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.skin-galaxie .emp::before,
+        body.skin-galaxie .choix::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1px) 0 0/10px 10px,
+                radial-gradient(circle, rgba(255, 255, 255, 0.55) 1.5px, transparent 1.5px) 5px 5px/16px 16px,
+                radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px) 3px 7px/13px 13px;
+            animation: rotateGal 10s linear infinite;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        body.skin-galaxie .emp::after,
+        body.skin-galaxie .choix::after {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 12%;
+            width: 40%;
+            height: 30%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN JETONS CASINO — valeurs gravées
+══════════════════════════════════════ */
+        /* Les valeurs sont injectées via JS dans data-val, affichées via ::after */
+        body.skin-casino .emp,
+        body.skin-casino .choix {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        body.skin-casino .rouge {
+            background: conic-gradient(#cc0000 0deg, #ff4444 30deg, #cc0000 60deg, #ff4444 90deg, #cc0000 120deg, #ff4444 150deg, #cc0000 180deg, #ff4444 210deg, #cc0000 240deg, #ff4444 270deg, #cc0000 300deg, #ff4444 330deg, #cc0000 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #cc0000, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .bleu {
+            background: conic-gradient(#1d4ed8 0deg, #60a5fa 30deg, #1d4ed8 60deg, #60a5fa 90deg, #1d4ed8 120deg, #60a5fa 150deg, #1d4ed8 180deg, #60a5fa 210deg, #1d4ed8 240deg, #60a5fa 270deg, #1d4ed8 300deg, #60a5fa 330deg, #1d4ed8 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #1d4ed8, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .vert {
+            background: conic-gradient(#15803d 0deg, #4ade80 30deg, #15803d 60deg, #4ade80 90deg, #15803d 120deg, #4ade80 150deg, #15803d 180deg, #4ade80 210deg, #15803d 240deg, #4ade80 270deg, #15803d 300deg, #4ade80 330deg, #15803d 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #15803d, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .jaune {
+            background: conic-gradient(#b45309 0deg, #fde68a 30deg, #b45309 60deg, #fde68a 90deg, #b45309 120deg, #fde68a 150deg, #b45309 180deg, #fde68a 210deg, #b45309 240deg, #fde68a 270deg, #b45309 300deg, #fde68a 330deg, #b45309 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #b45309, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .orange {
+            background: conic-gradient(#c2410c 0deg, #fdba74 30deg, #c2410c 60deg, #fdba74 90deg, #c2410c 120deg, #fdba74 150deg, #c2410c 180deg, #fdba74 210deg, #c2410c 240deg, #fdba74 270deg, #c2410c 300deg, #fdba74 330deg, #c2410c 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #c2410c, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .violet {
+            background: conic-gradient(#6d28d9 0deg, #c4b5fd 30deg, #6d28d9 60deg, #c4b5fd 90deg, #6d28d9 120deg, #c4b5fd 150deg, #6d28d9 180deg, #c4b5fd 210deg, #6d28d9 240deg, #c4b5fd 270deg, #6d28d9 300deg, #c4b5fd 330deg, #6d28d9 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #6d28d9, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* Centre du jeton avec valeur */
+        body.skin-casino .emp::before,
+        body.skin-casino .choix::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55%;
+            height: 55%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Valeur affichée */
+        body.skin-casino .emp::after,
+        body.skin-casino .choix::after {
+            content: attr(data-val);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 7px;
+            font-weight: 900;
+            color: #111;
+            font-family: Arial, sans-serif;
+            letter-spacing: -0.5px;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: none;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN BONBONS — SVG réalistes
+══════════════════════════════════════ */
+        body.skin-bonbons .emp,
+        body.skin-bonbons .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: hidden;
+        }
+
+        body.skin-bonbons .emp svg,
+        body.skin-bonbons .choix svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN MARIO BROS — têtes SVG
+══════════════════════════════════════ */
+        body.skin-mario .emp,
+        body.skin-mario .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.1) !important;
+            box-shadow: none !important;
+            border: 2px solid rgba(255, 255, 255, 0.12) !important;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        body.skin-mario .emp svg,
+        body.skin-mario .choix svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* On affiche les SVG via ::after avec background-image — mais SVG inline est mieux, donc on les injecte via JS */
+
         #barre-commentaires {
             margin-top: 15px;
             padding: 12px;
@@ -350,10 +884,8 @@
             text-align: center;
             color: var(--text-main);
             font-size: 0.9rem;
-            transition: all 0.3s ease;
         }
 
-        /* TABLEAUX SCORES */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -367,7 +899,6 @@
             border-bottom: 1px solid var(--glass-border);
             text-transform: uppercase;
             font-size: 0.8rem;
-            letter-spacing: 1px;
         }
 
         td {
@@ -376,7 +907,6 @@
             color: var(--text-muted);
         }
 
-        /* MODAL */
         #modal-fin {
             display: none;
             position: fixed;
@@ -394,101 +924,108 @@
 </head>
 
 <body>
+    <canvas id="snow-canvas"></canvas>
 
-    <!-- PAGE 1: LOGIN -->
+    <!-- LOGIN -->
     <div id="p-login" class="page active">
         <h1>MASTERMIND</h1>
         <div class="card">
-            <h3 style="margin-top:0; color:white; font-weight:600;">Connexion</h3>
+            <h3 style="margin-top:0;">Connexion</h3>
             <input type="text" id="pseudo" placeholder="Votre Pseudo">
             <input type="password" id="mdp" placeholder="Votre Mot de passe">
             <br><br>
-            <button class="btn-p" onclick="connexion()" style="width: 100%;">Jouer</button>
-            <hr style="border-color: var(--glass-border); margin: 25px 0;">
-            <button class="btn-s" onclick="jouerInvite()" style="width: 100%;">Mode Invité</button>
+            <button class="btn-p" onclick="connexion()" style="width:100%;">Jouer</button>
+            <hr style="border-color:var(--glass-border);margin:20px 0;">
+            <button class="btn-s" onclick="jouerInvite()" style="width:100%;">Mode Invité</button>
         </div>
     </div>
 
-    <!-- PAGE 2: MENU -->
+    <!-- MENU -->
     <div id="p-menu" class="page">
         <h1 id="txt-bienvenue">Salut !</h1>
+        <div id="admin-badge">⚡ MODE ADMIN ACTIF</div>
+        <div class="coin-banner">💰 <span id="menu-coins">0</span> pièces</div>
         <div class="card">
-            <button class="btn-p" onclick="nav('p-mode')" style="width:100%; margin-bottom:10px;">Lancer une
-                partie</button><br>
-            <button class="btn-s" onclick="voirScores()" style="width:100%">Tableau des scores</button><br>
+            <button class="btn-p" onclick="nav('p-mode')" style="width:100%;margin-bottom:10px;">Lancer une
+                partie</button>
+            <button class="btn-s" onclick="nav('p-boutique')" style="width:100%;margin-bottom:10px;">🛒
+                Boutique</button>
+            <button class="btn-s" onclick="voirScores()" style="width:100%">Scores</button>
             <button onclick="location.reload()" class="btn-s"
-                style="width:100%; margin-top: 25px; border:none; color:var(--text-muted);">Se déconnecter</button>
+                style="width:100%;margin-top:25px;border:none;color:#ef4444;">Déconnexion</button>
         </div>
     </div>
 
-    <!-- PAGE 3: MODE -->
+    <!-- BOUTIQUE -->
+    <div id="p-boutique" class="page">
+        <h1>BOUTIQUE</h1>
+        <div class="coin-banner">Solde : <span id="shop-coins">0</span> 💰</div>
+        <div class="card" style="max-width:540px;">
+            <div class="shop-tabs">
+                <button class="shop-tab active-tab" onclick="switchTab('skins')">🎨 Skins Pions</button>
+                <button class="shop-tab" onclick="switchTab('themes')">🖼 Thèmes Plateau</button>
+            </div>
+            <div id="tab-skins" class="shop-section active-section">
+                <div class="shop-grid" id="shop-skins"></div>
+            </div>
+            <div id="tab-themes" class="shop-section">
+                <div class="shop-grid" id="shop-themes"></div>
+            </div>
+            <button class="btn-s" onclick="nav('p-menu')" style="width:100%;margin-top:20px;">Retour Menu</button>
+        </div>
+    </div>
+
+    <!-- MODE -->
     <div id="p-mode" class="page">
         <h1>Difficulté</h1>
         <div class="card">
-            <button class="btn-s" onclick="lancer(4)" style="width:100%; margin-bottom:15px;">Normal (4
-                Pions)</button><br>
-            <button class="btn-p"
-                style="background:linear-gradient(135deg, #ef4444, #f97316); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); width:100%;"
-                onclick="lancer(6)">HARDCORE (6 Pions)</button><br>
-            <button onclick="nav('p-menu')" class="btn-s"
-                style="border:none; color:var(--text-muted); margin-top:20px;">Retour</button>
+            <button class="btn-s" onclick="lancer(4)" style="width:100%;margin-bottom:15px;">Normal (4 Pions)</button>
+            <button class="btn-p" style="background:linear-gradient(135deg,#ef4444,#f97316);width:100%;"
+                onclick="lancer(6)">HARDCORE (6 Pions)</button>
+            <button onclick="nav('p-menu')" class="btn-s" style="border:none;margin-top:20px;">Retour</button>
         </div>
     </div>
 
-    <!-- PAGE 4: JEU -->
-    <div id="p-jeu" class="page" style="max-width: 950px;">
-        <div
-            style="display:flex; justify-content: space-between; align-items:center; width:100%; margin-bottom:20px; padding: 0 10px;">
-            <span id="txt-mode"
-                style="font-weight:600; color:var(--text-muted); font-size:1rem; text-transform:uppercase; letter-spacing:1px;">Mode:
-                4</span>
-            <span id="chrono" style="color:white; font-weight:bold; font-size: 1.5rem; letter-spacing:2px;">00:00</span>
-            <button onclick="nav('p-menu')" class="btn-s"
-                style="padding: 6px 12px; font-size: 0.8rem; margin:0;">Quitter</button>
+    <!-- JEU -->
+    <div id="p-jeu" class="page" style="max-width:950px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:20px;">
+            <span id="txt-mode" style="font-weight:bold;color:var(--text-muted);">Mode: 4</span>
+            <span id="chrono" style="color:white;font-weight:bold;font-size:1.5rem;">00:00</span>
+            <button onclick="nav('p-menu')" class="btn-s" style="padding:6px 12px;">Quitter</button>
         </div>
-
         <div class="game-layout">
-            <!-- LE PLATEAU -->
             <div class="board-section">
                 <div id="lignes-c"></div>
                 <div class="palette" id="pal"></div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button id="btn-v" class="btn-p" onclick="valider()" disabled style="width:80%;">Valider la
-                        Ligne</button>
+                <div style="text-align:center;margin-top:20px;">
+                    <button id="btn-v" class="btn-p" onclick="valider()" disabled style="width:80%;">Valider</button>
                 </div>
                 <div id="barre-commentaires">Prêt à jouer ? ⚡</div>
             </div>
-
-            <!-- LES REGLES -->
             <div class="rules-section">
                 <h3>Objectif</h3>
-                <p>Trouver le code couleur secret en un maximum de 10 tentatives.</p>
+                <p>Trouver le code couleur en 10 essais. (+10 💰 / victoire)</p>
                 <h3 style="margin-top:25px;">Indices</h3>
-                <ul style="list-style: none; padding: 0;">
+                <ul style="list-style:none;padding:0;">
                     <li
-                        style="margin-bottom:12px; display:flex; align-items:center; gap:12px; background: rgba(0,0,0,0.2); padding:10px; border-radius:12px;">
-                        <span class="pt noir"
-                            style="display:inline-block; width:10px; height:10px; flex-shrink:0;"></span>
-                        <span style="font-size:0.85rem; line-height:1.4;"><b>Noir</b><br>Bonne couleur & Bonne
-                            place.</span>
+                        style="margin-bottom:12px;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;">
+                        <span class="pt noir"></span><span style="font-size:0.85rem;"><b>Noir</b> = Bonne place</span>
                     </li>
                     <li
-                        style="display:flex; align-items:center; gap:12px; background: rgba(0,0,0,0.2); padding:10px; border-radius:12px;">
-                        <span class="pt blanc"
-                            style="display:inline-block; width:10px; height:10px; flex-shrink:0;"></span>
-                        <span style="font-size:0.85rem; line-height:1.4;"><b>Blanc</b><br>Bonne couleur mais Mauvaise
-                            place.</span>
+                        style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;">
+                        <span class="pt blanc"></span><span style="font-size:0.85rem;"><b>Blanc</b> = Mauvaise
+                            place</span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 5: SCORES -->
+    <!-- SCORES -->
     <div id="p-score" class="page">
         <h1>Leaderboard</h1>
-        <div class="card" style="max-width: 600px;">
-            <table id="table-scores">
+        <div class="card" style="max-width:600px;">
+            <table>
                 <thead>
                     <tr>
                         <th>Joueur</th>
@@ -499,191 +1036,558 @@
                 </thead>
                 <tbody id="corps-scores"></tbody>
             </table>
-            <br>
-            <button class="btn-s" onclick="nav('p-menu')" style="margin-top:15px; width:100%;">Retour au Menu</button>
+            <button class="btn-s" onclick="nav('p-menu')" style="margin-top:20px;width:100%;">Retour Menu</button>
         </div>
     </div>
 
-    <!-- MODAL FIN DE JEU -->
+    <!-- MODAL FIN -->
     <div id="modal-fin">
         <div class="card">
-            <h1 id="fin-titre" style="background:none; -webkit-text-fill-color:white; color:white;">FIN</h1>
-            <p id="fin-desc" style="color:var(--text-muted); line-height:1.5;">Résumé...</p>
+            <h1 id="fin-titre" style="color:white;">FIN</h1>
+            <p id="fin-desc" style="color:var(--text-muted);line-height:1.5;"></p>
             <div id="fin-secret"
-                style="display:none; margin: 20px 0; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
-                <p style="color: #ef4444; font-weight: bold; margin:0 0 10px 0;">Le code secret était :</p>
-                <span id="secret-texte" style="color:white; font-size:1.1rem; letter-spacing:1px;"></span>
+                style="display:none;margin:20px 0;padding:15px;background:rgba(239,68,68,0.1);border-radius:12px;border:1px solid rgba(239,68,68,0.3);">
+                <p style="color:#ef4444;font-weight:bold;margin:0 0 10px 0;">Le code secret :</p>
+                <span id="secret-texte" style="color:white;font-size:1.1rem;letter-spacing:1px;"></span>
             </div>
-            <br>
-            <button class="btn-p" onclick="partagerEmail()" style="width:100%; margin-bottom:10px;">Partager mon
-                score</button><br>
-            <button class="btn-s" onclick="nav('p-menu'); document.getElementById('modal-fin').style.display='none';"
-                style="width:100%; border:none;">Retour au Menu</button>
+            <button class="btn-s" onclick="nav('p-menu');document.getElementById('modal-fin').style.display='none';"
+                style="width:100%;">Continuer</button>
         </div>
     </div>
 
     <script>
-        // Le code Javascript reste exactement le même, aucune fonctionnalité n'est perdue !
-        let utilisateurActuel = null;
-        let config = { nb: 4, tours: 10 };
-        let jeu = { code: [], essai: [], tour: 0, timer: null, debut: 0, gagne: false };
-        const couleurs = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
+        const $ = id => document.getElementById(id);
 
-        const phrasesMotivation = [
-            "C'est parti ! Analyse bien les premiers indices.",
-            "Continue comme ça, affine ta recherche.",
-            "Pas mal, on commence à y voir clair.",
-            "Concentre-toi, la logique fait le reste.",
-            "Moitié du chemin. Chaque indice compte !",
-            "Tu te rapproches, c'est sûr.",
-            "Le moment de vérité approche.",
-            "Avant-dernière chance ! Réfléchis bien.",
-            "Dernier essai ! C'est maintenant ou jamais !"
+        /* ── CANVAS (neige + galaxie) ── */
+        const snowCanvas = $('snow-canvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        let snowFlakes = [], shootingStars = [], bgStars = [];
+        let snowActive = false, galaxyActive = false, snowRAF = null;
+
+        function initSnow() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            snowFlakes = [];
+            for (let i = 0; i < 120; i++) {
+                snowFlakes.push({
+                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                    r: Math.random() * 4 + 1, speed: Math.random() * 1.2 + 0.4,
+                    drift: (Math.random() - 0.5) * 0.5, opacity: Math.random() * 0.6 + 0.4,
+                    wobble: Math.random() * Math.PI * 2, wobbleSpeed: Math.random() * 0.03 + 0.01
+                });
+            }
+        }
+        function animateSnow() {
+            if (!snowActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowFlakes.forEach(f => {
+                f.wobble += f.wobbleSpeed; f.y += f.speed; f.x += f.drift + Math.sin(f.wobble) * 0.3;
+                if (f.y > snowCanvas.height) { f.y = -5; f.x = Math.random() * snowCanvas.width; }
+                if (f.x > snowCanvas.width) f.x = 0;
+                if (f.x < 0) f.x = snowCanvas.width;
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${f.opacity})`; snowCtx.fill();
+                snowCtx.beginPath(); snowCtx.arc(f.x - f.r * 0.3, f.y - f.r * 0.3, f.r * 0.4, 0, Math.PI * 2);
+                snowCtx.fillStyle = 'rgba(255,255,255,0.9)'; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateSnow);
+        }
+
+        function initGalaxy() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            bgStars = [];
+            for (let i = 0; i < 220; i++) {
+                bgStars.push({
+                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                    r: Math.random() * 1.5 + 0.3, opacity: Math.random() * 0.7 + 0.3,
+                    twinkleSpeed: Math.random() * 0.02 + 0.005, twinklePhase: Math.random() * Math.PI * 2
+                });
+            }
+            shootingStars = [];
+            for (let i = 0; i < 6; i++) spawnStar();
+        }
+        function spawnStar() {
+            shootingStars.push({
+                x: Math.random() * snowCanvas.width * 1.3,
+                y: Math.random() * snowCanvas.height * 0.5,
+                len: Math.random() * 120 + 60,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 5 + (Math.random() - 0.5) * 0.3,
+                opacity: 0, fadeIn: true,
+                delay: Math.random() * 200
+            });
+        }
+        function animateGalaxy() {
+            if (!galaxyActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Fond étoilé fixe
+            bgStars.forEach(s => {
+                s.twinklePhase += s.twinkleSpeed;
+                let op = s.opacity * (0.6 + 0.4 * Math.sin(s.twinklePhase));
+                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${op})`; snowCtx.fill();
+            });
+            // Nébuleuse subtile
+            let nb = snowCtx.createRadialGradient(snowCanvas.width * 0.3, snowCanvas.height * 0.4, 10, snowCanvas.width * 0.3, snowCanvas.height * 0.4, 300);
+            nb.addColorStop(0, 'rgba(80,0,200,0.04)'); nb.addColorStop(1, 'transparent');
+            snowCtx.fillStyle = nb; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            let nb2 = snowCtx.createRadialGradient(snowCanvas.width * 0.7, snowCanvas.height * 0.6, 10, snowCanvas.width * 0.7, snowCanvas.height * 0.6, 250);
+            nb2.addColorStop(0, 'rgba(0,100,200,0.04)'); nb2.addColorStop(1, 'transparent');
+            snowCtx.fillStyle = nb2; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Étoiles filantes
+            shootingStars.forEach((s, i) => {
+                if (s.delay > 0) { s.delay--; return; }
+                let dx = Math.cos(s.angle) * s.speed, dy = Math.sin(s.angle) * s.speed;
+                if (s.fadeIn) { s.opacity += 0.06; if (s.opacity >= 1) s.fadeIn = false; }
+                else { s.opacity -= 0.025; }
+                if (s.opacity <= 0) { shootingStars[i] = null; return; }
+                let tail = snowCtx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                tail.addColorStop(0, `rgba(255,255,255,${s.opacity})`);
+                tail.addColorStop(0.3, `rgba(180,160,255,${s.opacity * 0.6})`);
+                tail.addColorStop(1, 'rgba(100,80,255,0)');
+                snowCtx.beginPath();
+                snowCtx.moveTo(s.x, s.y);
+                snowCtx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                snowCtx.strokeStyle = tail; snowCtx.lineWidth = 2; snowCtx.stroke();
+                // Tête lumineuse
+                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${s.opacity})`; snowCtx.fill();
+                s.x += dx; s.y += dy;
+            });
+            shootingStars = shootingStars.filter(Boolean);
+            if (shootingStars.length < 6) spawnStar();
+            snowRAF = requestAnimationFrame(animateGalaxy);
+        }
+
+        function startSnow() { if (snowActive) return; snowActive = true; galaxyActive = false; initSnow(); animateSnow(); }
+        function startGalaxy() { if (galaxyActive) return; galaxyActive = true; snowActive = false; initGalaxy(); animateGalaxy(); }
+        function stopCanvas() { snowActive = false; galaxyActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); });
+
+        /* ── SVG MARIO CHARS ── */
+        // Têtes SVG simplifiées style pixel art
+        const marioSVGs = {
+            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mario -->
+        <rect x="8" y="2" width="16" height="4" fill="#e63946"/>
+        <rect x="6" y="6" width="20" height="2" fill="#e63946"/>
+        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
+        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
+        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
+        <rect x="10" y="16" width="12" height="2" fill="#c0392b"/>
+        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#e63946"/><rect x="18" y="22" width="8" height="2" fill="#e63946"/>
+        <rect x="4" y="24" width="10" height="2" fill="#e63946"/><rect x="18" y="24" width="10" height="2" fill="#e63946"/>
+    </svg>`,
+            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Luigi -->
+        <rect x="8" y="2" width="16" height="4" fill="#2ecc40"/>
+        <rect x="6" y="6" width="20" height="2" fill="#2ecc40"/>
+        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
+        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
+        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
+        <rect x="10" y="16" width="12" height="2" fill="#8B4513"/>
+        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#2ecc40"/><rect x="18" y="22" width="8" height="2" fill="#2ecc40"/>
+        <rect x="4" y="24" width="10" height="2" fill="#2ecc40"/><rect x="18" y="24" width="10" height="2" fill="#2ecc40"/>
+    </svg>`,
+            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Yoshi -->
+        <rect x="6" y="4" width="20" height="14" rx="4" fill="#2ecc40"/>
+        <rect x="8" y="6" width="16" height="10" fill="#2ecc40"/>
+        <rect x="8" y="8" width="4" height="4" fill="#fff"/><rect x="9" y="9" width="2" height="2" fill="#111"/>
+        <rect x="20" y="8" width="4" height="4" fill="#fff"/><rect x="21" y="9" width="2" height="2" fill="#111"/>
+        <rect x="6" y="16" width="20" height="2" fill="#ff6b6b"/>
+        <rect x="10" y="18" width="4" height="2" fill="#ff6b6b"/><rect x="18" y="18" width="4" height="2" fill="#ff6b6b"/>
+        <rect x="8" y="12" width="16" height="2" fill="#1a9e30"/>
+        <rect x="22" y="4" width="6" height="4" rx="1" fill="#e74c3c"/>
+        <rect x="24" y="3" width="2" height="2" fill="#e74c3c"/>
+        <rect x="6" y="20" width="20" height="6" rx="2" fill="#ffe0bd"/>
+        <rect x="12" y="22" width="8" height="2" fill="#ffb3b3"/>
+    </svg>`,
+            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Toad -->
+        <ellipse cx="16" cy="9" rx="12" ry="9" fill="#f5f5f5"/>
+        <circle cx="9" cy="7" r="3" fill="#e63946"/><circle cx="23" cy="7" r="3" fill="#e63946"/>
+        <circle cx="13" cy="5" r="2" fill="#e63946"/><circle cx="19" cy="5" rx="2" ry="2" fill="#e63946"/>
+        <circle cx="16" cy="4" r="2" fill="#e63946"/>
+        <rect x="8" y="14" width="16" height="8" rx="2" fill="#ffe0bd"/>
+        <rect x="10" y="16" width="4" height="3" fill="#222"/><rect x="11" y="17" width="2" height="2" fill="#fff"/>
+        <rect x="18" y="16" width="4" height="3" fill="#222"/><rect x="19" y="17" width="2" height="2" fill="#fff"/>
+        <rect x="12" y="20" width="8" height="1" fill="#c0392b"/>
+        <rect x="8" y="22" width="16" height="4" rx="1" fill="#3498db"/>
+        <rect x="10" y="22" width="12" height="2" fill="#2980b9"/>
+    </svg>`,
+            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wario -->
+        <rect x="7" y="2" width="18" height="5" fill="#f1c40f"/>
+        <rect x="5" y="7" width="22" height="2" fill="#f1c40f"/>
+        <rect x="4" y="9" width="24" height="9" fill="#ffe0bd"/>
+        <rect x="5" y="10" width="5" height="4" fill="#222"/><rect x="6" y="11" width="3" height="2" fill="#fff"/>
+        <rect x="22" y="10" width="5" height="4" fill="#222"/><rect x="23" y="11" width="3" height="2" fill="#fff"/>
+        <rect x="12" y="13" width="8" height="3" fill="#e8c39a"/>
+        <rect x="10" y="15" width="5" height="3" fill="#c0392b"/><rect x="17" y="15" width="5" height="3" fill="#c0392b"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#f1c40f"/><rect x="18" y="22" width="8" height="2" fill="#f1c40f"/>
+        <rect x="4" y="24" width="10" height="2" fill="#f1c40f"/><rect x="18" y="24" width="10" height="2" fill="#f1c40f"/>
+        <!-- Moustache W -->
+        <rect x="10" y="14" width="12" height="2" fill="#5d3a1a"/>
+        <rect x="10" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="14" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="16" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="20" y="14" width="2" height="3" fill="#5d3a1a"/>
+    </svg>`,
+            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bowser amélioré -->
+        <!-- Carapace verte sur le crâne -->
+        <rect x="7" y="1" width="18" height="6" rx="3" fill="#2d7a1e"/>
+        <rect x="9" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
+        <rect x="19" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
+        <rect x="14" y="0" width="4" height="2" rx="1" fill="#2d7a1e"/>
+        <!-- Tête jaune-orange massive -->
+        <rect x="4" y="6" width="24" height="16" rx="4" fill="#e8a020"/>
+        <!-- Sourcils noirs menaçants -->
+        <rect x="5" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(-8,9,8)"/>
+        <rect x="18" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(8,23,8)"/>
+        <!-- Yeux rouges avec pupilles noires -->
+        <ellipse cx="10" cy="13" rx="4" ry="4" fill="#e74c3c"/>
+        <ellipse cx="22" cy="13" rx="4" ry="4" fill="#e74c3c"/>
+        <ellipse cx="10" cy="13" rx="2" ry="2.5" fill="#111"/>
+        <ellipse cx="22" cy="13" rx="2" ry="2.5" fill="#111"/>
+        <rect x="9" y="11" width="1" height="1" fill="#fff"/>
+        <rect x="21" y="11" width="1" height="1" fill="#fff"/>
+        <!-- Museau beige large -->
+        <rect x="9" y="17" width="14" height="8" rx="4" fill="#d4a060"/>
+        <!-- Narines -->
+        <ellipse cx="13" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <ellipse cx="19" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <!-- Dents blanches qui dépassent -->
+        <rect x="10" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="17" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="13" y="24" width="3" height="2" fill="#e8a020"/>
+    </svg>`
+        };
+
+        // Valeurs jetons par couleur
+        const casinoVals = { rouge: '10', bleu: '20', vert: '50', jaune: '100', orange: '200', violet: '1000' };
+
+        // SVG bonbons réalistes — chaque couleur = type de bonbon différent
+        const bonbonSVGs = {
+            // rouge = sucette ronde brillante
+            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_r" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#ffccd6"/>
+                <stop offset="45%" stop-color="#ff4d6d"/>
+                <stop offset="100%" stop-color="#8b0000"/>
+            </radialGradient>
+        </defs>
+        <circle cx="16" cy="13" r="11" fill="url(#bg_r)"/>
+        <path d="M9,10 Q16,6 23,10" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M8,14 Q16,10 24,14" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="11" cy="10" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-30,11,10)"/>
+        <rect x="15" y="23" width="2.5" height="8" rx="1" fill="#8B4513"/>
+        <ellipse cx="16" cy="23" rx="2" ry="1" fill="#6b3410"/>
+    </svg>`,
+            // bleu = bonbon emballé (papillote)
+            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_b" cx="40%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#cce8ff"/>
+                <stop offset="50%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#1e3a8a"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ovale -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="url(#bg_b)"/>
+        <!-- Papillote gauche -->
+        <ellipse cx="5" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(-15,5,16)"/>
+        <line x1="6" y1="13" x2="4" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="8" y1="13" x2="6" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Papillote droite -->
+        <ellipse cx="27" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(15,27,16)"/>
+        <line x1="24" y1="13" x2="26" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="26" y1="13" x2="28" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="13" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-20,12,13)"/>
+        <!-- Rayures -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="3,4"/>
+    </svg>`,
+            // vert = bonbon canne de Noël (candy cane)
+            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="cane_g" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#fff"/>
+                <stop offset="100%" stop-color="#fff"/>
+            </linearGradient>
+        </defs>
+        <!-- Canne courbée -->
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="url(#cane_g)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="4,4"/>
+        <!-- Reflet -->
+        <path d="M18,27 L18,11 Q18,5 13,5" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>`,
+            // jaune = bonbon ourson gélatine
+            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_y" cx="40%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#fff9c4"/>
+                <stop offset="50%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#d97706"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ourson -->
+        <ellipse cx="16" cy="18" rx="9" ry="11" fill="url(#bg_y)"/>
+        <!-- Tête -->
+        <circle cx="16" cy="9" r="7" fill="url(#bg_y)"/>
+        <!-- Oreilles -->
+        <circle cx="10" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="22" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="10" cy="5" r="1.5" fill="#f59e0b"/>
+        <circle cx="22" cy="5" r="1.5" fill="#f59e0b"/>
+        <!-- Visage -->
+        <ellipse cx="13" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="19" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="16" cy="11" rx="3" ry="2" fill="#e8a020"/>
+        <ellipse cx="15" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <ellipse cx="17" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="7" rx="2" ry="1.5" fill="rgba(255,255,255,0.55)" transform="rotate(-20,12,7)"/>
+    </svg>`,
+            // orange = M&M / dragée ronde avec lettre
+            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_o" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#fed7aa"/>
+                <stop offset="45%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+            </radialGradient>
+        </defs>
+        <ellipse cx="16" cy="16" rx="13" ry="12" fill="url(#bg_o)"/>
+        <!-- Reflet haut -->
+        <ellipse cx="11" cy="10" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-25,11,10)"/>
+        <!-- Lettre M -->
+        <text x="16" y="20" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="11" fill="rgba(255,255,255,0.85)">m</text>
+        <!-- Ombre légère bas -->
+        <ellipse cx="16" cy="25" rx="11" ry="3" fill="rgba(0,0,0,0.15)"/>
+    </svg>`,
+            // violet = macaron français
+            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="mac_top" cx="45%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#e9d5ff"/>
+                <stop offset="60%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#581c87"/>
+            </radialGradient>
+        </defs>
+        <!-- Disque bas -->
+        <ellipse cx="16" cy="22" rx="12" ry="5" fill="#7e22ce"/>
+        <!-- Crème au milieu -->
+        <rect x="4" y="17" width="24" height="5" rx="1" fill="#f3e8ff"/>
+        <!-- Disque haut -->
+        <ellipse cx="16" cy="14" rx="12" ry="8" fill="url(#mac_top)"/>
+        <!-- Pied (collerette) -->
+        <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
+        <!-- Points déco -->
+        <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="22" cy="13" r="0.8" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="16" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/>
+    </svg>`
+        };
+
+        /* ── GAME STATE ── */
+        let user = { p: '', c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
+        let cfg = { nb: 4 }, jeu = { cod: [], ess: [], t: 0, tim: null, deb: 0, win: false };
+        const cols = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
+        const phrases = ["C'est parti !", "Continue comme ça.", "Pas mal.", "La logique fait le reste.", "Moitié du chemin.", "Tu te rapproches.", "Le moment de vérité.", "Avant-dernière chance !", "Dernier essai !"];
+
+        const skins = [
+            { id: 'default', nom: 'Néon (Base)', px: 0 },
+            { id: 'zebre', nom: 'Zèbre 🦓', px: 50 },
+            { id: 'planetes', nom: 'Planètes 🪐', px: 75 },
+            { id: 'fruits', nom: 'Fruits 🍎', px: 75 },
+            { id: 'galaxie', nom: 'Galaxie ✨', px: 100 },
+            { id: 'casino', nom: 'Jetons Casino 🎲', px: 120 },
+            { id: 'bonbons', nom: 'Bonbons 🍬', px: 100 },
+            { id: 'mario', nom: 'Mario Bros 🍄', px: 150 },
         ];
+        const themes = [
+            { id: 'default', nom: 'Défaut (Sombre)', px: 0 },
+            { id: 'casino', nom: 'Casino 🎰', px: 80 },
+            { id: 'noel', nom: 'Noël 🎄', px: 80 },
+            { id: 'arcade', nom: 'Arcade Rétro 👾', px: 80 },
+            { id: 'galaxy', nom: 'Galaxy 🌌', px: 120 },
+        ];
+        const ALL_S = skins.map(s => s.id), ALL_T = themes.map(t => t.id);
+
+        function applyVisuals() {
+            let cls = document.body.className.split(' ').filter(c => !c.startsWith('skin-') && !c.startsWith('theme-')).join(' ').trim();
+            document.body.className = cls;
+            if (user.eq && user.eq !== 'default') document.body.classList.add('skin-' + user.eq);
+            if (user.th && user.th !== 'default') document.body.classList.add('theme-' + user.th);
+            if (user.th === 'noel') startSnow();
+            else if (user.th === 'galaxy') startGalaxy();
+            else stopCanvas();
+            // Refresh pions si on est en jeu
+            refreshPions();
+        }
+
+        function refreshPions() {
+            document.querySelectorAll('.emp,.choix').forEach(el => {
+                const col = cols.find(c => el.classList.contains(c));
+                if (!col) return;
+                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
+                else el.removeAttribute('data-val');
+                el.innerHTML = '';
+                if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
+                if (user.eq === 'bonbons' && bonbonSVGs[col]) el.innerHTML = bonbonSVGs[col];
+            });
+        }
 
         function nav(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            $(id).classList.add('active');
+            if (id === 'p-menu' || id === 'p-boutique') { $('menu-coins').innerText = user.c; $('shop-coins').innerText = user.c; }
+            if (id === 'p-boutique') renderShop();
         }
 
-        function jouerInvite() {
-            utilisateurActuel = "Invité_" + Math.floor(Math.random() * 1000);
-            document.getElementById('txt-bienvenue').innerText = "Bienvenue, " + utilisateurActuel;
-            nav('p-menu');
+        function switchTab(tab) {
+            document.querySelectorAll('.shop-tab').forEach((t, i) => t.classList.toggle('active-tab', (i === 0 && tab === 'skins') || (i === 1 && tab === 'themes')));
+            $('tab-skins').classList.toggle('active-section', tab === 'skins');
+            $('tab-themes').classList.toggle('active-section', tab === 'themes');
+        }
+
+        function save() {
+            if (user.adm || user.p.startsWith("Inv_")) return;
+            let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
+            bdd[user.p] = user; localStorage.setItem('mm_v7', JSON.stringify(bdd));
+        }
+
+        function finishAuth(name, admin) {
+            if (admin) user = { p: 'Admin', c: "∞", s: ALL_S, th: 'default', eq: 'default', themes: ALL_T, adm: true };
+            if (!user.th) user.th = 'default';
+            if (!user.themes) user.themes = ['default'];
+            $('txt-bienvenue').innerText = "Salut, " + user.p;
+            $('admin-badge').style.display = user.adm ? "inline-block" : "none";
+            applyVisuals(); nav('p-menu');
         }
 
         function connexion() {
-            const p = document.getElementById('pseudo').value.trim();
-            const m = document.getElementById('mdp').value;
-            if (!p || !m) return alert("Remplissez le pseudo et le mot de passe.");
-            let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
-            if (comptes[p]) {
-                if (comptes[p] !== m) return alert("Mot de passe incorrect !");
-            } else {
-                comptes[p] = m;
-                localStorage.setItem('m_comptes', JSON.stringify(comptes));
-            }
-            utilisateurActuel = p;
-            document.getElementById('txt-bienvenue').innerText = "Salut, " + p;
-            nav('p-menu');
+            let p = $('pseudo').value.trim(), m = $('mdp').value;
+            if (!p || !m) return alert("Remplissez tout !");
+            if (p === 'admin' && m === '1234') return finishAuth(p, true);
+            let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
+            if (bdd[p]) { if (bdd[p].m !== m) return alert("Mauvais MDP !"); user = bdd[p]; }
+            else { user = { p, m, c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false }; save(); }
+            finishAuth(p, false);
+        }
+
+        function jouerInvite() {
+            user = { p: "Inv_" + Math.floor(Math.random() * 1000), c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
+            finishAuth(user.p, false);
+        }
+
+        function renderShop() {
+            let hS = '';
+            skins.forEach(k => {
+                let pos = user.adm || user.s.includes(k.id), eq = user.eq === k.id;
+                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpSkin('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achSkin('${k.id}',${k.px})">Acheter</button>`);
+                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
+                hS += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
+            });
+            $('shop-skins').innerHTML = hS;
+            let hT = '';
+            themes.forEach(k => {
+                let pos = user.adm || (user.themes || ['default']).includes(k.id), eq = (user.th || 'default') === k.id;
+                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpTheme('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achTheme('${k.id}',${k.px})">Acheter</button>`);
+                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
+                hT += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
+            });
+            $('shop-themes').innerHTML = hT;
+        }
+
+        function achSkin(id, px) { if (user.c >= px) { user.c -= px; user.s.push(id); eqpSkin(id); } else alert("Pas assez de pièces !"); }
+        function eqpSkin(id) { user.eq = id; applyVisuals(); save(); renderShop(); }
+        function achTheme(id, px) { if (user.c >= px) { user.c -= px; if (!user.themes) user.themes = ['default']; user.themes.push(id); eqpTheme(id); } else alert("Pas assez de pièces !"); }
+        function eqpTheme(id) { user.th = id; applyVisuals(); save(); renderShop(); }
+
+        function makePion(col) {
+            let el = document.createElement('div');
+            el.className = 'emp ' + col;
+            if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
+            if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
+            return el.outerHTML;
         }
 
         function lancer(n) {
-            config.nb = n;
-            jeu.code = Array.from({ length: n }, () => couleurs[Math.floor(Math.random() * 6)]);
-            jeu.essai = []; jeu.tour = 0; jeu.debut = 0; jeu.gagne = false;
-            clearInterval(jeu.timer);
-            document.getElementById('chrono').innerText = "00:00";
-            document.getElementById('txt-mode').innerText = "Mode : " + (n == 6 ? 'HARDCORE' : 'NORMAL');
-
-            const msgBar = document.getElementById('barre-commentaires');
-            msgBar.innerText = "Prêt à jouer ? ⚡";
-            msgBar.style.borderLeftColor = "var(--primary)";
-
-            const cont = document.getElementById('lignes-c');
-            cont.innerHTML = "";
+            cfg.nb = n;
+            jeu = { cod: Array.from({ length: n }, () => cols[Math.floor(Math.random() * 6)]), ess: [], t: 0, tim: null, deb: Date.now(), win: false };
+            $('chrono').innerText = "00:00"; $('txt-mode').innerText = "Mode : " + (n == 6 ? 'HARDCORE' : 'NORMAL');
+            $('barre-commentaires').innerText = "Prêt à jouer ? ⚡"; $('lignes-c').innerHTML = "";
             for (let i = 0; i < 10; i++) {
-                const l = document.createElement('div');
-                l.className = 'ligne'; l.id = 't-' + i;
-                let pions = '<div class="pions-container">';
-                for (let j = 0; j < n; j++) pions += '<div class="emp"></div>';
-                pions += '</div>';
-                l.innerHTML = pions + `<div class="bloc-ind" style="grid-template-columns:repeat(${n == 6 ? 3 : 2},1fr)">${'<div class="pt"></div>'.repeat(n)}</div>`;
-                cont.prepend(l);
+                let pions = Array(n).fill(0).map(() => `<div class="emp"></div>`).join('');
+                $('lignes-c').innerHTML = `<div class="ligne" id="t-${i}"><div class="pions-container">${pions}</div><div class="bloc-ind" style="grid-template-columns:repeat(${n == 6 ? 3 : 2},1fr)">${Array(n).fill('<div class="pt"></div>').join('')}</div></div>` + $('lignes-c').innerHTML;
             }
-
-            document.getElementById('pal').innerHTML = couleurs.map(c => `<div class="choix ${c}" onclick="ajouter('${c}')"></div>`).join('');
+            $('pal').innerHTML = cols.map(c => {
+                let inner = '';
+                if (user.eq === 'mario' && marioSVGs[c]) inner = marioSVGs[c];
+                if (user.eq === 'bonbons' && bonbonSVGs[c]) inner = bonbonSVGs[c];
+                return `<div class="choix ${c}" onclick="add('${c}')"${user.eq === 'casino' ? ' data-val="' + casinoVals[c] + '"' : ''}>${inner}</div>`;
+            }).join('');
+            clearInterval(jeu.tim); jeu.tim = setInterval(() => { let s = Math.floor((Date.now() - jeu.deb) / 1000); $('chrono').innerText = Math.floor(s / 60).toString().padStart(2, '0') + ":" + (s % 60).toString().padStart(2, '0'); }, 1000);
             nav('p-jeu');
         }
 
-        function ajouter(c) {
-            if (jeu.debut === 0) {
-                jeu.debut = Date.now();
-                jeu.timer = setInterval(() => {
-                    let s = Math.floor((Date.now() - jeu.debut) / 1000);
-                    document.getElementById('chrono').innerText = Math.floor(s / 60).toString().padStart(2, '0') + ":" + (s % 60).toString().padStart(2, '0');
-                }, 1000);
+        function add(c) {
+            if (jeu.ess.length < cfg.nb) {
+                jeu.ess.push(c);
+                let el = $('t-' + jeu.t).querySelectorAll('.emp')[jeu.ess.length - 1];
+                el.className = 'emp ' + c;
+                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[c] || '');
+                if (user.eq === 'mario' && marioSVGs[c]) el.innerHTML = marioSVGs[c];
+                if (user.eq === 'bonbons' && bonbonSVGs[c]) el.innerHTML = bonbonSVGs[c];
             }
-            if (jeu.essai.length < config.nb) {
-                jeu.essai.push(c);
-                document.getElementById('t-' + jeu.tour).querySelectorAll('.emp')[jeu.essai.length - 1].className = 'emp ' + c;
-            }
-            document.getElementById('btn-v').disabled = jeu.essai.length !== config.nb;
+            $('btn-v').disabled = jeu.ess.length !== cfg.nb;
         }
 
         function valider() {
-            let n = 0, b = 0;
-            let cS = [...jeu.code], cE = [...jeu.essai];
-            for (let i = 0; i < config.nb; i++) if (cE[i] === cS[i]) { n++; cS[i] = null; cE[i] = null; }
-            for (let i = 0; i < config.nb; i++) if (cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])] = null; }
-
-            const pts = document.getElementById('t-' + jeu.tour).querySelectorAll('.pt');
+            let n = 0, b = 0, cS = [...jeu.cod], cE = [...jeu.ess];
+            for (let i = 0; i < cfg.nb; i++) if (cE[i] === cS[i]) { n++; cS[i] = cE[i] = null; }
+            for (let i = 0; i < cfg.nb; i++) if (cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])] = null; }
+            let pts = $('t-' + jeu.t).querySelectorAll('.pt');
             for (let i = 0; i < n; i++) pts[i].className = 'pt noir';
             for (let i = 0; i < b; i++) pts[n + i].className = 'pt blanc';
+            if (n === cfg.nb) end(true); else if (jeu.t === 9) end(false); else { $('barre-commentaires').innerText = phrases[jeu.t]; jeu.t++; jeu.ess = []; $('btn-v').disabled = true; }
+        }
 
-            if (n === config.nb) {
-                terminerPartie(true);
-            } else if (jeu.tour === 9) {
-                terminerPartie(false);
+        function end(v) {
+            clearInterval(jeu.tim); jeu.win = v; $('modal-fin').style.display = 'flex';
+            if (v) {
+                if (!user.adm) user.c += 10; save();
+                $('fin-titre').innerText = "VICTOIRE !"; $('fin-titre').style.color = "#10b981";
+                $('fin-desc').innerText = `Bravo ${user.p} !\nCode trouvé en ${jeu.t + 1} essai(s).\nGain: +10 💰`; $('fin-secret').style.display = "none";
+                if (!user.p.startsWith("Inv_") && !user.adm) { let sc = JSON.parse(localStorage.getItem('mm_sc_v2') || "[]"); sc.push({ p: user.p, m: cfg.nb, e: jeu.t + 1, t: $('chrono').innerText, sec: Math.floor((Date.now() - jeu.deb) / 1000) }); localStorage.setItem('mm_sc_v2', JSON.stringify(sc)); }
             } else {
-                document.getElementById('barre-commentaires').innerText = phrasesMotivation[jeu.tour];
-                jeu.tour++;
-                jeu.essai = [];
-                document.getElementById('btn-v').disabled = true;
+                $('fin-titre').innerText = "ÉCHEC"; $('fin-titre').style.color = "#ef4444";
+                $('fin-desc').innerText = "Tu as épuisé tes 10 essais..."; $('fin-secret').style.display = "block";
+                const dC = { rouge: "Rouge", bleu: "Bleu", vert: "Vert", jaune: "Jaune", orange: "Orange", violet: "Violet" };
+                $('secret-texte').innerText = jeu.cod.map(c => dC[c]).join(' • ');
             }
-        }
-
-        function terminerPartie(victoire) {
-            clearInterval(jeu.timer);
-            jeu.gagne = victoire;
-
-            const msgBar = document.getElementById('barre-commentaires');
-            document.getElementById('modal-fin').style.display = 'flex';
-
-            const titre = document.getElementById('fin-titre');
-            const desc = document.getElementById('fin-desc');
-            const secInfo = document.getElementById('fin-secret');
-
-            if (victoire) {
-                msgBar.innerText = "Mission accomplie ! 🎯";
-                msgBar.style.borderLeftColor = "#10b981";
-                titre.innerText = "VICTOIRE !";
-                titre.style.color = "#10b981";
-                desc.innerText = `Félicitations ${utilisateurActuel} !\nTu as cracké le code en ${jeu.tour + 1} essai(s) et ${document.getElementById('chrono').innerText}.`;
-                secInfo.style.display = "none";
-                sauverScore();
-            } else {
-                msgBar.innerText = "Système verrouillé. 🔒";
-                msgBar.style.borderLeftColor = "#ef4444";
-                titre.innerText = "ÉCHEC";
-                titre.style.color = "#ef4444";
-                desc.innerText = "Tu as épuisé tes 10 essais...";
-                secInfo.style.display = "block";
-
-                const dicoCol = { rouge: "Rouge", bleu: "Bleu", vert: "Vert", jaune: "Jaune", orange: "Orange", violet: "Violet" };
-                document.getElementById('secret-texte').innerText = jeu.code.map(c => dicoCol[c]).join(' • ');
-            }
-        }
-
-        function partagerEmail() {
-            const sujet = encodeURIComponent(`Mon score au Mastermind (${utilisateurActuel})`);
-            let corps = jeu.gagne
-                ? `Salut !\n\nJe viens de gagner au Mastermind :\n- Mode : ${config.nb} pions\n- Essais : ${jeu.tour + 1}/10\n- Temps : ${document.getElementById('chrono').innerText}\n\nViens essayer de battre mon record !`
-                : `Salut !\n\nJ'ai essayé le Mastermind en mode ${config.nb} pions mais j'ai perdu...\nViens essayer de faire mieux que moi !`;
-            window.location.href = `mailto:?subject=${sujet}&body=${encodeURIComponent(corps)}`;
-        }
-
-        function sauverScore() {
-            if (utilisateurActuel.startsWith("Invité_")) return;
-            let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
-            sc.push({ pseudo: utilisateurActuel, mode: config.nb, essais: jeu.tour + 1, temps: document.getElementById('chrono').innerText, sec: Math.floor((Date.now() - jeu.debut) / 1000) });
-            localStorage.setItem('m_scores', JSON.stringify(sc));
         }
 
         function voirScores() {
             let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
             sc.sort((a, b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
-            document.getElementById('corps-scores').innerHTML = sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
+            $('corps-scores').innerHTML = sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
             nav('p-score');
         }
     </script>

@@ -924,77 +924,134 @@
 </head>
 
 <body>
+    <canvas id="snow-canvas"></canvas>
 
-    <!-- PAGE: LOGIN -->
+    <!-- LOGIN -->
     <div id="p-login" class="page active">
-        <h1>Mastermind</h1>
+        <h1>MASTERMIND</h1>
         <div class="card">
-            <input type="text" id="pseudo" placeholder="Pseudo">
-            <input type="password" id="mdp" placeholder="Mot de passe">
-            <button class="btn-p" onclick="connexion()">Se connecter</button>
-            <p style="font-size: 0.7rem; color: #777;">Admin : admin / admin123</p>
+            <h3 style="margin-top:0;">Connexion</h3>
+            <input type="text" id="pseudo" placeholder="Votre Pseudo">
+            <input type="password" id="mdp" placeholder="Votre Mot de passe">
+            <br><br>
+            <button class="btn-p" onclick="connexion()" style="width:100%;">Jouer</button>
+            <hr style="border-color:var(--glass-border);margin:20px 0;">
+            <button class="btn-s" onclick="jouerInvite()" style="width:100%;">Mode Invité</button>
         </div>
     </div>
 
-    <!-- PAGE: MENU -->
+    <!-- MENU -->
     <div id="p-menu" class="page">
         <h1 id="txt-bienvenue">Salut !</h1>
+        <div id="admin-badge">⚡ MODE ADMIN ACTIF</div>
+        <div class="coin-banner">💰 <span id="menu-coins">0</span> pièces</div>
         <div class="card">
-            <button class="btn-p" onclick="nav('p-mode')" style="width:80%">JOUER</button><br>
-            <button class="btn-s" onclick="voirScores()" style="width:80%">SCORES</button><br>
-            <div id="section-admin" style="display:none; border-top: 1px solid #444; margin-top:15px; padding-top:15px;">
-                <button class="btn-d" onclick="ouvrirAdmin()" style="width:80%">PANEL ADMIN</button>
+            <button class="btn-p" onclick="nav('p-mode')" style="width:100%;margin-bottom:10px;">Lancer une
+                partie</button>
+            <button class="btn-s" onclick="nav('p-boutique')" style="width:100%;margin-bottom:10px;">🛒
+                Boutique</button>
+            <button class="btn-s" onclick="voirScores()" style="width:100%">Scores</button>
+            <button onclick="location.reload()" class="btn-s"
+                style="width:100%;margin-top:25px;border:none;color:#ef4444;">Déconnexion</button>
+        </div>
+    </div>
+
+    <!-- BOUTIQUE -->
+    <div id="p-boutique" class="page">
+        <h1>BOUTIQUE</h1>
+        <div class="coin-banner">Solde : <span id="shop-coins">0</span> 💰</div>
+        <div class="card" style="max-width:540px;">
+            <div class="shop-tabs">
+                <button class="shop-tab active-tab" onclick="switchTab('skins')">🎨 Skins Pions</button>
+                <button class="shop-tab" onclick="switchTab('themes')">🖼 Thèmes Plateau</button>
             </div>
-            <button onclick="location.reload()" style="background:#555; color:white; width:80%">DÉCONNEXION</button>
+            <div id="tab-skins" class="shop-section active-section">
+                <div class="shop-grid" id="shop-skins"></div>
+            </div>
+            <div id="tab-themes" class="shop-section">
+                <div class="shop-grid" id="shop-themes"></div>
+            </div>
+            <button class="btn-s" onclick="nav('p-menu')" style="width:100%;margin-top:20px;">Retour Menu</button>
         </div>
     </div>
 
-    <!-- PAGE: ADMIN -->
-    <div id="p-admin" class="page">
-        <h1>Gestion Utilisateurs</h1>
-        <div class="card">
-            <table>
-                <thead><tr><th>Pseudo</th><th>Action</th></tr></thead>
-                <tbody id="liste-users"></tbody>
-            </table>
-            <br>
-            <button class="btn-s" onclick="nav('p-menu')">Retour</button>
-        </div>
-    </div>
-
-    <!-- PAGE: DIFFICULTÉ -->
+    <!-- MODE -->
     <div id="p-mode" class="page">
-        <h1>Mode de jeu</h1>
+        <h1>Difficulté</h1>
         <div class="card">
-            <button class="btn-s" onclick="lancer(4)">Normal (4 emplacements)</button><br>
-            <button class="btn-p" style="background:var(--danger)" onclick="lancer(6)">HARDCORE (6 emplacements)</button><br>
-            <button onclick="nav('p-menu')">Retour</button>
+            <button class="btn-s" onclick="lancer(4)" style="width:100%;margin-bottom:15px;">Normal (4 Pions)</button>
+            <button class="btn-p" style="background:linear-gradient(135deg,#ef4444,#f97316);width:100%;"
+                onclick="lancer(6)">HARDCORE (6 Pions)</button>
+            <button onclick="nav('p-menu')" class="btn-s" style="border:none;margin-top:20px;">Retour</button>
         </div>
     </div>
 
-    <!-- PAGE: JEU -->
-    <div id="p-jeu" class="page">
-        <div style="display:flex; justify-content: space-between; width:100%; margin-bottom:10px;">
-            <span id="chrono" style="color:var(--s); font-weight:bold;">00:00</span>
-            <span id="txt-mode">Mode: 4</span>
+    <!-- JEU -->
+    <div id="p-jeu" class="page" style="max-width:950px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:20px;">
+            <span id="txt-mode" style="font-weight:bold;color:var(--text-muted);">Mode: 4</span>
+            <span id="chrono" style="color:white;font-weight:bold;font-size:1.5rem;">00:00</span>
+            <button onclick="nav('p-menu')" class="btn-s" style="padding:6px 12px;">Quitter</button>
         </div>
-        <div id="plateau" style="background:#2a2a2a; padding:15px; border-radius:15px;">
-            <div id="lignes-c"></div>
+        <div class="game-layout">
+            <div class="board-section">
+                <div id="lignes-c"></div>
+                <div class="palette" id="pal"></div>
+                <div style="text-align:center;margin-top:20px;">
+                    <button id="btn-v" class="btn-p" onclick="valider()" disabled style="width:80%;">Valider</button>
+                </div>
+                <div id="barre-commentaires">Prêt à jouer ? ⚡</div>
+            </div>
+            <div class="rules-section">
+                <h3>Objectif</h3>
+                <p>Trouver le code couleur en 10 essais. (+10 💰 / victoire)</p>
+                <h3 style="margin-top:25px;">Indices</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li
+                        style="margin-bottom:12px;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;">
+                        <span class="pt noir"></span><span style="font-size:0.85rem;"><b>Noir</b> = Bonne place</span>
+                    </li>
+                    <li
+                        style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;">
+                        <span class="pt blanc"></span><span style="font-size:0.85rem;"><b>Blanc</b> = Mauvaise
+                            place</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="palette" id="pal"></div>
-        <button id="btn-v" class="btn-p" onclick="valider()" disabled>Valider la ligne</button>
     </div>
 
-    <!-- PAGE: SCORES -->
+    <!-- SCORES -->
     <div id="p-score" class="page">
-        <h1>Classement</h1>
-        <div class="card">
-            <table id="table-scores">
-                <thead><tr><th>Joueur</th><th>Mode</th><th>Essais</th><th>Temps</th></tr></thead>
+        <h1>Leaderboard</h1>
+        <div class="card" style="max-width:600px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Joueur</th>
+                        <th>Mode</th>
+                        <th>Essais</th>
+                        <th>Temps</th>
+                    </tr>
+                </thead>
                 <tbody id="corps-scores"></tbody>
             </table>
-            <br>
-            <button class="btn-s" onclick="nav('p-menu')">Retour</button>
+            <button class="btn-s" onclick="nav('p-menu')" style="margin-top:20px;width:100%;">Retour Menu</button>
+        </div>
+    </div>
+
+    <!-- MODAL FIN -->
+    <div id="modal-fin">
+        <div class="card">
+            <h1 id="fin-titre" style="color:white;">FIN</h1>
+            <p id="fin-desc" style="color:var(--text-muted);line-height:1.5;"></p>
+            <div id="fin-secret"
+                style="display:none;margin:20px 0;padding:15px;background:rgba(239,68,68,0.1);border-radius:12px;border:1px solid rgba(239,68,68,0.3);">
+                <p style="color:#ef4444;font-weight:bold;margin:0 0 10px 0;">Le code secret :</p>
+                <span id="secret-texte" style="color:white;font-size:1.1rem;letter-spacing:1px;"></span>
+            </div>
+            <button class="btn-s" onclick="nav('p-menu');document.getElementById('modal-fin').style.display='none';"
+                style="width:100%;">Continuer</button>
         </div>
     </div>
 

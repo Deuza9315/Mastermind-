@@ -1,44 +1,928 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Mastermind Pro - Admin System</title>
+    <title>Mastermind - Ultimate Edition</title>
     <style>
-        :root { --p: #4caf50; --s: #448aff; --danger: #f44336; --bg: #121212; --card: #2a2a2a; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; justify-content: center; }
-        
-        .page { display: none; flex-direction: column; align-items: center; width: 100%; max-width: 550px; padding: 20px; animation: fadeIn 0.3s; }
-        .active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #ec4899;
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-        .card { background: var(--card); padding: 25px; border-radius: 20px; width: 100%; box-sizing: border-box; border: 1px solid #333; text-align: center; }
-        h1 { color: var(--p); text-transform: uppercase; margin-bottom: 10px; }
-        input { padding: 12px; border-radius: 10px; border: 1px solid #444; width: 85%; margin: 10px 0; background: #1a1a1a; color: white; }
-        
-        button { padding: 12px 20px; cursor: pointer; border-radius: 30px; border: none; font-weight: bold; margin: 5px; transition: 0.2s; }
-        .btn-p { background: var(--p); color: white; }
-        .btn-s { background: var(--s); color: white; }
-        .btn-d { background: var(--danger); color: white; }
-        button:hover { transform: scale(1.05); filter: brightness(1.2); }
-        
-        /* TABLEAUX */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
-        th, td { padding: 12px 8px; border-bottom: 1px solid #444; text-align: left; }
-        tr:hover { background: rgba(255,255,255,0.05); }
+        /* ══════════════════════════════════════
+   THÈME CASINO
+══════════════════════════════════════ */
+        body.theme-casino {
+            --primary: #f59e0b;
+            --secondary: #ef4444;
+            --bg-color: #080500;
+            --glass-bg: rgba(15, 8, 0, 0.9);
+            --glass-border: rgba(245, 158, 11, 0.35);
+        }
 
-        /* JEU */
-        .ligne { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; padding: 8px; background: #333; border-radius: 10px; }
-        .emp { width: 30px; height: 30px; border-radius: 50%; background: #1a1a1a; border: 2px solid #444; }
-        .bloc-ind { display: grid; gap: 3px; margin-left: 10px; background: #222; padding: 5px; border-radius: 5px; }
-        .pt { width: 10px; height: 10px; border-radius: 50%; background: #444; }
-        .palette { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
-        .choix { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+        body.theme-casino::before {
+            background: rgba(180, 120, 0, 0.18) !important;
+        }
 
-        .rouge { background: #ff5252; } .bleu { background: #448aff; } .vert { background: #4caf50; }
-        .jaune { background: #ffeb3b; } .orange { background: #ff9800; } .violet { background: #9c27b0; }
-        .noir { background: #000; } .blanc { background: #fff; }
+        body.theme-casino::after {
+            background: rgba(200, 20, 20, 0.14) !important;
+        }
+
+        body.theme-casino .ligne {
+            border-color: rgba(245, 158, 11, 0.18) !important;
+            background: rgba(25, 12, 0, 0.5) !important;
+        }
+
+        body.theme-casino .board-section,
+        body.theme-casino .rules-section,
+        body.theme-casino .card {
+            border-color: rgba(245, 158, 11, 0.35) !important;
+            background: rgba(12, 6, 0, 0.92) !important;
+            box-shadow: 0 4px 30px rgba(245, 158, 11, 0.2), inset 0 0 60px rgba(180, 100, 0, 0.05) !important;
+        }
+
+        body.theme-casino .palette {
+            border-color: rgba(245, 158, 11, 0.35) !important;
+            background: rgba(18, 9, 0, 0.6) !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME NOËL — neige qui tombe
+══════════════════════════════════════ */
+        body.theme-noel {
+            --primary: #22c55e;
+            --secondary: #ef4444;
+            --bg-color: #04100a;
+            --glass-bg: rgba(5, 18, 8, 0.88);
+            --glass-border: rgba(34, 197, 94, 0.22);
+        }
+
+        body.theme-noel::before {
+            background: rgba(20, 120, 40, 0.15) !important;
+        }
+
+        body.theme-noel::after {
+            background: rgba(180, 20, 20, 0.12) !important;
+        }
+
+        body.theme-noel .ligne {
+            border-color: rgba(34, 197, 94, 0.12) !important;
+            background: rgba(3, 14, 5, 0.55) !important;
+        }
+
+        body.theme-noel .board-section,
+        body.theme-noel .rules-section,
+        body.theme-noel .card {
+            border-color: rgba(34, 197, 94, 0.28) !important;
+            background: rgba(3, 12, 5, 0.92) !important;
+            box-shadow: 0 4px 30px rgba(34, 197, 94, 0.12) !important;
+        }
+
+        body.theme-noel .palette {
+            border-color: rgba(220, 40, 40, 0.35) !important;
+            background: rgba(3, 14, 5, 0.6) !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME GALAXY — étoiles filantes
+══════════════════════════════════════ */
+        body.theme-galaxy {
+            --primary: #a78bfa;
+            --secondary: #38bdf8;
+            --bg-color: #00000a;
+            --glass-bg: rgba(5, 2, 20, 0.88);
+            --glass-border: rgba(167, 139, 250, 0.2);
+        }
+
+        body.theme-galaxy::before {
+            background: rgba(80, 0, 200, 0.12) !important;
+        }
+
+        body.theme-galaxy::after {
+            background: rgba(0, 180, 255, 0.08) !important;
+        }
+
+        body.theme-galaxy .ligne {
+            border-color: rgba(167, 139, 250, 0.1) !important;
+            background: rgba(2, 0, 12, 0.55) !important;
+        }
+
+        body.theme-galaxy .board-section,
+        body.theme-galaxy .rules-section,
+        body.theme-galaxy .card {
+            border-color: rgba(167, 139, 250, 0.2) !important;
+            background: rgba(2, 0, 12, 0.92) !important;
+            box-shadow: 0 0 30px rgba(80, 0, 200, 0.15) !important;
+        }
+
+        body.theme-galaxy .palette {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(2, 0, 12, 0.65) !important;
+        }
+
+        body.theme-galaxy #snow-canvas {
+            display: block;
+        }
+
+        body.theme-galaxy .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        #snow-canvas {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.theme-noel #snow-canvas {
+            display: block;
+        }
+
+        body.theme-noel .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        html {
+            overflow-x: hidden !important;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME ARCADE RÉTRO
+══════════════════════════════════════ */
+        body.theme-arcade {
+            --primary: #00ffcc;
+            --secondary: #ff00ff;
+            --bg-color: #060010;
+            --glass-bg: rgba(0, 0, 18, 0.9);
+            --glass-border: rgba(0, 255, 204, 0.2);
+        }
+
+        body.theme-arcade::before {
+            background: rgba(0, 255, 204, 0.1) !important;
+        }
+
+        body.theme-arcade::after {
+            background: rgba(255, 0, 255, 0.1) !important;
+        }
+
+        body.theme-arcade .ligne {
+            border-color: rgba(0, 255, 204, 0.1) !important;
+            background: rgba(0, 0, 14, 0.55) !important;
+        }
+
+        body.theme-arcade .board-section,
+        body.theme-arcade .rules-section,
+        body.theme-arcade .card {
+            border-color: rgba(0, 255, 204, 0.22) !important;
+            background: rgba(0, 0, 12, 0.92) !important;
+            box-shadow: 0 0 28px rgba(0, 255, 204, 0.12) !important;
+        }
+
+        body.theme-arcade .palette {
+            border-color: rgba(255, 0, 255, 0.3) !important;
+            background: rgba(0, 0, 14, 0.65) !important;
+        }
+
+        /* ══════════════════════════════════════
+   BASE
+══════════════════════════════════════ */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+        }
+
+        body::before {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        body::after {
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: rgba(236, 72, 153, 0.15);
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .card,
+        .board-section,
+        .rules-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        input {
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            width: 85%;
+            margin: 8px 0;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 99px;
+            border: none;
+            font-weight: bold;
+            margin: 8px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-p {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .btn-p:hover:not(:disabled) {
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-s {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+
+        .btn-s:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .coin-banner {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 99px;
+            color: #fbbf24;
+            font-weight: bold;
+            border: 1px solid #fbbf24;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        #admin-badge {
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .shop-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .shop-tab {
+            flex: 1;
+            padding: 9px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            transition: 0.2s;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .shop-tab.active-tab {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .shop-section {
+            display: none;
+        }
+
+        .shop-section.active-section {
+            display: block;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            width: 100%;
+            max-height: 370px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .shop-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .shop-item h4,
+        .shop-item p {
+            margin: 0;
+        }
+
+        .shop-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .shop-item button {
+            padding: 8px 16px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .game-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .board-section {
+            padding: 20px;
+            flex-grow: 1;
+            max-width: 450px;
+        }
+
+        .rules-section {
+            max-width: 280px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .rules-section h3 {
+            color: white;
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .ligne {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 99px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
+        }
+
+        .pions-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .emp {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: 0.3s ease;
+        }
+
+        .bloc-ind {
+            display: grid;
+            gap: 4px;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .pt {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 99px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .choix {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .choix:hover {
+            transform: scale(1.2);
+        }
+
+        /* COULEURS BASE */
+        .rouge {
+            background: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+        }
+
+        .bleu {
+            background: #3b82f6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+        }
+
+        .vert {
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+        }
+
+        .jaune {
+            background: #f59e0b;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+        }
+
+        .orange {
+            background: #f97316;
+            box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
+        }
+
+        .violet {
+            background: #8b5cf6;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+        }
+
+        .noir {
+            background: #000;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.8), inset 0 0 2px rgba(255, 255, 255, 0.3) !important;
+            border: 1px solid #333;
+        }
+
+        .blanc {
+            background: #fff;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8) !important;
+            border: none;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN ZÈBRE
+══════════════════════════════════════ */
+        body.skin-zebre .emp,
+        body.skin-zebre .choix {
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        }
+
+        body.skin-zebre .emp::before,
+        body.skin-zebre .choix::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background-image: repeating-linear-gradient(-40deg, transparent 0px, transparent 5px, rgba(0, 0, 0, 0.75) 5px, rgba(0, 0, 0, 0.75) 10px, transparent 10px, transparent 16px, rgba(0, 0, 0, 0.55) 16px, rgba(0, 0, 0, 0.55) 20px);
+        }
+
+        body.skin-zebre .emp::after,
+        body.skin-zebre .choix::after {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 12%;
+            width: 42%;
+            height: 32%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.45) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN FRUITS
+══════════════════════════════════════ */
+        body.skin-fruits .emp,
+        body.skin-fruits .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2) !important;
+            box-shadow: none !important;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.skin-fruits .rouge::after {
+            content: '🍎';
+        }
+
+        body.skin-fruits .bleu::after {
+            content: '🫐';
+        }
+
+        body.skin-fruits .vert::after {
+            content: '🍏';
+        }
+
+        body.skin-fruits .jaune::after {
+            content: '🍋';
+        }
+
+        body.skin-fruits .orange::after {
+            content: '🍊';
+        }
+
+        body.skin-fruits .violet::after {
+            content: '🍇';
+        }
+
+        /* ══════════════════════════════════════
+   SKIN PLANÈTES
+══════════════════════════════════════ */
+        body.skin-planetes .emp,
+        body.skin-planetes .choix {
+            background-size: cover !important;
+            background-position: center !important;
+            box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        body.skin-planetes .rouge {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/120px-OSIRIS_Mars_true_color.jpg') !important;
+        }
+
+        body.skin-planetes .bleu {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/120px-The_Earth_seen_from_Apollo_17.jpg') !important;
+        }
+
+        body.skin-planetes .vert {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Uranus2.jpg/120px-Uranus2.jpg') !important;
+        }
+
+        body.skin-planetes .jaune {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/120px-Venus-real_color.jpg') !important;
+        }
+
+        body.skin-planetes .orange {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter.jpg/120px-Jupiter.jpg') !important;
+        }
+
+        body.skin-planetes .violet {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/120px-Neptune_Full.jpg') !important;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN GALAXIE
+══════════════════════════════════════ */
+        @keyframes rotateGal {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body.skin-galaxie .rouge {
+            background: radial-gradient(circle at 35% 35%, #ff2200 0%, #6b0000 50%, #0a0000 100%) !important;
+        }
+
+        body.skin-galaxie .bleu {
+            background: radial-gradient(circle at 35% 35%, #0066ff 0%, #000d4d 50%, #00000a 100%) !important;
+        }
+
+        body.skin-galaxie .vert {
+            background: radial-gradient(circle at 35% 35%, #00ff88 0%, #004d22 50%, #000a04 100%) !important;
+        }
+
+        body.skin-galaxie .jaune {
+            background: radial-gradient(circle at 35% 35%, #ffcc00 0%, #664d00 50%, #0a0800 100%) !important;
+        }
+
+        body.skin-galaxie .orange {
+            background: radial-gradient(circle at 35% 35%, #ff6600 0%, #662200 50%, #0a0300 100%) !important;
+        }
+
+        body.skin-galaxie .violet {
+            background: radial-gradient(circle at 35% 35%, #aa00ff 0%, #3d0066 50%, #07000a 100%) !important;
+        }
+
+        body.skin-galaxie .emp,
+        body.skin-galaxie .choix {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.12), inset 0 0 8px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.skin-galaxie .emp::before,
+        body.skin-galaxie .choix::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1px) 0 0/10px 10px,
+                radial-gradient(circle, rgba(255, 255, 255, 0.55) 1.5px, transparent 1.5px) 5px 5px/16px 16px,
+                radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px) 3px 7px/13px 13px;
+            animation: rotateGal 10s linear infinite;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        body.skin-galaxie .emp::after,
+        body.skin-galaxie .choix::after {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 12%;
+            width: 40%;
+            height: 30%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN JETONS CASINO — valeurs gravées
+══════════════════════════════════════ */
+        /* Les valeurs sont injectées via JS dans data-val, affichées via ::after */
+        body.skin-casino .emp,
+        body.skin-casino .choix {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        body.skin-casino .rouge {
+            background: conic-gradient(#cc0000 0deg, #ff4444 30deg, #cc0000 60deg, #ff4444 90deg, #cc0000 120deg, #ff4444 150deg, #cc0000 180deg, #ff4444 210deg, #cc0000 240deg, #ff4444 270deg, #cc0000 300deg, #ff4444 330deg, #cc0000 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #cc0000, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .bleu {
+            background: conic-gradient(#1d4ed8 0deg, #60a5fa 30deg, #1d4ed8 60deg, #60a5fa 90deg, #1d4ed8 120deg, #60a5fa 150deg, #1d4ed8 180deg, #60a5fa 210deg, #1d4ed8 240deg, #60a5fa 270deg, #1d4ed8 300deg, #60a5fa 330deg, #1d4ed8 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #1d4ed8, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .vert {
+            background: conic-gradient(#15803d 0deg, #4ade80 30deg, #15803d 60deg, #4ade80 90deg, #15803d 120deg, #4ade80 150deg, #15803d 180deg, #4ade80 210deg, #15803d 240deg, #4ade80 270deg, #15803d 300deg, #4ade80 330deg, #15803d 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #15803d, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .jaune {
+            background: conic-gradient(#b45309 0deg, #fde68a 30deg, #b45309 60deg, #fde68a 90deg, #b45309 120deg, #fde68a 150deg, #b45309 180deg, #fde68a 210deg, #b45309 240deg, #fde68a 270deg, #b45309 300deg, #fde68a 330deg, #b45309 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #b45309, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .orange {
+            background: conic-gradient(#c2410c 0deg, #fdba74 30deg, #c2410c 60deg, #fdba74 90deg, #c2410c 120deg, #fdba74 150deg, #c2410c 180deg, #fdba74 210deg, #c2410c 240deg, #fdba74 270deg, #c2410c 300deg, #fdba74 330deg, #c2410c 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #c2410c, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        body.skin-casino .violet {
+            background: conic-gradient(#6d28d9 0deg, #c4b5fd 30deg, #6d28d9 60deg, #c4b5fd 90deg, #6d28d9 120deg, #c4b5fd 150deg, #6d28d9 180deg, #c4b5fd 210deg, #6d28d9 240deg, #c4b5fd 270deg, #6d28d9 300deg, #c4b5fd 330deg, #6d28d9 360deg) !important;
+            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #6d28d9, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* Centre du jeton avec valeur */
+        body.skin-casino .emp::before,
+        body.skin-casino .choix::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55%;
+            height: 55%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Valeur affichée */
+        body.skin-casino .emp::after,
+        body.skin-casino .choix::after {
+            content: attr(data-val);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 7px;
+            font-weight: 900;
+            color: #111;
+            font-family: Arial, sans-serif;
+            letter-spacing: -0.5px;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: none;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN BONBONS — SVG réalistes
+══════════════════════════════════════ */
+        body.skin-bonbons .emp,
+        body.skin-bonbons .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: hidden;
+        }
+
+        body.skin-bonbons .emp svg,
+        body.skin-bonbons .choix svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════════════
+   SKIN MARIO BROS — têtes SVG
+══════════════════════════════════════ */
+        body.skin-mario .emp,
+        body.skin-mario .choix {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.1) !important;
+            box-shadow: none !important;
+            border: 2px solid rgba(255, 255, 255, 0.12) !important;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        body.skin-mario .emp svg,
+        body.skin-mario .choix svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* On affiche les SVG via ::after avec background-image — mais SVG inline est mieux, donc on les injecte via JS */
+
+        #barre-commentaires {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            font-style: italic;
+            text-align: center;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        th {
+            color: white;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 12px 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+        }
+
+        #modal-fin {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
     </style>
 </head>
+
 <body>
 
     <!-- PAGE: LOGIN -->

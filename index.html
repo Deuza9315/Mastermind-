@@ -1056,154 +1056,541 @@
     </div>
 
     <script>
-        let utilisateurActuel = null;
-        let config = { nb: 4, tours: 10 };
-        let jeu = { code: [], essai: [], tour: 0, timer: null, debut: 0 };
-        const couleurs = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
+        const $ = id => document.getElementById(id);
+
+        /* ── CANVAS (neige + galaxie) ── */
+        const snowCanvas = $('snow-canvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        let snowFlakes = [], shootingStars = [], bgStars = [];
+        let snowActive = false, galaxyActive = false, snowRAF = null;
+
+        function initSnow() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            snowFlakes = [];
+            for (let i = 0; i < 120; i++) {
+                snowFlakes.push({
+                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                    r: Math.random() * 4 + 1, speed: Math.random() * 1.2 + 0.4,
+                    drift: (Math.random() - 0.5) * 0.5, opacity: Math.random() * 0.6 + 0.4,
+                    wobble: Math.random() * Math.PI * 2, wobbleSpeed: Math.random() * 0.03 + 0.01
+                });
+            }
+        }
+        function animateSnow() {
+            if (!snowActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowFlakes.forEach(f => {
+                f.wobble += f.wobbleSpeed; f.y += f.speed; f.x += f.drift + Math.sin(f.wobble) * 0.3;
+                if (f.y > snowCanvas.height) { f.y = -5; f.x = Math.random() * snowCanvas.width; }
+                if (f.x > snowCanvas.width) f.x = 0;
+                if (f.x < 0) f.x = snowCanvas.width;
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${f.opacity})`; snowCtx.fill();
+                snowCtx.beginPath(); snowCtx.arc(f.x - f.r * 0.3, f.y - f.r * 0.3, f.r * 0.4, 0, Math.PI * 2);
+                snowCtx.fillStyle = 'rgba(255,255,255,0.9)'; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateSnow);
+        }
+
+        function initGalaxy() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            bgStars = [];
+            for (let i = 0; i < 220; i++) {
+                bgStars.push({
+                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                    r: Math.random() * 1.5 + 0.3, opacity: Math.random() * 0.7 + 0.3,
+                    twinkleSpeed: Math.random() * 0.02 + 0.005, twinklePhase: Math.random() * Math.PI * 2
+                });
+            }
+            shootingStars = [];
+            for (let i = 0; i < 6; i++) spawnStar();
+        }
+        function spawnStar() {
+            shootingStars.push({
+                x: Math.random() * snowCanvas.width * 1.3,
+                y: Math.random() * snowCanvas.height * 0.5,
+                len: Math.random() * 120 + 60,
+                speed: Math.random() * 8 + 6,
+                angle: Math.PI / 5 + (Math.random() - 0.5) * 0.3,
+                opacity: 0, fadeIn: true,
+                delay: Math.random() * 200
+            });
+        }
+        function animateGalaxy() {
+            if (!galaxyActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Fond étoilé fixe
+            bgStars.forEach(s => {
+                s.twinklePhase += s.twinkleSpeed;
+                let op = s.opacity * (0.6 + 0.4 * Math.sin(s.twinklePhase));
+                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${op})`; snowCtx.fill();
+            });
+            // Nébuleuse subtile
+            let nb = snowCtx.createRadialGradient(snowCanvas.width * 0.3, snowCanvas.height * 0.4, 10, snowCanvas.width * 0.3, snowCanvas.height * 0.4, 300);
+            nb.addColorStop(0, 'rgba(80,0,200,0.04)'); nb.addColorStop(1, 'transparent');
+            snowCtx.fillStyle = nb; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            let nb2 = snowCtx.createRadialGradient(snowCanvas.width * 0.7, snowCanvas.height * 0.6, 10, snowCanvas.width * 0.7, snowCanvas.height * 0.6, 250);
+            nb2.addColorStop(0, 'rgba(0,100,200,0.04)'); nb2.addColorStop(1, 'transparent');
+            snowCtx.fillStyle = nb2; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Étoiles filantes
+            shootingStars.forEach((s, i) => {
+                if (s.delay > 0) { s.delay--; return; }
+                let dx = Math.cos(s.angle) * s.speed, dy = Math.sin(s.angle) * s.speed;
+                if (s.fadeIn) { s.opacity += 0.06; if (s.opacity >= 1) s.fadeIn = false; }
+                else { s.opacity -= 0.025; }
+                if (s.opacity <= 0) { shootingStars[i] = null; return; }
+                let tail = snowCtx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                tail.addColorStop(0, `rgba(255,255,255,${s.opacity})`);
+                tail.addColorStop(0.3, `rgba(180,160,255,${s.opacity * 0.6})`);
+                tail.addColorStop(1, 'rgba(100,80,255,0)');
+                snowCtx.beginPath();
+                snowCtx.moveTo(s.x, s.y);
+                snowCtx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                snowCtx.strokeStyle = tail; snowCtx.lineWidth = 2; snowCtx.stroke();
+                // Tête lumineuse
+                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(255,255,255,${s.opacity})`; snowCtx.fill();
+                s.x += dx; s.y += dy;
+            });
+            shootingStars = shootingStars.filter(Boolean);
+            if (shootingStars.length < 6) spawnStar();
+            snowRAF = requestAnimationFrame(animateGalaxy);
+        }
+
+        function startSnow() { if (snowActive) return; snowActive = true; galaxyActive = false; initSnow(); animateSnow(); }
+        function startGalaxy() { if (galaxyActive) return; galaxyActive = true; snowActive = false; initGalaxy(); animateGalaxy(); }
+        function stopCanvas() { snowActive = false; galaxyActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); });
+
+        /* ── SVG MARIO CHARS ── */
+        // Têtes SVG simplifiées style pixel art
+        const marioSVGs = {
+            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mario -->
+        <rect x="8" y="2" width="16" height="4" fill="#e63946"/>
+        <rect x="6" y="6" width="20" height="2" fill="#e63946"/>
+        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
+        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
+        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
+        <rect x="10" y="16" width="12" height="2" fill="#c0392b"/>
+        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#e63946"/><rect x="18" y="22" width="8" height="2" fill="#e63946"/>
+        <rect x="4" y="24" width="10" height="2" fill="#e63946"/><rect x="18" y="24" width="10" height="2" fill="#e63946"/>
+    </svg>`,
+            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Luigi -->
+        <rect x="8" y="2" width="16" height="4" fill="#2ecc40"/>
+        <rect x="6" y="6" width="20" height="2" fill="#2ecc40"/>
+        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
+        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
+        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
+        <rect x="10" y="16" width="12" height="2" fill="#8B4513"/>
+        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#2ecc40"/><rect x="18" y="22" width="8" height="2" fill="#2ecc40"/>
+        <rect x="4" y="24" width="10" height="2" fill="#2ecc40"/><rect x="18" y="24" width="10" height="2" fill="#2ecc40"/>
+    </svg>`,
+            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Yoshi -->
+        <rect x="6" y="4" width="20" height="14" rx="4" fill="#2ecc40"/>
+        <rect x="8" y="6" width="16" height="10" fill="#2ecc40"/>
+        <rect x="8" y="8" width="4" height="4" fill="#fff"/><rect x="9" y="9" width="2" height="2" fill="#111"/>
+        <rect x="20" y="8" width="4" height="4" fill="#fff"/><rect x="21" y="9" width="2" height="2" fill="#111"/>
+        <rect x="6" y="16" width="20" height="2" fill="#ff6b6b"/>
+        <rect x="10" y="18" width="4" height="2" fill="#ff6b6b"/><rect x="18" y="18" width="4" height="2" fill="#ff6b6b"/>
+        <rect x="8" y="12" width="16" height="2" fill="#1a9e30"/>
+        <rect x="22" y="4" width="6" height="4" rx="1" fill="#e74c3c"/>
+        <rect x="24" y="3" width="2" height="2" fill="#e74c3c"/>
+        <rect x="6" y="20" width="20" height="6" rx="2" fill="#ffe0bd"/>
+        <rect x="12" y="22" width="8" height="2" fill="#ffb3b3"/>
+    </svg>`,
+            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Toad -->
+        <ellipse cx="16" cy="9" rx="12" ry="9" fill="#f5f5f5"/>
+        <circle cx="9" cy="7" r="3" fill="#e63946"/><circle cx="23" cy="7" r="3" fill="#e63946"/>
+        <circle cx="13" cy="5" r="2" fill="#e63946"/><circle cx="19" cy="5" rx="2" ry="2" fill="#e63946"/>
+        <circle cx="16" cy="4" r="2" fill="#e63946"/>
+        <rect x="8" y="14" width="16" height="8" rx="2" fill="#ffe0bd"/>
+        <rect x="10" y="16" width="4" height="3" fill="#222"/><rect x="11" y="17" width="2" height="2" fill="#fff"/>
+        <rect x="18" y="16" width="4" height="3" fill="#222"/><rect x="19" y="17" width="2" height="2" fill="#fff"/>
+        <rect x="12" y="20" width="8" height="1" fill="#c0392b"/>
+        <rect x="8" y="22" width="16" height="4" rx="1" fill="#3498db"/>
+        <rect x="10" y="22" width="12" height="2" fill="#2980b9"/>
+    </svg>`,
+            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wario -->
+        <rect x="7" y="2" width="18" height="5" fill="#f1c40f"/>
+        <rect x="5" y="7" width="22" height="2" fill="#f1c40f"/>
+        <rect x="4" y="9" width="24" height="9" fill="#ffe0bd"/>
+        <rect x="5" y="10" width="5" height="4" fill="#222"/><rect x="6" y="11" width="3" height="2" fill="#fff"/>
+        <rect x="22" y="10" width="5" height="4" fill="#222"/><rect x="23" y="11" width="3" height="2" fill="#fff"/>
+        <rect x="12" y="13" width="8" height="3" fill="#e8c39a"/>
+        <rect x="10" y="15" width="5" height="3" fill="#c0392b"/><rect x="17" y="15" width="5" height="3" fill="#c0392b"/>
+        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
+        <rect x="6" y="22" width="8" height="2" fill="#f1c40f"/><rect x="18" y="22" width="8" height="2" fill="#f1c40f"/>
+        <rect x="4" y="24" width="10" height="2" fill="#f1c40f"/><rect x="18" y="24" width="10" height="2" fill="#f1c40f"/>
+        <!-- Moustache W -->
+        <rect x="10" y="14" width="12" height="2" fill="#5d3a1a"/>
+        <rect x="10" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="14" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="16" y="14" width="2" height="3" fill="#5d3a1a"/>
+        <rect x="20" y="14" width="2" height="3" fill="#5d3a1a"/>
+    </svg>`,
+            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bowser amélioré -->
+        <!-- Carapace verte sur le crâne -->
+        <rect x="7" y="1" width="18" height="6" rx="3" fill="#2d7a1e"/>
+        <rect x="9" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
+        <rect x="19" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
+        <rect x="14" y="0" width="4" height="2" rx="1" fill="#2d7a1e"/>
+        <!-- Tête jaune-orange massive -->
+        <rect x="4" y="6" width="24" height="16" rx="4" fill="#e8a020"/>
+        <!-- Sourcils noirs menaçants -->
+        <rect x="5" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(-8,9,8)"/>
+        <rect x="18" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(8,23,8)"/>
+        <!-- Yeux rouges avec pupilles noires -->
+        <ellipse cx="10" cy="13" rx="4" ry="4" fill="#e74c3c"/>
+        <ellipse cx="22" cy="13" rx="4" ry="4" fill="#e74c3c"/>
+        <ellipse cx="10" cy="13" rx="2" ry="2.5" fill="#111"/>
+        <ellipse cx="22" cy="13" rx="2" ry="2.5" fill="#111"/>
+        <rect x="9" y="11" width="1" height="1" fill="#fff"/>
+        <rect x="21" y="11" width="1" height="1" fill="#fff"/>
+        <!-- Museau beige large -->
+        <rect x="9" y="17" width="14" height="8" rx="4" fill="#d4a060"/>
+        <!-- Narines -->
+        <ellipse cx="13" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <ellipse cx="19" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <!-- Dents blanches qui dépassent -->
+        <rect x="10" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="17" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="13" y="24" width="3" height="2" fill="#e8a020"/>
+    </svg>`
+        };
+
+        // Valeurs jetons par couleur
+        const casinoVals = { rouge: '10', bleu: '20', vert: '50', jaune: '100', orange: '200', violet: '1000' };
+
+        // SVG bonbons réalistes — chaque couleur = type de bonbon différent
+        const bonbonSVGs = {
+            // rouge = sucette ronde brillante
+            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_r" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#ffccd6"/>
+                <stop offset="45%" stop-color="#ff4d6d"/>
+                <stop offset="100%" stop-color="#8b0000"/>
+            </radialGradient>
+        </defs>
+        <circle cx="16" cy="13" r="11" fill="url(#bg_r)"/>
+        <path d="M9,10 Q16,6 23,10" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M8,14 Q16,10 24,14" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="11" cy="10" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-30,11,10)"/>
+        <rect x="15" y="23" width="2.5" height="8" rx="1" fill="#8B4513"/>
+        <ellipse cx="16" cy="23" rx="2" ry="1" fill="#6b3410"/>
+    </svg>`,
+            // bleu = bonbon emballé (papillote)
+            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_b" cx="40%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#cce8ff"/>
+                <stop offset="50%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#1e3a8a"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ovale -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="url(#bg_b)"/>
+        <!-- Papillote gauche -->
+        <ellipse cx="5" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(-15,5,16)"/>
+        <line x1="6" y1="13" x2="4" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="8" y1="13" x2="6" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Papillote droite -->
+        <ellipse cx="27" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(15,27,16)"/>
+        <line x1="24" y1="13" x2="26" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="26" y1="13" x2="28" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="13" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-20,12,13)"/>
+        <!-- Rayures -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="3,4"/>
+    </svg>`,
+            // vert = bonbon canne de Noël (candy cane)
+            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="cane_g" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#fff"/>
+                <stop offset="100%" stop-color="#fff"/>
+            </linearGradient>
+        </defs>
+        <!-- Canne courbée -->
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="url(#cane_g)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="4,4"/>
+        <!-- Reflet -->
+        <path d="M18,27 L18,11 Q18,5 13,5" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>`,
+            // jaune = bonbon ourson gélatine
+            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_y" cx="40%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#fff9c4"/>
+                <stop offset="50%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#d97706"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ourson -->
+        <ellipse cx="16" cy="18" rx="9" ry="11" fill="url(#bg_y)"/>
+        <!-- Tête -->
+        <circle cx="16" cy="9" r="7" fill="url(#bg_y)"/>
+        <!-- Oreilles -->
+        <circle cx="10" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="22" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="10" cy="5" r="1.5" fill="#f59e0b"/>
+        <circle cx="22" cy="5" r="1.5" fill="#f59e0b"/>
+        <!-- Visage -->
+        <ellipse cx="13" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="19" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="16" cy="11" rx="3" ry="2" fill="#e8a020"/>
+        <ellipse cx="15" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <ellipse cx="17" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="7" rx="2" ry="1.5" fill="rgba(255,255,255,0.55)" transform="rotate(-20,12,7)"/>
+    </svg>`,
+            // orange = M&M / dragée ronde avec lettre
+            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_o" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#fed7aa"/>
+                <stop offset="45%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+            </radialGradient>
+        </defs>
+        <ellipse cx="16" cy="16" rx="13" ry="12" fill="url(#bg_o)"/>
+        <!-- Reflet haut -->
+        <ellipse cx="11" cy="10" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-25,11,10)"/>
+        <!-- Lettre M -->
+        <text x="16" y="20" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="11" fill="rgba(255,255,255,0.85)">m</text>
+        <!-- Ombre légère bas -->
+        <ellipse cx="16" cy="25" rx="11" ry="3" fill="rgba(0,0,0,0.15)"/>
+    </svg>`,
+            // violet = macaron français
+            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="mac_top" cx="45%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#e9d5ff"/>
+                <stop offset="60%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#581c87"/>
+            </radialGradient>
+        </defs>
+        <!-- Disque bas -->
+        <ellipse cx="16" cy="22" rx="12" ry="5" fill="#7e22ce"/>
+        <!-- Crème au milieu -->
+        <rect x="4" y="17" width="24" height="5" rx="1" fill="#f3e8ff"/>
+        <!-- Disque haut -->
+        <ellipse cx="16" cy="14" rx="12" ry="8" fill="url(#mac_top)"/>
+        <!-- Pied (collerette) -->
+        <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
+        <!-- Points déco -->
+        <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="22" cy="13" r="0.8" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="16" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/>
+    </svg>`
+        };
+
+        /* ── GAME STATE ── */
+        let user = { p: '', c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
+        let cfg = { nb: 4 }, jeu = { cod: [], ess: [], t: 0, tim: null, deb: 0, win: false };
+        const cols = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
+        const phrases = ["C'est parti !", "Continue comme ça.", "Pas mal.", "La logique fait le reste.", "Moitié du chemin.", "Tu te rapproches.", "Le moment de vérité.", "Avant-dernière chance !", "Dernier essai !"];
+
+        const skins = [
+            { id: 'default', nom: 'Néon (Base)', px: 0 },
+            { id: 'zebre', nom: 'Zèbre 🦓', px: 50 },
+            { id: 'planetes', nom: 'Planètes 🪐', px: 75 },
+            { id: 'fruits', nom: 'Fruits 🍎', px: 75 },
+            { id: 'galaxie', nom: 'Galaxie ✨', px: 100 },
+            { id: 'casino', nom: 'Jetons Casino 🎲', px: 120 },
+            { id: 'bonbons', nom: 'Bonbons 🍬', px: 100 },
+            { id: 'mario', nom: 'Mario Bros 🍄', px: 150 },
+        ];
+        const themes = [
+            { id: 'default', nom: 'Défaut (Sombre)', px: 0 },
+            { id: 'casino', nom: 'Casino 🎰', px: 80 },
+            { id: 'noel', nom: 'Noël 🎄', px: 80 },
+            { id: 'arcade', nom: 'Arcade Rétro 👾', px: 80 },
+            { id: 'galaxy', nom: 'Galaxy 🌌', px: 120 },
+        ];
+        const ALL_S = skins.map(s => s.id), ALL_T = themes.map(t => t.id);
+
+        function applyVisuals() {
+            let cls = document.body.className.split(' ').filter(c => !c.startsWith('skin-') && !c.startsWith('theme-')).join(' ').trim();
+            document.body.className = cls;
+            if (user.eq && user.eq !== 'default') document.body.classList.add('skin-' + user.eq);
+            if (user.th && user.th !== 'default') document.body.classList.add('theme-' + user.th);
+            if (user.th === 'noel') startSnow();
+            else if (user.th === 'galaxy') startGalaxy();
+            else stopCanvas();
+            // Refresh pions si on est en jeu
+            refreshPions();
+        }
+
+        function refreshPions() {
+            document.querySelectorAll('.emp,.choix').forEach(el => {
+                const col = cols.find(c => el.classList.contains(c));
+                if (!col) return;
+                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
+                else el.removeAttribute('data-val');
+                el.innerHTML = '';
+                if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
+                if (user.eq === 'bonbons' && bonbonSVGs[col]) el.innerHTML = bonbonSVGs[col];
+            });
+        }
 
         function nav(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            $(id).classList.add('active');
+            if (id === 'p-menu' || id === 'p-boutique') { $('menu-coins').innerText = user.c; $('shop-coins').innerText = user.c; }
+            if (id === 'p-boutique') renderShop();
         }
 
-        // --- GESTION COMPTES ---
+        function switchTab(tab) {
+            document.querySelectorAll('.shop-tab').forEach((t, i) => t.classList.toggle('active-tab', (i === 0 && tab === 'skins') || (i === 1 && tab === 'themes')));
+            $('tab-skins').classList.toggle('active-section', tab === 'skins');
+            $('tab-themes').classList.toggle('active-section', tab === 'themes');
+        }
+
+        function save() {
+            if (user.adm || user.p.startsWith("Inv_")) return;
+            let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
+            bdd[user.p] = user; localStorage.setItem('mm_v7', JSON.stringify(bdd));
+        }
+
+        function finishAuth(name, admin) {
+            if (admin) user = { p: 'Admin', c: "∞", s: ALL_S, th: 'default', eq: 'default', themes: ALL_T, adm: true };
+            if (!user.th) user.th = 'default';
+            if (!user.themes) user.themes = ['default'];
+            $('txt-bienvenue').innerText = "Salut, " + user.p;
+            $('admin-badge').style.display = user.adm ? "inline-block" : "none";
+            applyVisuals(); nav('p-menu');
+        }
+
         function connexion() {
-            const p = document.getElementById('pseudo').value.trim();
-            const m = document.getElementById('mdp').value;
-            if(!p || !m) return alert("Champs vides !");
-
-            // Cas Admin
-            if(p === "admin" && m === "admin123") {
-                utilisateurActuel = "admin";
-                document.getElementById('section-admin').style.display = "block";
-                document.getElementById('txt-bienvenue').innerText = "Mode Administrateur";
-                return nav('p-menu');
-            }
-
-            let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
-            if(comptes[p]) {
-                if(comptes[p] !== m) return alert("Mot de passe incorrect");
-            } else {
-                comptes[p] = m;
-                localStorage.setItem('m_comptes', JSON.stringify(comptes));
-            }
-            utilisateurActuel = p;
-            document.getElementById('section-admin').style.display = "none";
-            document.getElementById('txt-bienvenue').innerText = "Salut " + p + " !";
-            nav('p-menu');
+            let p = $('pseudo').value.trim(), m = $('mdp').value;
+            if (!p || !m) return alert("Remplissez tout !");
+            if (p === 'admin' && m === '1234') return finishAuth(p, true);
+            let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
+            if (bdd[p]) { if (bdd[p].m !== m) return alert("Mauvais MDP !"); user = bdd[p]; }
+            else { user = { p, m, c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false }; save(); }
+            finishAuth(p, false);
         }
 
-        function ouvrirAdmin() {
-            let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
-            const liste = document.getElementById('liste-users');
-            liste.innerHTML = Object.keys(comptes).map(u => `
-                <tr>
-                    <td>${u}</td>
-                    <td><button class="btn-d" onclick="supprimerUser('${u}')" style="padding:5px 10px; font-size:0.7rem;">Supprimer</button></td>
-                </tr>
-            `).join('');
-            nav('p-admin');
+        function jouerInvite() {
+            user = { p: "Inv_" + Math.floor(Math.random() * 1000), c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
+            finishAuth(user.p, false);
         }
 
-        function supprimerUser(u) {
-            if(confirm("Supprimer l'utilisateur " + u + " et ses scores ?")) {
-                // Supprimer compte
-                let comptes = JSON.parse(localStorage.getItem('m_comptes') || "{}");
-                delete comptes[u];
-                localStorage.setItem('m_comptes', JSON.stringify(comptes));
-                
-                // Supprimer ses scores
-                let scores = JSON.parse(localStorage.getItem('m_scores') || "[]");
-                scores = scores.filter(s => s.pseudo !== u);
-                localStorage.setItem('m_scores', JSON.stringify(scores));
-                
-                ouvrirAdmin(); // Refresh
-            }
+        function renderShop() {
+            let hS = '';
+            skins.forEach(k => {
+                let pos = user.adm || user.s.includes(k.id), eq = user.eq === k.id;
+                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpSkin('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achSkin('${k.id}',${k.px})">Acheter</button>`);
+                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
+                hS += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
+            });
+            $('shop-skins').innerHTML = hS;
+            let hT = '';
+            themes.forEach(k => {
+                let pos = user.adm || (user.themes || ['default']).includes(k.id), eq = (user.th || 'default') === k.id;
+                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpTheme('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achTheme('${k.id}',${k.px})">Acheter</button>`);
+                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
+                hT += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
+            });
+            $('shop-themes').innerHTML = hT;
         }
 
-        // --- LOGIQUE JEU ---
+        function achSkin(id, px) { if (user.c >= px) { user.c -= px; user.s.push(id); eqpSkin(id); } else alert("Pas assez de pièces !"); }
+        function eqpSkin(id) { user.eq = id; applyVisuals(); save(); renderShop(); }
+        function achTheme(id, px) { if (user.c >= px) { user.c -= px; if (!user.themes) user.themes = ['default']; user.themes.push(id); eqpTheme(id); } else alert("Pas assez de pièces !"); }
+        function eqpTheme(id) { user.th = id; applyVisuals(); save(); renderShop(); }
+
+        function makePion(col) {
+            let el = document.createElement('div');
+            el.className = 'emp ' + col;
+            if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
+            if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
+            return el.outerHTML;
+        }
+
         function lancer(n) {
-            config.nb = n;
-            jeu.code = Array.from({length:n}, () => couleurs[Math.floor(Math.random()*6)]);
-            jeu.essai = []; jeu.tour = 0; jeu.debut = 0;
-            clearInterval(jeu.timer);
-            document.getElementById('chrono').innerText = "00:00";
-            document.getElementById('txt-mode').innerText = "Mode: " + (n==6?'HARD':'NORM');
-            
-            const cont = document.getElementById('lignes-c');
-            cont.innerHTML = "";
-            for(let i=0; i<10; i++) {
-                const l = document.createElement('div');
-                l.className = 'ligne'; l.id = 't-'+i;
-                let pions = ""; for(let j=0; j<n; j++) pions += '<div class="emp"></div>';
-                l.innerHTML = pions + `<div class="bloc-ind" style="grid-template-columns:repeat(${n==6?3:2},1fr)">${'<div class="pt"></div>'.repeat(n)}</div>`;
-                cont.prepend(l);
+            cfg.nb = n;
+            jeu = { cod: Array.from({ length: n }, () => cols[Math.floor(Math.random() * 6)]), ess: [], t: 0, tim: null, deb: Date.now(), win: false };
+            $('chrono').innerText = "00:00"; $('txt-mode').innerText = "Mode : " + (n == 6 ? 'HARDCORE' : 'NORMAL');
+            $('barre-commentaires').innerText = "Prêt à jouer ? ⚡"; $('lignes-c').innerHTML = "";
+            for (let i = 0; i < 10; i++) {
+                let pions = Array(n).fill(0).map(() => `<div class="emp"></div>`).join('');
+                $('lignes-c').innerHTML = `<div class="ligne" id="t-${i}"><div class="pions-container">${pions}</div><div class="bloc-ind" style="grid-template-columns:repeat(${n == 6 ? 3 : 2},1fr)">${Array(n).fill('<div class="pt"></div>').join('')}</div></div>` + $('lignes-c').innerHTML;
             }
-
-            const pal = document.getElementById('pal');
-            pal.innerHTML = couleurs.map(c => `<div class="choix ${c}" onclick="ajouter('${c}')"></div>`).join('');
+            $('pal').innerHTML = cols.map(c => {
+                let inner = '';
+                if (user.eq === 'mario' && marioSVGs[c]) inner = marioSVGs[c];
+                if (user.eq === 'bonbons' && bonbonSVGs[c]) inner = bonbonSVGs[c];
+                return `<div class="choix ${c}" onclick="add('${c}')"${user.eq === 'casino' ? ' data-val="' + casinoVals[c] + '"' : ''}>${inner}</div>`;
+            }).join('');
+            clearInterval(jeu.tim); jeu.tim = setInterval(() => { let s = Math.floor((Date.now() - jeu.deb) / 1000); $('chrono').innerText = Math.floor(s / 60).toString().padStart(2, '0') + ":" + (s % 60).toString().padStart(2, '0'); }, 1000);
             nav('p-jeu');
         }
 
-        function ajouter(c) {
-            if(jeu.debut === 0) {
-                jeu.debut = Date.now();
-                jeu.timer = setInterval(() => {
-                    let s = Math.floor((Date.now() - jeu.debut)/1000);
-                    document.getElementById('chrono').innerText = Math.floor(s/60).toString().padStart(2,'0') + ":" + (s%60).toString().padStart(2,'0');
-                }, 1000);
+        function add(c) {
+            if (jeu.ess.length < cfg.nb) {
+                jeu.ess.push(c);
+                let el = $('t-' + jeu.t).querySelectorAll('.emp')[jeu.ess.length - 1];
+                el.className = 'emp ' + c;
+                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[c] || '');
+                if (user.eq === 'mario' && marioSVGs[c]) el.innerHTML = marioSVGs[c];
+                if (user.eq === 'bonbons' && bonbonSVGs[c]) el.innerHTML = bonbonSVGs[c];
             }
-            if(jeu.essai.length < config.nb) {
-                jeu.essai.push(c);
-                document.getElementById('t-'+jeu.tour).querySelectorAll('.emp')[jeu.essai.length-1].className = 'emp ' + c;
-            }
-            document.getElementById('btn-v').disabled = jeu.essai.length !== config.nb;
+            $('btn-v').disabled = jeu.ess.length !== cfg.nb;
         }
 
         function valider() {
-            let n = 0, b = 0;
-            let cS = [...jeu.code], cE = [...jeu.essai];
-            for(let i=0; i<config.nb; i++) if(cE[i]===cS[i]) { n++; cS[i]=null; cE[i]=null; }
-            for(let i=0; i<config.nb; i++) if(cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])]=null; }
-
-            const pts = document.getElementById('t-'+jeu.tour).querySelectorAll('.pt');
-            for(let i=0; i<n; i++) pts[i].className = 'pt noir';
-            for(let i=0; i<b; i++) pts[n+i].className = 'pt blanc';
-
-            if(n === config.nb) {
-                clearInterval(jeu.timer);
-                if(utilisateurActuel !== "admin") sauverScore();
-                alert("VICTOIRE !");
-                nav('p-menu');
-            } else if(jeu.tour === 9) {
-                alert("PERDU ! Le code était : " + jeu.code.join('-'));
-                nav('p-menu');
-            } else {
-                jeu.tour++; jeu.essai = [];
-                document.getElementById('btn-v').disabled = true;
-            }
+            let n = 0, b = 0, cS = [...jeu.cod], cE = [...jeu.ess];
+            for (let i = 0; i < cfg.nb; i++) if (cE[i] === cS[i]) { n++; cS[i] = cE[i] = null; }
+            for (let i = 0; i < cfg.nb; i++) if (cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])] = null; }
+            let pts = $('t-' + jeu.t).querySelectorAll('.pt');
+            for (let i = 0; i < n; i++) pts[i].className = 'pt noir';
+            for (let i = 0; i < b; i++) pts[n + i].className = 'pt blanc';
+            if (n === cfg.nb) end(true); else if (jeu.t === 9) end(false); else { $('barre-commentaires').innerText = phrases[jeu.t]; jeu.t++; jeu.ess = []; $('btn-v').disabled = true; }
         }
 
-        function sauverScore() {
-            let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
-            sc.push({
-                pseudo: utilisateurActuel,
-                mode: config.nb,
-                essais: jeu.tour + 1,
-                temps: document.getElementById('chrono').innerText,
-                sec: Math.floor((Date.now() - jeu.debut)/1000)
-            });
-            localStorage.setItem('m_scores', JSON.stringify(sc));
+        function end(v) {
+            clearInterval(jeu.tim); jeu.win = v; $('modal-fin').style.display = 'flex';
+            if (v) {
+                if (!user.adm) user.c += 10; save();
+                $('fin-titre').innerText = "VICTOIRE !"; $('fin-titre').style.color = "#10b981";
+                $('fin-desc').innerText = `Bravo ${user.p} !\nCode trouvé en ${jeu.t + 1} essai(s).\nGain: +10 💰`; $('fin-secret').style.display = "none";
+                if (!user.p.startsWith("Inv_") && !user.adm) { let sc = JSON.parse(localStorage.getItem('mm_sc_v2') || "[]"); sc.push({ p: user.p, m: cfg.nb, e: jeu.t + 1, t: $('chrono').innerText, sec: Math.floor((Date.now() - jeu.deb) / 1000) }); localStorage.setItem('mm_sc_v2', JSON.stringify(sc)); }
+            } else {
+                $('fin-titre').innerText = "ÉCHEC"; $('fin-titre').style.color = "#ef4444";
+                $('fin-desc').innerText = "Tu as épuisé tes 10 essais..."; $('fin-secret').style.display = "block";
+                const dC = { rouge: "Rouge", bleu: "Bleu", vert: "Vert", jaune: "Jaune", orange: "Orange", violet: "Violet" };
+                $('secret-texte').innerText = jeu.cod.map(c => dC[c]).join(' • ');
+            }
         }
 
         function voirScores() {
             let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
-            sc.sort((a,b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
-            document.getElementById('corps-scores').innerHTML = sc.map(s => `
-                <tr><td>${s.pseudo}</td><td>${s.mode===6?'HARD':'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>
-            `).join('');
+            sc.sort((a, b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
+            $('corps-scores').innerHTML = sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
             nav('p-score');
         }
     </script>
 </body>
+
 </html>

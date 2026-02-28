@@ -126,6 +126,144 @@
             background: rgba(2, 0, 12, 0.65) !important;
         }
 
+        /* ══════════════════════════════════════
+   THÈME FORÊT ENCHANTÉE 🌿
+══════════════════════════════════════ */
+        body.theme-foret {
+            --primary: #4ade80;
+            --secondary: #a3e635;
+            --bg-color: #020d04;
+            --glass-bg: rgba(2, 14, 5, 0.9);
+            --glass-border: rgba(74, 222, 128, 0.18);
+        }
+
+        body.theme-foret::before {
+            background: rgba(20, 100, 30, 0.18) !important;
+        }
+
+        body.theme-foret::after {
+            background: rgba(100, 180, 20, 0.1) !important;
+        }
+
+        body.theme-foret .ligne {
+            border-color: rgba(74, 222, 128, 0.1) !important;
+            background: rgba(1, 8, 2, 0.55) !important;
+        }
+
+        body.theme-foret .board-section,
+        body.theme-foret .rules-section,
+        body.theme-foret .card {
+            border-color: rgba(74, 222, 128, 0.2) !important;
+            background: rgba(1, 8, 2, 0.92) !important;
+            box-shadow: 0 0 30px rgba(20, 100, 30, 0.18) !important;
+        }
+
+        body.theme-foret .palette {
+            border-color: rgba(74, 222, 128, 0.2) !important;
+            background: rgba(1, 10, 3, 0.65) !important;
+        }
+
+        body.theme-foret #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-foret .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME DÉSERT & SABLE 🏜️
+══════════════════════════════════════ */
+        body.theme-desert {
+            --primary: #f59e0b;
+            --secondary: #fb923c;
+            --bg-color: #0d0800;
+            --glass-bg: rgba(20, 12, 2, 0.9);
+            --glass-border: rgba(245, 158, 11, 0.2);
+        }
+
+        body.theme-desert::before {
+            background: rgba(200, 120, 0, 0.14) !important;
+        }
+
+        body.theme-desert::after {
+            background: rgba(180, 80, 0, 0.1) !important;
+        }
+
+        body.theme-desert .ligne {
+            border-color: rgba(245, 158, 11, 0.1) !important;
+            background: rgba(15, 8, 0, 0.55) !important;
+        }
+
+        body.theme-desert .board-section,
+        body.theme-desert .rules-section,
+        body.theme-desert .card {
+            border-color: rgba(245, 158, 11, 0.2) !important;
+            background: rgba(12, 6, 0, 0.92) !important;
+            box-shadow: 0 0 30px rgba(200, 120, 0, 0.15) !important;
+        }
+
+        body.theme-desert .palette {
+            border-color: rgba(245, 158, 11, 0.2) !important;
+            background: rgba(15, 8, 0, 0.65) !important;
+        }
+
+        body.theme-desert #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-desert .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME OCÉAN 🌊
+══════════════════════════════════════ */
+        body.theme-ocean {
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --bg-color: #00050f;
+            --glass-bg: rgba(0, 8, 22, 0.9);
+            --glass-border: rgba(56, 189, 248, 0.18);
+        }
+
+        body.theme-ocean::before {
+            background: rgba(0, 80, 160, 0.18) !important;
+        }
+
+        body.theme-ocean::after {
+            background: rgba(0, 40, 120, 0.12) !important;
+        }
+
+        body.theme-ocean .ligne {
+            border-color: rgba(56, 189, 248, 0.1) !important;
+            background: rgba(0, 5, 15, 0.55) !important;
+        }
+
+        body.theme-ocean .board-section,
+        body.theme-ocean .rules-section,
+        body.theme-ocean .card {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(0, 5, 15, 0.92) !important;
+            box-shadow: 0 0 30px rgba(0, 80, 160, 0.18) !important;
+        }
+
+        body.theme-ocean .palette {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(0, 5, 15, 0.65) !important;
+        }
+
+        body.theme-ocean #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-ocean .page {
+            z-index: 1;
+            position: relative;
+        }
+
         body.theme-galaxy #snow-canvas {
             display: block;
         }
@@ -1500,6 +1638,226 @@
                 let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpSkin('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achSkin('${k.id}',${k.px})">Acheter</button>`);
                 let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
                 hS += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
+        <rect x="21" y="11" width="1" height="1" fill="#fff"/>
+        <!-- Museau beige large -->
+        <rect x="9" y="17" width="14" height="8" rx="4" fill="#d4a060"/>
+        <!-- Narines -->
+        <ellipse cx="13" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <ellipse cx="19" cy="19" rx="2" ry="1.5" fill="#b07840"/>
+        <!-- Dents blanches qui dépassent -->
+        <rect x="10" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="17" y="23" width="5" height="4" rx="1" fill="#fff"/>
+        <rect x="13" y="24" width="3" height="2" fill="#e8a020"/>
+    </svg>`
+        };
+
+        // Valeurs jetons par couleur
+        const casinoVals = { rouge: '10', bleu: '20', vert: '50', jaune: '100', orange: '200', violet: '1000' };
+
+        // SVG bonbons réalistes — chaque couleur = type de bonbon différent
+        const bonbonSVGs = {
+            // rouge = sucette ronde brillante
+            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_r" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#ffccd6"/>
+                <stop offset="45%" stop-color="#ff4d6d"/>
+                <stop offset="100%" stop-color="#8b0000"/>
+            </radialGradient>
+        </defs>
+        <circle cx="16" cy="13" r="11" fill="url(#bg_r)"/>
+        <path d="M9,10 Q16,6 23,10" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M8,14 Q16,10 24,14" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="11" cy="10" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-30,11,10)"/>
+        <rect x="15" y="23" width="2.5" height="8" rx="1" fill="#8B4513"/>
+        <ellipse cx="16" cy="23" rx="2" ry="1" fill="#6b3410"/>
+    </svg>`,
+            // bleu = bonbon emballé (papillote)
+            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_b" cx="40%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#cce8ff"/>
+                <stop offset="50%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#1e3a8a"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ovale -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="url(#bg_b)"/>
+        <!-- Papillote gauche -->
+        <ellipse cx="5" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(-15,5,16)"/>
+        <line x1="6" y1="13" x2="4" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="8" y1="13" x2="6" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Papillote droite -->
+        <ellipse cx="27" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(15,27,16)"/>
+        <line x1="24" y1="13" x2="26" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <line x1="26" y1="13" x2="28" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="13" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-20,12,13)"/>
+        <!-- Rayures -->
+        <ellipse cx="16" cy="16" rx="10" ry="7" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="3,4"/>
+    </svg>`,
+            // vert = bonbon canne de Noël (candy cane)
+            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="cane_g" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#fff"/>
+                <stop offset="40%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#22c55e"/>
+                <stop offset="60%" stop-color="#fff"/>
+                <stop offset="100%" stop-color="#fff"/>
+            </linearGradient>
+        </defs>
+        <!-- Canne courbée -->
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="url(#cane_g)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="4,4"/>
+        <!-- Reflet -->
+        <path d="M18,27 L18,11 Q18,5 13,5" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>`,
+            // jaune = bonbon ourson gélatine
+            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_y" cx="40%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#fff9c4"/>
+                <stop offset="50%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#d97706"/>
+            </radialGradient>
+        </defs>
+        <!-- Corps ourson -->
+        <ellipse cx="16" cy="18" rx="9" ry="11" fill="url(#bg_y)"/>
+        <!-- Tête -->
+        <circle cx="16" cy="9" r="7" fill="url(#bg_y)"/>
+        <!-- Oreilles -->
+        <circle cx="10" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="22" cy="5" r="3.5" fill="#fbbf24"/>
+        <circle cx="10" cy="5" r="1.5" fill="#f59e0b"/>
+        <circle cx="22" cy="5" r="1.5" fill="#f59e0b"/>
+        <!-- Visage -->
+        <ellipse cx="13" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="19" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
+        <ellipse cx="16" cy="11" rx="3" ry="2" fill="#e8a020"/>
+        <ellipse cx="15" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <ellipse cx="17" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="7" rx="2" ry="1.5" fill="rgba(255,255,255,0.55)" transform="rotate(-20,12,7)"/>
+    </svg>`,
+            // orange = M&M / dragée ronde avec lettre
+            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bg_o" cx="38%" cy="32%" r="60%">
+                <stop offset="0%" stop-color="#fed7aa"/>
+                <stop offset="45%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+            </radialGradient>
+        </defs>
+        <ellipse cx="16" cy="16" rx="13" ry="12" fill="url(#bg_o)"/>
+        <!-- Reflet haut -->
+        <ellipse cx="11" cy="10" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-25,11,10)"/>
+        <!-- Lettre M -->
+        <text x="16" y="20" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="11" fill="rgba(255,255,255,0.85)">m</text>
+        <!-- Ombre légère bas -->
+        <ellipse cx="16" cy="25" rx="11" ry="3" fill="rgba(0,0,0,0.15)"/>
+    </svg>`,
+            // violet = macaron français
+            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="mac_top" cx="45%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#e9d5ff"/>
+                <stop offset="60%" stop-color="#a855f7"/>
+                <stop offset="100%" stop-color="#581c87"/>
+            </radialGradient>
+        </defs>
+        <!-- Disque bas -->
+        <ellipse cx="16" cy="22" rx="12" ry="5" fill="#7e22ce"/>
+        <!-- Crème au milieu -->
+        <rect x="4" y="17" width="24" height="5" rx="1" fill="#f3e8ff"/>
+        <!-- Disque haut -->
+        <ellipse cx="16" cy="14" rx="12" ry="8" fill="url(#mac_top)"/>
+        <!-- Pied (collerette) -->
+        <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
+        <!-- Reflet -->
+        <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
+        <!-- Points déco -->
+        <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="22" cy="13" r="0.8" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="16" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/>
+    </svg>`
+        };
+
+        /* ══════════════════════════════════════
+           MOTEUR AUDIO
+        ══════════════════════════════════════ */
+        let audioCtx = null, masterGain = null, menuOscNodes = [], menuPlaying = false;
+        let sndMusique = true, sndSfx = true, sndWin = true, masterVol = 0.6;
+        let musicScheduler = null, musicBeat = 0, musicStartTime = 0;
+
+        function getCtx() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = masterVol;
+                masterGain.connect(audioCtx.destination);
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        /* ══════════════════════════════════════
+           MUSIQUE ARCADE — style Pac-Man / Galaga / OutRun
+           Mélodie entraînante, beat punchy, basse rebondissante
+        ══════════════════════════════════════ */
+
+        // Gamme en La mineur harmonique — son arcade classique
+        // Toutes les notes utilisées dans le morceau
+        const N = {
+            A2: 110, B2: 123, C3: 131, D3: 147, E3: 165, F3: 175, G3: 196, GS3: 208,
+            A3: 220, B3: 247, C4: 262, D4: 294, E4: 330, F4: 349, G4: 392, GS4: 415,
+            A4: 440, B4: 494, C5: 523, D5: 587, E5: 659, F5: 698, G5: 784, GS5: 830, A5: 880
+        };
+
+        // MÉLODIE PRINCIPALE — accrocheuse et joyeuse style Pac-Man/Galaga
+        // Format: [note, beat (0-31), durée en beats]
+        const MEL = [
+            // Phrase A (mesures 1-2) : montée énergique
+            [N.A4, 0, 0.4], [N.C5, 0.5, 0.4], [N.E5, 1, 0.4], [N.A5, 1.5, 0.8],
+            [N.G5, 2.5, 0.4], [N.E5, 3, 0.4], [N.C5, 3.5, 0.4],
+            // Phrase B (mesures 3-4) : descente avec rebond
+            [N.D5, 4, 0.4], [N.B4, 4.5, 0.4], [N.GS4, 5, 0.4], [N.E4, 5.5, 0.8],
+            [N.F4, 6.5, 0.4], [N.GS4, 7, 0.4], [N.A4, 7.5, 0.4],
+            // Phrase C (mesures 5-6) : tension montante
+            [N.A4, 8, 0.4], [N.B4, 8.5, 0.4], [N.C5, 9, 0.4], [N.D5, 9.5, 0.4],
+            [N.E5, 10, 0.8], [N.D5, 11, 0.4], [N.C5, 11.5, 0.4],
+            // Phrase D (mesures 7-8) : résolution joyeuse
+            [N.B4, 12, 0.4], [N.GS4, 12.5, 0.4], [N.A4, 13, 0.8],
+            [N.C5, 14, 0.4], [N.E5, 14.5, 0.4], [N.A5, 15, 0.9],
+            // Phrase E (mesures 9-10) : variation plus rapide
+            [N.A5, 16, 0.3], [N.G5, 16.5, 0.3], [N.E5, 17, 0.3], [N.C5, 17.5, 0.3],
+            [N.D5, 18, 0.3], [N.E5, 18.5, 0.3], [N.F5, 19, 0.3], [N.E5, 19.5, 0.3],
+            // Phrase F (mesures 11-12)
+            [N.D5, 20, 0.3], [N.C5, 20.5, 0.3], [N.B4, 21, 0.3], [N.A4, 21.5, 0.3],
+            [N.GS4, 22, 0.3], [N.A4, 22.5, 0.3], [N.B4, 23, 0.3], [N.C5, 23.5, 0.3],
+            // Phrase G (mesures 13-14) : montée finale
+            [N.D5, 24, 0.4], [N.E5, 24.5, 0.4], [N.F5, 25, 0.4], [N.GS5, 25.5, 0.4],
+            [N.A5, 26, 1.2], [N.G5, 27.5, 0.4],
+            // Phrase H (mesure 15-16) : coda percutante
+            [N.E5, 28, 0.4], [N.D5, 28.5, 0.4], [N.C5, 29, 0.4], [N.B4, 29.5, 0.4],
+            [N.A4, 30, 0.4], [N.C5, 30.5, 0.4], [N.E5, 31, 0.9],
+        ];
+
+        // CONTRE-MÉLODIE — harmonise à la tierce
+        const CMID = [
+            [N.E4, 0, 0.4], [N.G4, 0.5, 0.4], [N.C5, 1, 0.4], [N.E5, 1.5, 0.8],
+            [N.D5, 2.5, 0.4], [N.C5, 3, 0.4], [N.A4, 3.5, 0.4],
+            [N.B3, 4, 0.4], [N.GS3, 4.5, 0.4], [N.E3, 5, 0.4], [N.C4, 5.5, 0.8],
+            [N.D4, 6.5, 0.4], [N.E4, 7, 0.4], [N.F4, 7.5, 0.4],
+            [N.F4, 8, 1.6], [N.A4, 10, 0.8], [N.G4, 11, 0.4], [N.F4, 11.5, 0.4],
+            [N.E4, 12, 0.4], [N.F4, 12.5, 0.4], [N.E4, 13, 0.8],
+            [N.G4, 14, 0.4], [N.C5, 14.5, 0.4], [N.E5, 15, 0.9],
+        ];
+
+        // BASSE REBONDISSANTE — style OutRun / arcade funk
+        const BASS = [
+            [N.A2, 0, 0.3], [N.A2, 0.5, 0.3], [N.A3, 1, 0.3], [N.A2, 1.5, 0.3],
             });
             $('shop-skins').innerHTML = hS;
             let hT = '';

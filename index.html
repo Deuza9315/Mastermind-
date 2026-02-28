@@ -126,6 +126,15 @@
             background: rgba(2, 0, 12, 0.65) !important;
         }
 
+        /* ══════════════════════════════════════
+   THÈME FORÊT ENCHANTÉE 🌿
+══════════════════════════════════════ */
+        body.theme-foret {
+            --primary: #4ade80;
+            --secondary: #a3e635;
+            --bg-color: #020d04;
+        }
+
         body.theme-galaxy #snow-canvas {
             display: block;
         }
@@ -1393,6 +1402,161 @@
         <!-- Pied (collerette) -->
         <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
         <!-- Reflet -->
+            snowRAF = requestAnimationFrame(animateGalaxy);
+        }
+
+        /* ── FORÊT : lucioles ── */
+        let lucioles = [], foretActive = false;
+        function initForet() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
+            lucioles = [];
+            for (let i = 0; i < 80; i++) lucioles.push({
+                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                r: Math.random() * 2.5 + 1,
+                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+                phase: Math.random() * Math.PI * 2, phaseSpeed: Math.random() * 0.03 + 0.015,
+                hue: Math.random() * 60 + 80 // vert-jaune
+            });
+        }
+        function animateForet() {
+            if (!foretActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // brume verte subtile en bas
+            let fog = snowCtx.createLinearGradient(0, snowCanvas.height * 0.7, 0, snowCanvas.height);
+            fog.addColorStop(0, 'rgba(0,40,10,0)'); fog.addColorStop(1, 'rgba(0,40,10,0.18)');
+            snowCtx.fillStyle = fog; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            lucioles.forEach(f => {
+                f.phase += f.phaseSpeed; f.x += f.vx + Math.sin(f.phase * 0.7) * 0.3; f.y += f.vy + Math.cos(f.phase * 0.5) * 0.2;
+                if (f.x < 0) f.x = snowCanvas.width; if (f.x > snowCanvas.width) f.x = 0;
+                if (f.y < 0) f.y = snowCanvas.height; if (f.y > snowCanvas.height) f.y = 0;
+                let glow = 0.3 + 0.7 * Math.abs(Math.sin(f.phase));
+                // Halo externe
+                let g = snowCtx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
+                g.addColorStop(0, `hsla(${f.hue},100%,65%,${glow * 0.35})`);
+                g.addColorStop(1, 'transparent');
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2);
+                snowCtx.fillStyle = g; snowCtx.fill();
+                // Corps lumineux
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `hsla(${f.hue},100%,80%,${glow})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateForet);
+        }
+
+        /* ── DÉSERT : chaleur + grains de sable ── */
+        let grains = [], heatWaves = [], desertActive = false, desertT = 0;
+        function initDesert() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = snowCanvas.height;
+            grains = [];
+            for (let i = 0; i < 120; i++) grains.push({
+                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                r: Math.random() * 1.5 + 0.5,
+                vx: (Math.random() - 0.5) * 1.2, vy: -Math.random() * 0.8 - 0.2,
+                opacity: Math.random() * 0.5 + 0.2, life: Math.random() * 100
+            });
+            heatWaves = [];
+            for (let i = 0; i < 5; i++) heatWaves.push({ y: snowCanvas.height * (0.3 + i * 0.14), phase: Math.random() * Math.PI * 2, amp: Math.random() * 8 + 4, speed: Math.random() * 0.012 + 0.005 });
+            desertT = 0;
+        }
+        function animateDesert() {
+            if (!desertActive) return;
+            desertT++;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Dégradé de chaleur au sol
+            let heat = snowCtx.createLinearGradient(0, snowCanvas.height * 0.6, 0, snowCanvas.height);
+            heat.addColorStop(0, 'rgba(200,80,0,0)'); heat.addColorStop(1, 'rgba(200,80,0,0.07)');
+            snowCtx.fillStyle = heat; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Ondes de chaleur (lignes sinusoïdales semi-transparentes)
+            heatWaves.forEach(w => {
+                w.phase += w.speed;
+                snowCtx.beginPath();
+                for (let x = 0; x < snowCanvas.width; x += 2) {
+                    let y = w.y + Math.sin(x * 0.015 + w.phase) * w.amp + Math.sin(x * 0.03 + w.phase * 1.3) * w.amp * 0.4;
+                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
+                }
+                snowCtx.strokeStyle = 'rgba(255,160,50,0.07)'; snowCtx.lineWidth = 1.5; snowCtx.stroke();
+            });
+            // Grains de sable portés par le vent
+            grains.forEach(g => {
+                g.x += g.vx; g.y += g.vy + Math.sin(desertT * 0.02 + g.x * 0.01) * 0.3;
+                g.life--;
+                if (g.life <= 0 || g.x < 0 || g.x > snowCanvas.width || g.y < 0) {
+                    g.x = Math.random() * snowCanvas.width; g.y = snowCanvas.height;
+                    g.vx = (Math.random() - 0.5) * 1.2; g.vy = -Math.random() * 0.8 - 0.2; g.life = Math.random() * 150 + 50;
+                }
+                snowCtx.beginPath(); snowCtx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(210,160,80,${g.opacity * (g.life / 50).toFixed(2)})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateDesert);
+        }
+
+        /* ── OCÉAN : bulles + vagues ── */
+        let bulles = [], vagues = [], oceanActive = false, oceanT = 0;
+        function initOcean() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
+            bulles = [];
+            for (let i = 0; i < 60; i++) bulles.push({
+                x: Math.random() * snowCanvas.width,
+                y: snowCanvas.height + Math.random() * 200,
+                r: Math.random() * 4 + 1.5,
+                speed: Math.random() * 0.8 + 0.3,
+                wobble: Math.random() * Math.PI * 2,
+                wobbleSpeed: Math.random() * 0.04 + 0.02,
+                opacity: Math.random() * 0.4 + 0.15
+            });
+            vagues = [];
+            for (let i = 0; i < 4; i++) vagues.push({
+                y: snowCanvas.height * (0.55 + i * 0.12),
+                phase: i * Math.PI / 2,
+                speed: 0.008 + i * 0.003,
+                amp: 12 - i * 2,
+                color: `rgba(30,${120 + i * 15},${200 + i * 10},${0.06 - i * 0.01})`
+            });
+            oceanT = 0;
+        }
+        function animateOcean() {
+            if (!oceanActive) return;
+            oceanT++;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Lueur sous-marine du bas
+            let glow = snowCtx.createLinearGradient(0, snowCanvas.height * 0.5, 0, snowCanvas.height);
+            glow.addColorStop(0, 'rgba(0,60,120,0)'); glow.addColorStop(1, 'rgba(0,60,120,0.12)');
+            snowCtx.fillStyle = glow; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Vagues lumineuses
+            vagues.forEach(v => {
+                v.phase += v.speed;
+                snowCtx.beginPath();
+                for (let x = 0; x < snowCanvas.width; x += 3) {
+                    let y = v.y + Math.sin(x * 0.012 + v.phase) * v.amp + Math.sin(x * 0.025 + v.phase * 0.7) * v.amp * 0.5;
+                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
+                }
+                snowCtx.lineTo(snowCanvas.width, snowCanvas.height); snowCtx.lineTo(0, snowCanvas.height); snowCtx.closePath();
+                snowCtx.fillStyle = v.color; snowCtx.fill();
+            });
+            // Bulles
+            bulles.forEach(b => {
+                b.wobble += b.wobbleSpeed; b.y -= b.speed; b.x += Math.sin(b.wobble) * 0.5;
+                if (b.y < -b.r * 2) { b.y = snowCanvas.height + 20; b.x = Math.random() * snowCanvas.width; }
+                // Bulle avec reflet
+                snowCtx.beginPath(); snowCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                snowCtx.strokeStyle = `rgba(100,200,255,${b.opacity})`; snowCtx.lineWidth = 1; snowCtx.stroke();
+                snowCtx.beginPath(); snowCtx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(200,240,255,${b.opacity * 0.8})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateOcean);
+        }
+
+        function startSnow() { if (snowActive) return; stopCanvas(); snowActive = true; initSnow(); animateSnow(); }
+        function startGalaxy() { if (galaxyActive) return; stopCanvas(); galaxyActive = true; initGalaxy(); animateGalaxy(); }
+        function startForet() { if (foretActive) return; stopCanvas(); foretActive = true; initForet(); animateForet(); }
+        function startDesert() { if (desertActive) return; stopCanvas(); desertActive = true; initDesert(); animateDesert(); }
+        function startOcean() { if (oceanActive) return; stopCanvas(); oceanActive = true; initOcean(); animateOcean(); }
+        function stopCanvas() { snowActive = false; galaxyActive = false; foretActive = false; desertActive = false; oceanActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); if (foretActive) initForet(); if (desertActive) initDesert(); if (oceanActive) initOcean(); });
+
+        /* ── SVG MARIO CHARS ── */
+        // Têtes SVG simplifiées style pixel art
+        const marioSVGs = {
         <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
         <!-- Points déco -->
         <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>

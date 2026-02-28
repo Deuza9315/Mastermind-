@@ -133,6 +133,135 @@
             --primary: #4ade80;
             --secondary: #a3e635;
             --bg-color: #020d04;
+            --glass-bg: rgba(2, 14, 5, 0.9);
+            --glass-border: rgba(74, 222, 128, 0.18);
+        }
+
+        body.theme-foret::before {
+            background: rgba(20, 100, 30, 0.18) !important;
+        }
+
+        body.theme-foret::after {
+            background: rgba(100, 180, 20, 0.1) !important;
+        }
+
+        body.theme-foret .ligne {
+            border-color: rgba(74, 222, 128, 0.1) !important;
+            background: rgba(1, 8, 2, 0.55) !important;
+        }
+
+        body.theme-foret .board-section,
+        body.theme-foret .rules-section,
+        body.theme-foret .card {
+            border-color: rgba(74, 222, 128, 0.2) !important;
+            background: rgba(1, 8, 2, 0.92) !important;
+            box-shadow: 0 0 30px rgba(20, 100, 30, 0.18) !important;
+        }
+
+        body.theme-foret .palette {
+            border-color: rgba(74, 222, 128, 0.2) !important;
+            background: rgba(1, 10, 3, 0.65) !important;
+        }
+
+        body.theme-foret #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-foret .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME DÉSERT & SABLE 🏜️
+══════════════════════════════════════ */
+        body.theme-desert {
+            --primary: #f59e0b;
+            --secondary: #fb923c;
+            --bg-color: #0d0800;
+            --glass-bg: rgba(20, 12, 2, 0.9);
+            --glass-border: rgba(245, 158, 11, 0.2);
+        }
+
+        body.theme-desert::before {
+            background: rgba(200, 120, 0, 0.14) !important;
+        }
+
+        body.theme-desert::after {
+            background: rgba(180, 80, 0, 0.1) !important;
+        }
+
+        body.theme-desert .ligne {
+            border-color: rgba(245, 158, 11, 0.1) !important;
+            background: rgba(15, 8, 0, 0.55) !important;
+        }
+
+        body.theme-desert .board-section,
+        body.theme-desert .rules-section,
+        body.theme-desert .card {
+            border-color: rgba(245, 158, 11, 0.2) !important;
+            background: rgba(12, 6, 0, 0.92) !important;
+            box-shadow: 0 0 30px rgba(200, 120, 0, 0.15) !important;
+        }
+
+        body.theme-desert .palette {
+            border-color: rgba(245, 158, 11, 0.2) !important;
+            background: rgba(15, 8, 0, 0.65) !important;
+        }
+
+        body.theme-desert #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-desert .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        /* ══════════════════════════════════════
+   THÈME OCÉAN 🌊
+══════════════════════════════════════ */
+        body.theme-ocean {
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --bg-color: #00050f;
+            --glass-bg: rgba(0, 8, 22, 0.9);
+            --glass-border: rgba(56, 189, 248, 0.18);
+        }
+
+        body.theme-ocean::before {
+            background: rgba(0, 80, 160, 0.18) !important;
+        }
+
+        body.theme-ocean::after {
+            background: rgba(0, 40, 120, 0.12) !important;
+        }
+
+        body.theme-ocean .ligne {
+            border-color: rgba(56, 189, 248, 0.1) !important;
+            background: rgba(0, 5, 15, 0.55) !important;
+        }
+
+        body.theme-ocean .board-section,
+        body.theme-ocean .rules-section,
+        body.theme-ocean .card {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(0, 5, 15, 0.92) !important;
+            box-shadow: 0 0 30px rgba(0, 80, 160, 0.18) !important;
+        }
+
+        body.theme-ocean .palette {
+            border-color: rgba(56, 189, 248, 0.2) !important;
+            background: rgba(0, 5, 15, 0.65) !important;
+        }
+
+        body.theme-ocean #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-ocean .page {
+            z-index: 1;
+            position: relative;
         }
 
         body.theme-galaxy #snow-canvas {
@@ -892,6 +1021,78 @@
             font-size: 0.9rem;
         }
 
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-row label {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .toggle-row span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked+.toggle-slider {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .toggle input:checked+.toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        #vol-slider {
+            width: 100%;
+            margin-top: 8px;
+            accent-color: var(--primary);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -956,9 +1157,38 @@
                 partie</button>
             <button class="btn-s" onclick="nav('p-boutique')" style="width:100%;margin-bottom:10px;">🛒
                 Boutique</button>
-            <button class="btn-s" onclick="voirScores()" style="width:100%">Scores</button>
+            <button class="btn-s" onclick="voirScores()" style="width:100%;margin-bottom:10px;">Scores</button>
+            <button class="btn-s" onclick="nav('p-params')" style="width:100%;">⚙️ Paramètres</button>
             <button onclick="location.reload()" class="btn-s"
                 style="width:100%;margin-top:25px;border:none;color:#ef4444;">Déconnexion</button>
+        </div>
+    </div>
+
+    <!-- PARAMÈTRES -->
+    <div id="p-params" class="page">
+        <h1>Paramètres</h1>
+        <div class="card" style="max-width:480px;text-align:left;">
+            <h3 style="margin-top:0;color:white;">🔊 Audio</h3>
+            <div class="toggle-row">
+                <div><label>Musique du menu</label><span>Chiptune 8-bit rétro</span></div>
+                <label class="toggle"><input type="checkbox" id="tog-musique" checked
+                        onchange="toggleMusique(this.checked)"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><label>Sons des pions</label><span>Clic bois satisfaisant</span></div>
+                <label class="toggle"><input type="checkbox" id="tog-sfx" checked
+                        onchange="toggleSfx(this.checked)"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+                <div><label>Sons de victoire / défaite</label><span>Fanfare ou buzzer</span></div>
+                <label class="toggle"><input type="checkbox" id="tog-win" checked
+                        onchange="toggleWin(this.checked)"><span class="toggle-slider"></span></label>
+            </div>
+            <div style="margin-top:12px;">
+                <label style="font-size:0.9rem;color:var(--text-muted);">Volume général</label>
+                <input type="range" id="vol-slider" min="0" max="100" value="60" oninput="setVolume(this.value)">
+            </div>
+            <button class="btn-s" onclick="nav('p-menu')" style="width:100%;margin-top:24px;">Retour Menu</button>
         </div>
     </div>
 
@@ -1166,10 +1396,154 @@
             snowRAF = requestAnimationFrame(animateGalaxy);
         }
 
-        function startSnow() { if (snowActive) return; snowActive = true; galaxyActive = false; initSnow(); animateSnow(); }
-        function startGalaxy() { if (galaxyActive) return; galaxyActive = true; snowActive = false; initGalaxy(); animateGalaxy(); }
-        function stopCanvas() { snowActive = false; galaxyActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
-        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); });
+        /* ── FORÊT : lucioles ── */
+        let lucioles = [], foretActive = false;
+        function initForet() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
+            lucioles = [];
+            for (let i = 0; i < 80; i++) lucioles.push({
+                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                r: Math.random() * 2.5 + 1,
+                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+                phase: Math.random() * Math.PI * 2, phaseSpeed: Math.random() * 0.03 + 0.015,
+                hue: Math.random() * 60 + 80 // vert-jaune
+            });
+        }
+        function animateForet() {
+            if (!foretActive) return;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // brume verte subtile en bas
+            let fog = snowCtx.createLinearGradient(0, snowCanvas.height * 0.7, 0, snowCanvas.height);
+            fog.addColorStop(0, 'rgba(0,40,10,0)'); fog.addColorStop(1, 'rgba(0,40,10,0.18)');
+            snowCtx.fillStyle = fog; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            lucioles.forEach(f => {
+                f.phase += f.phaseSpeed; f.x += f.vx + Math.sin(f.phase * 0.7) * 0.3; f.y += f.vy + Math.cos(f.phase * 0.5) * 0.2;
+                if (f.x < 0) f.x = snowCanvas.width; if (f.x > snowCanvas.width) f.x = 0;
+                if (f.y < 0) f.y = snowCanvas.height; if (f.y > snowCanvas.height) f.y = 0;
+                let glow = 0.3 + 0.7 * Math.abs(Math.sin(f.phase));
+                // Halo externe
+                let g = snowCtx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
+                g.addColorStop(0, `hsla(${f.hue},100%,65%,${glow * 0.35})`);
+                g.addColorStop(1, 'transparent');
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2);
+                snowCtx.fillStyle = g; snowCtx.fill();
+                // Corps lumineux
+                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `hsla(${f.hue},100%,80%,${glow})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateForet);
+        }
+
+        /* ── DÉSERT : chaleur + grains de sable ── */
+        let grains = [], heatWaves = [], desertActive = false, desertT = 0;
+        function initDesert() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = snowCanvas.height;
+            grains = [];
+            for (let i = 0; i < 120; i++) grains.push({
+                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
+                r: Math.random() * 1.5 + 0.5,
+                vx: (Math.random() - 0.5) * 1.2, vy: -Math.random() * 0.8 - 0.2,
+                opacity: Math.random() * 0.5 + 0.2, life: Math.random() * 100
+            });
+            heatWaves = [];
+            for (let i = 0; i < 5; i++) heatWaves.push({ y: snowCanvas.height * (0.3 + i * 0.14), phase: Math.random() * Math.PI * 2, amp: Math.random() * 8 + 4, speed: Math.random() * 0.012 + 0.005 });
+            desertT = 0;
+        }
+        function animateDesert() {
+            if (!desertActive) return;
+            desertT++;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Dégradé de chaleur au sol
+            let heat = snowCtx.createLinearGradient(0, snowCanvas.height * 0.6, 0, snowCanvas.height);
+            heat.addColorStop(0, 'rgba(200,80,0,0)'); heat.addColorStop(1, 'rgba(200,80,0,0.07)');
+            snowCtx.fillStyle = heat; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Ondes de chaleur (lignes sinusoïdales semi-transparentes)
+            heatWaves.forEach(w => {
+                w.phase += w.speed;
+                snowCtx.beginPath();
+                for (let x = 0; x < snowCanvas.width; x += 2) {
+                    let y = w.y + Math.sin(x * 0.015 + w.phase) * w.amp + Math.sin(x * 0.03 + w.phase * 1.3) * w.amp * 0.4;
+                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
+                }
+                snowCtx.strokeStyle = 'rgba(255,160,50,0.07)'; snowCtx.lineWidth = 1.5; snowCtx.stroke();
+            });
+            // Grains de sable portés par le vent
+            grains.forEach(g => {
+                g.x += g.vx; g.y += g.vy + Math.sin(desertT * 0.02 + g.x * 0.01) * 0.3;
+                g.life--;
+                if (g.life <= 0 || g.x < 0 || g.x > snowCanvas.width || g.y < 0) {
+                    g.x = Math.random() * snowCanvas.width; g.y = snowCanvas.height;
+                    g.vx = (Math.random() - 0.5) * 1.2; g.vy = -Math.random() * 0.8 - 0.2; g.life = Math.random() * 150 + 50;
+                }
+                snowCtx.beginPath(); snowCtx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(210,160,80,${g.opacity * (g.life / 50).toFixed(2)})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateDesert);
+        }
+
+        /* ── OCÉAN : bulles + vagues ── */
+        let bulles = [], vagues = [], oceanActive = false, oceanT = 0;
+        function initOcean() {
+            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
+            bulles = [];
+            for (let i = 0; i < 60; i++) bulles.push({
+                x: Math.random() * snowCanvas.width,
+                y: snowCanvas.height + Math.random() * 200,
+                r: Math.random() * 4 + 1.5,
+                speed: Math.random() * 0.8 + 0.3,
+                wobble: Math.random() * Math.PI * 2,
+                wobbleSpeed: Math.random() * 0.04 + 0.02,
+                opacity: Math.random() * 0.4 + 0.15
+            });
+            vagues = [];
+            for (let i = 0; i < 4; i++) vagues.push({
+                y: snowCanvas.height * (0.55 + i * 0.12),
+                phase: i * Math.PI / 2,
+                speed: 0.008 + i * 0.003,
+                amp: 12 - i * 2,
+                color: `rgba(30,${120 + i * 15},${200 + i * 10},${0.06 - i * 0.01})`
+            });
+            oceanT = 0;
+        }
+        function animateOcean() {
+            if (!oceanActive) return;
+            oceanT++;
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Lueur sous-marine du bas
+            let glow = snowCtx.createLinearGradient(0, snowCanvas.height * 0.5, 0, snowCanvas.height);
+            glow.addColorStop(0, 'rgba(0,60,120,0)'); glow.addColorStop(1, 'rgba(0,60,120,0.12)');
+            snowCtx.fillStyle = glow; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
+            // Vagues lumineuses
+            vagues.forEach(v => {
+                v.phase += v.speed;
+                snowCtx.beginPath();
+                for (let x = 0; x < snowCanvas.width; x += 3) {
+                    let y = v.y + Math.sin(x * 0.012 + v.phase) * v.amp + Math.sin(x * 0.025 + v.phase * 0.7) * v.amp * 0.5;
+                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
+                }
+                snowCtx.lineTo(snowCanvas.width, snowCanvas.height); snowCtx.lineTo(0, snowCanvas.height); snowCtx.closePath();
+                snowCtx.fillStyle = v.color; snowCtx.fill();
+            });
+            // Bulles
+            bulles.forEach(b => {
+                b.wobble += b.wobbleSpeed; b.y -= b.speed; b.x += Math.sin(b.wobble) * 0.5;
+                if (b.y < -b.r * 2) { b.y = snowCanvas.height + 20; b.x = Math.random() * snowCanvas.width; }
+                // Bulle avec reflet
+                snowCtx.beginPath(); snowCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                snowCtx.strokeStyle = `rgba(100,200,255,${b.opacity})`; snowCtx.lineWidth = 1; snowCtx.stroke();
+                snowCtx.beginPath(); snowCtx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2);
+                snowCtx.fillStyle = `rgba(200,240,255,${b.opacity * 0.8})`; snowCtx.fill();
+            });
+            snowRAF = requestAnimationFrame(animateOcean);
+        }
+
+        function startSnow() { if (snowActive) return; stopCanvas(); snowActive = true; initSnow(); animateSnow(); }
+        function startGalaxy() { if (galaxyActive) return; stopCanvas(); galaxyActive = true; initGalaxy(); animateGalaxy(); }
+        function startForet() { if (foretActive) return; stopCanvas(); foretActive = true; initForet(); animateForet(); }
+        function startDesert() { if (desertActive) return; stopCanvas(); desertActive = true; initDesert(); animateDesert(); }
+        function startOcean() { if (oceanActive) return; stopCanvas(); oceanActive = true; initOcean(); animateOcean(); }
+        function stopCanvas() { snowActive = false; galaxyActive = false; foretActive = false; desertActive = false; oceanActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); if (foretActive) initForet(); if (desertActive) initDesert(); if (oceanActive) initOcean(); });
 
         /* ── SVG MARIO CHARS ── */
         // Têtes SVG simplifiées style pixel art
@@ -1402,161 +1776,6 @@
         <!-- Pied (collerette) -->
         <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
         <!-- Reflet -->
-            snowRAF = requestAnimationFrame(animateGalaxy);
-        }
-
-        /* ── FORÊT : lucioles ── */
-        let lucioles = [], foretActive = false;
-        function initForet() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
-            lucioles = [];
-            for (let i = 0; i < 80; i++) lucioles.push({
-                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                r: Math.random() * 2.5 + 1,
-                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-                phase: Math.random() * Math.PI * 2, phaseSpeed: Math.random() * 0.03 + 0.015,
-                hue: Math.random() * 60 + 80 // vert-jaune
-            });
-        }
-        function animateForet() {
-            if (!foretActive) return;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // brume verte subtile en bas
-            let fog = snowCtx.createLinearGradient(0, snowCanvas.height * 0.7, 0, snowCanvas.height);
-            fog.addColorStop(0, 'rgba(0,40,10,0)'); fog.addColorStop(1, 'rgba(0,40,10,0.18)');
-            snowCtx.fillStyle = fog; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            lucioles.forEach(f => {
-                f.phase += f.phaseSpeed; f.x += f.vx + Math.sin(f.phase * 0.7) * 0.3; f.y += f.vy + Math.cos(f.phase * 0.5) * 0.2;
-                if (f.x < 0) f.x = snowCanvas.width; if (f.x > snowCanvas.width) f.x = 0;
-                if (f.y < 0) f.y = snowCanvas.height; if (f.y > snowCanvas.height) f.y = 0;
-                let glow = 0.3 + 0.7 * Math.abs(Math.sin(f.phase));
-                // Halo externe
-                let g = snowCtx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
-                g.addColorStop(0, `hsla(${f.hue},100%,65%,${glow * 0.35})`);
-                g.addColorStop(1, 'transparent');
-                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2);
-                snowCtx.fillStyle = g; snowCtx.fill();
-                // Corps lumineux
-                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `hsla(${f.hue},100%,80%,${glow})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateForet);
-        }
-
-        /* ── DÉSERT : chaleur + grains de sable ── */
-        let grains = [], heatWaves = [], desertActive = false, desertT = 0;
-        function initDesert() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = snowCanvas.height;
-            grains = [];
-            for (let i = 0; i < 120; i++) grains.push({
-                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                r: Math.random() * 1.5 + 0.5,
-                vx: (Math.random() - 0.5) * 1.2, vy: -Math.random() * 0.8 - 0.2,
-                opacity: Math.random() * 0.5 + 0.2, life: Math.random() * 100
-            });
-            heatWaves = [];
-            for (let i = 0; i < 5; i++) heatWaves.push({ y: snowCanvas.height * (0.3 + i * 0.14), phase: Math.random() * Math.PI * 2, amp: Math.random() * 8 + 4, speed: Math.random() * 0.012 + 0.005 });
-            desertT = 0;
-        }
-        function animateDesert() {
-            if (!desertActive) return;
-            desertT++;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Dégradé de chaleur au sol
-            let heat = snowCtx.createLinearGradient(0, snowCanvas.height * 0.6, 0, snowCanvas.height);
-            heat.addColorStop(0, 'rgba(200,80,0,0)'); heat.addColorStop(1, 'rgba(200,80,0,0.07)');
-            snowCtx.fillStyle = heat; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Ondes de chaleur (lignes sinusoïdales semi-transparentes)
-            heatWaves.forEach(w => {
-                w.phase += w.speed;
-                snowCtx.beginPath();
-                for (let x = 0; x < snowCanvas.width; x += 2) {
-                    let y = w.y + Math.sin(x * 0.015 + w.phase) * w.amp + Math.sin(x * 0.03 + w.phase * 1.3) * w.amp * 0.4;
-                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
-                }
-                snowCtx.strokeStyle = 'rgba(255,160,50,0.07)'; snowCtx.lineWidth = 1.5; snowCtx.stroke();
-            });
-            // Grains de sable portés par le vent
-            grains.forEach(g => {
-                g.x += g.vx; g.y += g.vy + Math.sin(desertT * 0.02 + g.x * 0.01) * 0.3;
-                g.life--;
-                if (g.life <= 0 || g.x < 0 || g.x > snowCanvas.width || g.y < 0) {
-                    g.x = Math.random() * snowCanvas.width; g.y = snowCanvas.height;
-                    g.vx = (Math.random() - 0.5) * 1.2; g.vy = -Math.random() * 0.8 - 0.2; g.life = Math.random() * 150 + 50;
-                }
-                snowCtx.beginPath(); snowCtx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(210,160,80,${g.opacity * (g.life / 50).toFixed(2)})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateDesert);
-        }
-
-        /* ── OCÉAN : bulles + vagues ── */
-        let bulles = [], vagues = [], oceanActive = false, oceanT = 0;
-        function initOcean() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
-            bulles = [];
-            for (let i = 0; i < 60; i++) bulles.push({
-                x: Math.random() * snowCanvas.width,
-                y: snowCanvas.height + Math.random() * 200,
-                r: Math.random() * 4 + 1.5,
-                speed: Math.random() * 0.8 + 0.3,
-                wobble: Math.random() * Math.PI * 2,
-                wobbleSpeed: Math.random() * 0.04 + 0.02,
-                opacity: Math.random() * 0.4 + 0.15
-            });
-            vagues = [];
-            for (let i = 0; i < 4; i++) vagues.push({
-                y: snowCanvas.height * (0.55 + i * 0.12),
-                phase: i * Math.PI / 2,
-                speed: 0.008 + i * 0.003,
-                amp: 12 - i * 2,
-                color: `rgba(30,${120 + i * 15},${200 + i * 10},${0.06 - i * 0.01})`
-            });
-            oceanT = 0;
-        }
-        function animateOcean() {
-            if (!oceanActive) return;
-            oceanT++;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Lueur sous-marine du bas
-            let glow = snowCtx.createLinearGradient(0, snowCanvas.height * 0.5, 0, snowCanvas.height);
-            glow.addColorStop(0, 'rgba(0,60,120,0)'); glow.addColorStop(1, 'rgba(0,60,120,0.12)');
-            snowCtx.fillStyle = glow; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Vagues lumineuses
-            vagues.forEach(v => {
-                v.phase += v.speed;
-                snowCtx.beginPath();
-                for (let x = 0; x < snowCanvas.width; x += 3) {
-                    let y = v.y + Math.sin(x * 0.012 + v.phase) * v.amp + Math.sin(x * 0.025 + v.phase * 0.7) * v.amp * 0.5;
-                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
-                }
-                snowCtx.lineTo(snowCanvas.width, snowCanvas.height); snowCtx.lineTo(0, snowCanvas.height); snowCtx.closePath();
-                snowCtx.fillStyle = v.color; snowCtx.fill();
-            });
-            // Bulles
-            bulles.forEach(b => {
-                b.wobble += b.wobbleSpeed; b.y -= b.speed; b.x += Math.sin(b.wobble) * 0.5;
-                if (b.y < -b.r * 2) { b.y = snowCanvas.height + 20; b.x = Math.random() * snowCanvas.width; }
-                // Bulle avec reflet
-                snowCtx.beginPath(); snowCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                snowCtx.strokeStyle = `rgba(100,200,255,${b.opacity})`; snowCtx.lineWidth = 1; snowCtx.stroke();
-                snowCtx.beginPath(); snowCtx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(200,240,255,${b.opacity * 0.8})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateOcean);
-        }
-
-        function startSnow() { if (snowActive) return; stopCanvas(); snowActive = true; initSnow(); animateSnow(); }
-        function startGalaxy() { if (galaxyActive) return; stopCanvas(); galaxyActive = true; initGalaxy(); animateGalaxy(); }
-        function startForet() { if (foretActive) return; stopCanvas(); foretActive = true; initForet(); animateForet(); }
-        function startDesert() { if (desertActive) return; stopCanvas(); desertActive = true; initDesert(); animateDesert(); }
-        function startOcean() { if (oceanActive) return; stopCanvas(); oceanActive = true; initOcean(); animateOcean(); }
-        function stopCanvas() { snowActive = false; galaxyActive = false; foretActive = false; desertActive = false; oceanActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
-        window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); if (foretActive) initForet(); if (desertActive) initDesert(); if (oceanActive) initOcean(); });
-
-        /* ── SVG MARIO CHARS ── */
-        // Têtes SVG simplifiées style pixel art
-        const marioSVGs = {
         <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
         <!-- Points déco -->
         <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>
@@ -1564,6 +1783,296 @@
         <circle cx="16" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/>
     </svg>`
         };
+
+        /* ══════════════════════════════════════
+           MOTEUR AUDIO
+        ══════════════════════════════════════ */
+        let audioCtx = null, masterGain = null, menuOscNodes = [], menuPlaying = false;
+        let sndMusique = true, sndSfx = true, sndWin = true, masterVol = 0.6;
+        let musicScheduler = null, musicBeat = 0, musicStartTime = 0;
+
+        function getCtx() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = masterVol;
+                masterGain.connect(audioCtx.destination);
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        /* ══════════════════════════════════════
+           MUSIQUE ARCADE — style Pac-Man / Galaga / OutRun
+           Mélodie entraînante, beat punchy, basse rebondissante
+        ══════════════════════════════════════ */
+
+        // Gamme en La mineur harmonique — son arcade classique
+        // Toutes les notes utilisées dans le morceau
+        const N = {
+            A2: 110, B2: 123, C3: 131, D3: 147, E3: 165, F3: 175, G3: 196, GS3: 208,
+            A3: 220, B3: 247, C4: 262, D4: 294, E4: 330, F4: 349, G4: 392, GS4: 415,
+            A4: 440, B4: 494, C5: 523, D5: 587, E5: 659, F5: 698, G5: 784, GS5: 830, A5: 880
+        };
+
+        // MÉLODIE PRINCIPALE — accrocheuse et joyeuse style Pac-Man/Galaga
+        // Format: [note, beat (0-31), durée en beats]
+        const MEL = [
+            // Phrase A (mesures 1-2) : montée énergique
+            [N.A4, 0, 0.4], [N.C5, 0.5, 0.4], [N.E5, 1, 0.4], [N.A5, 1.5, 0.8],
+            [N.G5, 2.5, 0.4], [N.E5, 3, 0.4], [N.C5, 3.5, 0.4],
+            // Phrase B (mesures 3-4) : descente avec rebond
+            [N.D5, 4, 0.4], [N.B4, 4.5, 0.4], [N.GS4, 5, 0.4], [N.E4, 5.5, 0.8],
+            [N.F4, 6.5, 0.4], [N.GS4, 7, 0.4], [N.A4, 7.5, 0.4],
+            // Phrase C (mesures 5-6) : tension montante
+            [N.A4, 8, 0.4], [N.B4, 8.5, 0.4], [N.C5, 9, 0.4], [N.D5, 9.5, 0.4],
+            [N.E5, 10, 0.8], [N.D5, 11, 0.4], [N.C5, 11.5, 0.4],
+            // Phrase D (mesures 7-8) : résolution joyeuse
+            [N.B4, 12, 0.4], [N.GS4, 12.5, 0.4], [N.A4, 13, 0.8],
+            [N.C5, 14, 0.4], [N.E5, 14.5, 0.4], [N.A5, 15, 0.9],
+            // Phrase E (mesures 9-10) : variation plus rapide
+            [N.A5, 16, 0.3], [N.G5, 16.5, 0.3], [N.E5, 17, 0.3], [N.C5, 17.5, 0.3],
+            [N.D5, 18, 0.3], [N.E5, 18.5, 0.3], [N.F5, 19, 0.3], [N.E5, 19.5, 0.3],
+            // Phrase F (mesures 11-12)
+            [N.D5, 20, 0.3], [N.C5, 20.5, 0.3], [N.B4, 21, 0.3], [N.A4, 21.5, 0.3],
+            [N.GS4, 22, 0.3], [N.A4, 22.5, 0.3], [N.B4, 23, 0.3], [N.C5, 23.5, 0.3],
+            // Phrase G (mesures 13-14) : montée finale
+            [N.D5, 24, 0.4], [N.E5, 24.5, 0.4], [N.F5, 25, 0.4], [N.GS5, 25.5, 0.4],
+            [N.A5, 26, 1.2], [N.G5, 27.5, 0.4],
+            // Phrase H (mesure 15-16) : coda percutante
+            [N.E5, 28, 0.4], [N.D5, 28.5, 0.4], [N.C5, 29, 0.4], [N.B4, 29.5, 0.4],
+            [N.A4, 30, 0.4], [N.C5, 30.5, 0.4], [N.E5, 31, 0.9],
+        ];
+
+        // CONTRE-MÉLODIE — harmonise à la tierce
+        const CMID = [
+            [N.E4, 0, 0.4], [N.G4, 0.5, 0.4], [N.C5, 1, 0.4], [N.E5, 1.5, 0.8],
+            [N.D5, 2.5, 0.4], [N.C5, 3, 0.4], [N.A4, 3.5, 0.4],
+            [N.B3, 4, 0.4], [N.GS3, 4.5, 0.4], [N.E3, 5, 0.4], [N.C4, 5.5, 0.8],
+            [N.D4, 6.5, 0.4], [N.E4, 7, 0.4], [N.F4, 7.5, 0.4],
+            [N.F4, 8, 1.6], [N.A4, 10, 0.8], [N.G4, 11, 0.4], [N.F4, 11.5, 0.4],
+            [N.E4, 12, 0.4], [N.F4, 12.5, 0.4], [N.E4, 13, 0.8],
+            [N.G4, 14, 0.4], [N.C5, 14.5, 0.4], [N.E5, 15, 0.9],
+        ];
+
+        // BASSE REBONDISSANTE — style OutRun / arcade funk
+        const BASS = [
+            [N.A2, 0, 0.3], [N.A2, 0.5, 0.3], [N.A3, 1, 0.3], [N.A2, 1.5, 0.3],
+            [N.A2, 2, 0.3], [N.E3, 2.5, 0.3], [N.A2, 3, 0.3], [N.GS3, 3.5, 0.3],
+            [N.A2, 4, 0.3], [N.A2, 4.5, 0.3], [N.D3, 5, 0.3], [N.A2, 5.5, 0.3],
+            [N.F3, 6, 0.3], [N.E3, 6.5, 0.3], [N.A2, 7, 0.3], [N.E3, 7.5, 0.3],
+            [N.A2, 8, 0.3], [N.C3, 8.5, 0.3], [N.E3, 9, 0.3], [N.A2, 9.5, 0.3],
+            [N.A2, 10, 0.3], [N.E3, 10.5, 0.3], [N.A2, 11, 0.3], [N.GS3, 11.5, 0.3],
+            [N.A2, 12, 0.3], [N.A2, 12.5, 0.3], [N.E3, 13, 0.3], [N.A2, 13.5, 0.3],
+            [N.F3, 14, 0.3], [N.E3, 14.5, 0.3], [N.A2, 15, 0.3], [N.A3, 15.5, 0.3],
+            // repeat basse
+            [N.A2, 16, 0.3], [N.A2, 16.5, 0.3], [N.A3, 17, 0.3], [N.A2, 17.5, 0.3],
+            [N.A2, 18, 0.3], [N.E3, 18.5, 0.3], [N.A2, 19, 0.3], [N.GS3, 19.5, 0.3],
+            [N.D3, 20, 0.3], [N.D3, 20.5, 0.3], [N.A3, 21, 0.3], [N.D3, 21.5, 0.3],
+            [N.E3, 22, 0.3], [N.E3, 22.5, 0.3], [N.B3, 23, 0.3], [N.E3, 23.5, 0.3],
+            [N.A2, 24, 0.3], [N.C3, 24.5, 0.3], [N.E3, 25, 0.3], [N.A3, 25.5, 0.3],
+            [N.A2, 26, 0.3], [N.E3, 26.5, 0.3], [N.A3, 27, 0.3], [N.E3, 27.5, 0.3],
+            [N.A2, 28, 0.3], [N.A2, 28.5, 0.3], [N.E3, 29, 0.3], [N.A2, 29.5, 0.3],
+            [N.A2, 30, 0.3], [N.C3, 30.5, 0.3], [N.E3, 31, 0.3], [N.A3, 31.5, 0.25],
+        ];
+
+        // ARPÈGE EN FOND — shimmer style Galaga
+        const ARP = [N.A3, N.E4, N.A4, N.E4, N.A3, N.E4, N.C5, N.E4,
+        N.D4, N.A4, N.D5, N.A4, N.E4, N.B4, N.E5, N.B4];
+
+        const BPM = 148;
+        const LOOP = 32; // beats par boucle
+
+        function mkOsc(ctx, type, freq, t, dur, gain, filtHz = null, filtQ = 1) {
+            const osc = ctx.createOscillator();
+            const g = ctx.createGain();
+            osc.type = type;
+            osc.frequency.value = freq;
+            g.gain.setValueAtTime(0, t);
+            g.gain.linearRampToValueAtTime(gain, t + 0.012);
+            g.gain.setValueAtTime(gain, t + dur - 0.025);
+            g.gain.linearRampToValueAtTime(0, t + dur);
+            if (filtHz) {
+                const f = ctx.createBiquadFilter();
+                f.type = 'lowpass'; f.frequency.value = filtHz; f.Q.value = filtQ;
+                osc.connect(f); f.connect(g);
+            } else { osc.connect(g); }
+            g.connect(masterGain);
+            osc.start(t); osc.stop(t + dur + 0.05);
+            menuOscNodes.push(osc);
+        }
+
+        function mkNoise(ctx, gainVal, t, dur, filtType, filtHz, filtQ = 1) {
+            const len = Math.max(1, Math.ceil(ctx.sampleRate * dur));
+            const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+            const d = buf.getChannelData(0);
+            for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(Math.max(0, 1 - i / d.length), 1.3);
+            const src = ctx.createBufferSource();
+            const filt = ctx.createBiquadFilter(); filt.type = filtType; filt.frequency.value = filtHz; filt.Q.value = filtQ;
+            const g = ctx.createGain(); g.gain.setValueAtTime(gainVal, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+            src.buffer = buf; src.connect(filt); filt.connect(g); g.connect(masterGain); src.start(t);
+            menuOscNodes.push(src);
+        }
+
+        function scheduleMusicBeat(b, t, ctx, beat) {
+            // ── MÉLODIE (onde carrée brillante — son arcade pur) ──
+            MEL.forEach(([freq, start, dur]) => {
+                if (Math.abs(b - start) < 0.001) {
+                    // Couche principale
+                    mkOsc(ctx, 'square', freq, t, dur * beat, 0.14);
+                    // Octave basse pour la richesse
+                    mkOsc(ctx, 'square', freq / 2, t, dur * beat, 0.05, 1200, 1);
+                }
+            });
+
+            // ── CONTRE-MÉLODIE (triangle doux — harmonie) ──
+            CMID.forEach(([freq, start, dur]) => {
+                if (Math.abs(b - start) < 0.001) {
+                    mkOsc(ctx, 'triangle', freq, t, dur * beat, 0.08);
+                }
+            });
+
+            // ── BASSE (sawtooth filtré — rebondissant) ──
+            BASS.forEach(([freq, start, dur]) => {
+                if (Math.abs(b - start) < 0.001 || Math.abs(b - start - 0.5) < 0.001) {
+                    const osc = ctx.createOscillator();
+                    const filt = ctx.createBiquadFilter();
+                    const g = ctx.createGain();
+                    osc.type = 'sawtooth'; osc.frequency.value = freq;
+                    filt.type = 'lowpass'; filt.Q.value = 5;
+                    filt.frequency.setValueAtTime(300, t);
+                    filt.frequency.linearRampToValueAtTime(1500, t + 0.018);
+                    filt.frequency.exponentialRampToValueAtTime(400, t + dur * beat);
+                    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.38, t + 0.012);
+                    g.gain.setValueAtTime(0.38, t + dur * beat - 0.02); g.gain.linearRampToValueAtTime(0, t + dur * beat);
+                    osc.connect(filt); filt.connect(g); g.connect(masterGain);
+                    osc.start(t); osc.stop(t + dur * beat + 0.04);
+                    menuOscNodes.push(osc);
+                }
+            });
+
+            // ── ARPÈGE SHIMMER (onde pulse — brillant en arrière-plan) ──
+            if (b === Math.floor(b)) {
+                const arpIdx = Math.floor(b) % ARP.length;
+                mkOsc(ctx, 'square', ARP[arpIdx], t, beat * 0.45, 0.04, 2000, 1);
+                mkOsc(ctx, 'square', ARP[(arpIdx + 1) % ARP.length], t + beat * 0.5, beat * 0.45, 0.04, 2000, 1);
+            }
+
+            // ── BATTERIE ARCADE ──
+            // Kick (sine sweep — boom classique)
+            if (b % 4 === 0 || b % 4 === 2.75) {
+                const k = ctx.createOscillator(); const kg = ctx.createGain();
+                k.type = 'sine';
+                k.frequency.setValueAtTime(160, t); k.frequency.exponentialRampToValueAtTime(30, t + 0.15);
+                kg.gain.setValueAtTime(0.8, t); kg.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+                k.connect(kg); kg.connect(masterGain); k.start(t); k.stop(t + 0.2);
+                menuOscNodes.push(k);
+            }
+
+            // Snare (sur les temps 2 et 4)
+            if (b % 4 === 2) {
+                mkNoise(ctx, 0.35, t, 0.12, 'bandpass', 2000, 0.8);
+                mkOsc(ctx, 'triangle', 200, t, 0.07, 0.2);
+            }
+
+            // Hi-hat fermé (chaque demi-beat)
+            if (b === Math.floor(b) || (b * 2 === Math.floor(b * 2))) {
+                mkNoise(ctx, 0.05, t, 0.025, 'highpass', 9000, 0.5);
+            }
+
+            // Hi-hat ouvert (contretemps — groove arcade)
+            if (Math.abs((b % 2) - 1.5) < 0.001) {
+                mkNoise(ctx, 0.07, t, 0.12, 'highpass', 7000, 0.5);
+            }
+
+            // Cloche arcade (petite note aiguë sur certains temps — feeling bonus/coin)
+            if (b % 8 === 4 || b % 8 === 6.5) {
+                mkOsc(ctx, 'sine', N.A5 * 2, t, 0.08, 0.06);
+            }
+        }
+
+        function playChiptune() {
+            if (!sndMusique || menuPlaying) return;
+            const ctx = getCtx();
+            menuPlaying = true;
+            musicBeat = 0;
+            musicStartTime = ctx.currentTime + 0.08;
+            const beat = 60 / BPM;
+            const ahead = 0.15;
+            const interval = 40;
+
+            function tick() {
+                if (!menuPlaying) return;
+                const now = ctx.currentTime;
+                while (musicBeat * beat < (now - musicStartTime) + ahead) {
+                    const b = musicBeat % LOOP;
+                    const t = musicStartTime + musicBeat * beat;
+                    scheduleMusicBeat(b, t, ctx, beat);
+                    musicBeat++;
+                }
+                musicScheduler = setTimeout(tick, interval);
+            }
+            tick();
+        }
+
+        function stopChiptune() {
+            menuPlaying = false;
+            clearTimeout(musicScheduler);
+            menuOscNodes.forEach(n => { try { n.stop(); } catch (e) { } });
+            menuOscNodes = [];
+            musicBeat = 0;
+        }
+
+        /* ── SFX : clic bois ── */
+        function playWoodClick() {
+            if (!sndSfx) return;
+            const ctx = getCtx();
+            const t = ctx.currentTime;
+            const buf = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.12), ctx.sampleRate);
+            const d = buf.getChannelData(0);
+            for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3);
+            const src = ctx.createBufferSource();
+            const filt = ctx.createBiquadFilter(); filt.type = 'lowpass'; filt.frequency.value = 800; filt.Q.value = 2;
+            const g = ctx.createGain(); g.gain.setValueAtTime(0.5, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+            src.buffer = buf; src.connect(filt); filt.connect(g); g.connect(masterGain); src.start(t);
+            const buf2 = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.015), ctx.sampleRate);
+            const d2 = buf2.getChannelData(0);
+            for (let i = 0; i < d2.length; i++) d2[i] = (Math.random() * 2 - 1);
+            const src2 = ctx.createBufferSource();
+            const g2 = ctx.createGain(); g2.gain.setValueAtTime(0.3, t); g2.gain.exponentialRampToValueAtTime(0.001, t + 0.015);
+            src2.buffer = buf2; src2.connect(g2); g2.connect(masterGain); src2.start(t);
+        }
+
+        /* ── SFX : victoire ── */
+        function playVictoire() {
+            if (!sndWin) return;
+            const ctx = getCtx(); const t = ctx.currentTime + 0.05;
+            [N.A4, N.C5, N.E5, N.A5].forEach((f, i) => {
+                const o = ctx.createOscillator(), g = ctx.createGain();
+                o.type = 'square'; o.frequency.value = f;
+                g.gain.setValueAtTime(0, t + i * 0.1); g.gain.linearRampToValueAtTime(0.18, t + i * 0.1 + 0.02);
+                g.gain.linearRampToValueAtTime(0, t + i * 0.1 + 0.18);
+                o.connect(g); g.connect(masterGain); o.start(t + i * 0.1); o.stop(t + i * 0.1 + 0.2);
+            });
+        }
+
+        /* ── SFX : défaite ── */
+        function playDefaite() {
+            if (!sndWin) return;
+            const ctx = getCtx(); const t = ctx.currentTime + 0.05;
+            [N.A4, N.GS4, N.G4, N.F4, N.E4].forEach((f, i) => {
+                const o = ctx.createOscillator(), g = ctx.createGain();
+                o.type = 'sawtooth'; o.frequency.value = f;
+                g.gain.setValueAtTime(0.15, t + i * 0.15); g.gain.exponentialRampToValueAtTime(0.001, t + i * 0.15 + 0.2);
+                o.connect(g); g.connect(masterGain); o.start(t + i * 0.15); o.stop(t + i * 0.15 + 0.22);
+            });
+        }
+
+        /* ── Contrôles paramètres ── */
+        function toggleMusique(on) { sndMusique = on; if (on) playChiptune(); else stopChiptune(); }
+        function toggleSfx(on) { sndSfx = on; }
+        function toggleWin(on) { sndWin = on; }
+        function setVolume(v) { masterVol = v / 100; if (masterGain) masterGain.gain.value = masterVol; }
 
         /* ── GAME STATE ── */
         let user = { p: '', c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
@@ -1587,6 +2096,9 @@
             { id: 'noel', nom: 'Noël 🎄', px: 80 },
             { id: 'arcade', nom: 'Arcade Rétro 👾', px: 80 },
             { id: 'galaxy', nom: 'Galaxy 🌌', px: 120 },
+            { id: 'foret', nom: 'Forêt Enchantée 🌿', px: 100 },
+            { id: 'desert', nom: 'Désert & Sable 🏜️', px: 100 },
+            { id: 'ocean', nom: 'Océan 🌊', px: 100 },
         ];
         const ALL_S = skins.map(s => s.id), ALL_T = themes.map(t => t.id);
 
@@ -1597,6 +2109,9 @@
             if (user.th && user.th !== 'default') document.body.classList.add('theme-' + user.th);
             if (user.th === 'noel') startSnow();
             else if (user.th === 'galaxy') startGalaxy();
+            else if (user.th === 'foret') startForet();
+            else if (user.th === 'desert') startDesert();
+            else if (user.th === 'ocean') startOcean();
             else stopCanvas();
             // Refresh pions si on est en jeu
             refreshPions();
@@ -1617,7 +2132,13 @@
         function nav(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             $(id).classList.add('active');
-            if (id === 'p-menu' || id === 'p-boutique') { $('menu-coins').innerText = user.c; $('shop-coins').innerText = user.c; }
+            if (id === 'p-menu' || id === 'p-boutique' || id === 'p-score' || id === 'p-params' || id === 'p-mode') {
+                $('menu-coins') && ($('menu-coins').innerText = user.c);
+                $('shop-coins') && ($('shop-coins').innerText = user.c);
+                if (!menuPlaying) playChiptune();
+            } else {
+                stopChiptune();
+            }
             if (id === 'p-boutique') renderShop();
         }
 
@@ -1716,6 +2237,7 @@
                 if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[c] || '');
                 if (user.eq === 'mario' && marioSVGs[c]) el.innerHTML = marioSVGs[c];
                 if (user.eq === 'bonbons' && bonbonSVGs[c]) el.innerHTML = bonbonSVGs[c];
+                playWoodClick();
             }
             $('btn-v').disabled = jeu.ess.length !== cfg.nb;
         }
@@ -1732,11 +2254,12 @@
 
         function end(v) {
             clearInterval(jeu.tim); jeu.win = v; $('modal-fin').style.display = 'flex';
+            if (v) { playVictoire(); } else { playDefaite(); }
             if (v) {
                 if (!user.adm) user.c += 10; save();
                 $('fin-titre').innerText = "VICTOIRE !"; $('fin-titre').style.color = "#10b981";
                 $('fin-desc').innerText = `Bravo ${user.p} !\nCode trouvé en ${jeu.t + 1} essai(s).\nGain: +10 💰`; $('fin-secret').style.display = "none";
-                if (!user.p.startsWith("Inv_") && !user.adm) { let sc = JSON.parse(localStorage.getItem('mm_sc_v2') || "[]"); sc.push({ p: user.p, m: cfg.nb, e: jeu.t + 1, t: $('chrono').innerText, sec: Math.floor((Date.now() - jeu.deb) / 1000) }); localStorage.setItem('mm_sc_v2', JSON.stringify(sc)); }
+                if (!user.p.startsWith("Inv_") && !user.adm) { let sc = JSON.parse(localStorage.getItem('mm_scores') || "[]"); sc.push({ pseudo: user.p, mode: cfg.nb, essais: jeu.t + 1, temps: $('chrono').innerText, sec: Math.floor((Date.now() - jeu.deb) / 1000) }); localStorage.setItem('mm_scores', JSON.stringify(sc)); }
             } else {
                 $('fin-titre').innerText = "ÉCHEC"; $('fin-titre').style.color = "#ef4444";
                 $('fin-desc').innerText = "Tu as épuisé tes 10 essais..."; $('fin-secret').style.display = "block";
@@ -1746,9 +2269,11 @@
         }
 
         function voirScores() {
-            let sc = JSON.parse(localStorage.getItem('m_scores') || "[]");
+            let sc = JSON.parse(localStorage.getItem('mm_scores') || "[]");
             sc.sort((a, b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
-            $('corps-scores').innerHTML = sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
+            $('corps-scores').innerHTML = sc.length === 0
+                ? '<tr><td colspan="4" style="text-align:center;color:#64748b;padding:20px;">Aucun score pour l\'instant 🎮</td></tr>'
+                : sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
             nav('p-score');
         }
     </script>

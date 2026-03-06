@@ -15,46 +15,54 @@
             --text-muted: #94a3b8;
         }
 
-        /* ══════════════════════════════════════
-   THÈME CASINO
-══════════════════════════════════════ */
+        /* ══ THÈME CASINO — Las Vegas ambiance ══ */
         body.theme-casino {
-            --primary: #f59e0b;
+            --primary: #f5c842;
             --secondary: #ef4444;
-            --bg-color: #080500;
-            --glass-bg: rgba(15, 8, 0, 0.9);
-            --glass-border: rgba(245, 158, 11, 0.35);
+            --bg-color: #020e05;
+            --glass-bg: rgba(2, 18, 6, 0.92);
+            --glass-border: rgba(180, 145, 20, 0.40);
         }
 
         body.theme-casino::before {
-            background: rgba(180, 120, 0, 0.18) !important;
+            background: rgba(10, 80, 20, 0.22) !important;
         }
 
         body.theme-casino::after {
-            background: rgba(200, 20, 20, 0.14) !important;
+            background: rgba(180, 120, 0, 0.12) !important;
         }
 
         body.theme-casino .ligne {
-            border-color: rgba(245, 158, 11, 0.18) !important;
-            background: rgba(25, 12, 0, 0.5) !important;
+            border-color: rgba(180, 145, 20, 0.20) !important;
+            background: rgba(2, 14, 4, 0.55) !important;
         }
 
         body.theme-casino .board-section,
         body.theme-casino .rules-section,
         body.theme-casino .card {
-            border-color: rgba(245, 158, 11, 0.35) !important;
-            background: rgba(12, 6, 0, 0.92) !important;
-            box-shadow: 0 4px 30px rgba(245, 158, 11, 0.2), inset 0 0 60px rgba(180, 100, 0, 0.05) !important;
+            border-color: rgba(180, 145, 20, 0.45) !important;
+            background: rgba(2, 14, 5, 0.94) !important;
+            box-shadow: 0 4px 30px rgba(180, 145, 20, 0.18), inset 0 0 60px rgba(10, 60, 10, 0.08) !important;
         }
 
         body.theme-casino .palette {
-            border-color: rgba(245, 158, 11, 0.35) !important;
-            background: rgba(18, 9, 0, 0.6) !important;
+            border-color: rgba(180, 145, 20, 0.35) !important;
+            background: rgba(2, 18, 5, 0.65) !important;
         }
 
-        /* ══════════════════════════════════════
-   THÈME NOËL — neige qui tombe
-══════════════════════════════════════ */
+        /* Tapis de casino dans le body */
+        body.theme-casino #casino-bg {
+            display: block !important;
+        }
+
+        #casino-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         body.theme-noel {
             --primary: #22c55e;
             --secondary: #ef4444;
@@ -89,9 +97,6 @@
             background: rgba(3, 14, 5, 0.6) !important;
         }
 
-        /* ══════════════════════════════════════
-   THÈME GALAXY — étoiles filantes
-══════════════════════════════════════ */
         body.theme-galaxy {
             --primary: #a78bfa;
             --secondary: #38bdf8;
@@ -126,9 +131,6 @@
             background: rgba(2, 0, 12, 0.65) !important;
         }
 
-        /* ══════════════════════════════════════
-   THÈME FORÊT ENCHANTÉE 🌿
-══════════════════════════════════════ */
         body.theme-foret {
             --primary: #4ade80;
             --secondary: #a3e635;
@@ -163,18 +165,6 @@
             background: rgba(1, 10, 3, 0.65) !important;
         }
 
-        body.theme-foret #snow-canvas {
-            visibility: visible;
-        }
-
-        body.theme-foret .page {
-            z-index: 1;
-            position: relative;
-        }
-
-        /* ══════════════════════════════════════
-   THÈME DÉSERT & SABLE 🏜️
-══════════════════════════════════════ */
         body.theme-desert {
             --primary: #f59e0b;
             --secondary: #fb923c;
@@ -209,18 +199,6 @@
             background: rgba(15, 8, 0, 0.65) !important;
         }
 
-        body.theme-desert #snow-canvas {
-            visibility: visible;
-        }
-
-        body.theme-desert .page {
-            z-index: 1;
-            position: relative;
-        }
-
-        /* ══════════════════════════════════════
-   THÈME OCÉAN 🌊
-══════════════════════════════════════ */
         body.theme-ocean {
             --primary: #38bdf8;
             --secondary: #818cf8;
@@ -255,48 +233,6 @@
             background: rgba(0, 5, 15, 0.65) !important;
         }
 
-        body.theme-ocean #snow-canvas {
-            visibility: visible;
-        }
-
-        body.theme-ocean .page {
-            z-index: 1;
-            position: relative;
-        }
-
-        body.theme-galaxy #snow-canvas {
-            display: block;
-        }
-
-        body.theme-galaxy .page {
-            z-index: 1;
-            position: relative;
-        }
-
-        #snow-canvas {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            visibility: hidden;
-        }
-
-        body.theme-noel #snow-canvas,
-        body.theme-galaxy #snow-canvas {
-            visibility: visible;
-        }
-
-        html {
-            overflow-x: hidden !important;
-        }
-
-        /* ══════════════════════════════════════
-   THÈME ARCADE RÉTRO
-══════════════════════════════════════ */
         body.theme-arcade {
             --primary: #00ffcc;
             --secondary: #ff00ff;
@@ -331,9 +267,43 @@
             background: rgba(0, 0, 14, 0.65) !important;
         }
 
-        /* ══════════════════════════════════════
-   BASE
-══════════════════════════════════════ */
+        body.theme-arcade #arcade-bg {
+            display: block !important;
+        }
+
+        body.theme-foret #snow-canvas,
+        body.theme-desert #snow-canvas,
+        body.theme-ocean #snow-canvas,
+        body.theme-galaxy #snow-canvas,
+        body.theme-noel #snow-canvas {
+            visibility: visible;
+        }
+
+        body.theme-foret .page,
+        body.theme-desert .page,
+        body.theme-ocean .page,
+        body.theme-galaxy .page,
+        body.theme-noel .page {
+            z-index: 1;
+            position: relative;
+        }
+
+        #snow-canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            visibility: hidden;
+        }
+
+        html {
+            overflow-x: hidden !important;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
@@ -434,6 +404,7 @@
             background: rgba(0, 0, 0, 0.2);
             color: white;
             box-sizing: border-box;
+            transition: 0.3s;
         }
 
         input:focus {
@@ -477,6 +448,67 @@
         button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+        }
+
+        /* ── AUTH TOGGLE ── */
+        .auth-toggle {
+            display: flex;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 99px;
+            padding: 5px;
+            margin-bottom: 22px;
+            border: 1px solid var(--glass-border);
+            gap: 2px;
+        }
+
+        .auth-toggle-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 99px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin: 0;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .auth-toggle-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 2px 14px rgba(139, 92, 246, 0.45);
+        }
+
+        .auth-form {
+            animation: fadeIn 0.2s ease;
+        }
+
+        .auth-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0 0 16px 0;
+            line-height: 1.5;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0 10px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
         }
 
         .coin-banner {
@@ -668,7 +700,6 @@
             transform: scale(1.2);
         }
 
-        /* COULEURS BASE */
         .rouge {
             background: #ef4444;
             box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
@@ -712,44 +743,45 @@
         }
 
         /* ══════════════════════════════════════
-   SKIN ZÈBRE
-══════════════════════════════════════ */
+           SKIN ZÈBRE — SVG inline
+        ══════════════════════════════════════ */
         body.skin-zebre .emp,
         body.skin-zebre .choix {
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        body.skin-zebre .emp::before,
-        body.skin-zebre .choix::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            background-image: repeating-linear-gradient(-40deg, transparent 0px, transparent 5px, rgba(0, 0, 0, 0.75) 5px, rgba(0, 0, 0, 0.75) 10px, transparent 10px, transparent 16px, rgba(0, 0, 0, 0.55) 16px, rgba(0, 0, 0, 0.55) 20px);
-        }
-
-        body.skin-zebre .emp::after,
-        body.skin-zebre .choix::after {
-            content: '';
-            position: absolute;
-            top: 8%;
-            left: 12%;
-            width: 42%;
-            height: 32%;
-            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.45) 0%, transparent 75%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 2;
+        body.skin-zebre .emp svg,
+        body.skin-zebre .choix svg {
+            width: 100%;
+            height: 100%;
         }
 
         /* ══════════════════════════════════════
-   SKIN FRUITS
-══════════════════════════════════════ */
+           SKIN PLANÈTES — SVG inline
+        ══════════════════════════════════════ */
+        body.skin-planetes .emp,
+        body.skin-planetes .choix {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible !important;
+        }
+
+        body.skin-planetes .emp svg,
+        body.skin-planetes .choix svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
         body.skin-fruits .emp,
         body.skin-fruits .choix {
             display: flex;
@@ -786,188 +818,91 @@
         }
 
         /* ══════════════════════════════════════
-   SKIN PLANÈTES
-══════════════════════════════════════ */
-        body.skin-planetes .emp,
-        body.skin-planetes .choix {
-            background-size: cover !important;
-            background-position: center !important;
-            box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.7) !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
+           SKIN GALAXIE — Nébuleuses SVG animées
+        ══════════════════════════════════════ */
+        @keyframes spinGal {
+            from {
+                transform: rotate(0deg);
+            }
 
-        body.skin-planetes .rouge {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/120px-OSIRIS_Mars_true_color.jpg') !important;
-        }
-
-        body.skin-planetes .bleu {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/120px-The_Earth_seen_from_Apollo_17.jpg') !important;
-        }
-
-        body.skin-planetes .vert {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Uranus2.jpg/120px-Uranus2.jpg') !important;
-        }
-
-        body.skin-planetes .jaune {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/120px-Venus-real_color.jpg') !important;
-        }
-
-        body.skin-planetes .orange {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter.jpg/120px-Jupiter.jpg') !important;
-        }
-
-        body.skin-planetes .violet {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/120px-Neptune_Full.jpg') !important;
-        }
-
-        /* ══════════════════════════════════════
-   SKIN GALAXIE
-══════════════════════════════════════ */
-        @keyframes rotateGal {
-            100% {
+            to {
                 transform: rotate(360deg);
             }
         }
 
-        body.skin-galaxie .rouge {
-            background: radial-gradient(circle at 35% 35%, #ff2200 0%, #6b0000 50%, #0a0000 100%) !important;
+        @keyframes spinGal2 {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
         }
 
-        body.skin-galaxie .bleu {
-            background: radial-gradient(circle at 35% 35%, #0066ff 0%, #000d4d 50%, #00000a 100%) !important;
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: .6;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
-        body.skin-galaxie .vert {
-            background: radial-gradient(circle at 35% 35%, #00ff88 0%, #004d22 50%, #000a04 100%) !important;
-        }
+        @keyframes pulse {
 
-        body.skin-galaxie .jaune {
-            background: radial-gradient(circle at 35% 35%, #ffcc00 0%, #664d00 50%, #0a0800 100%) !important;
-        }
+            0%,
+            100% {
+                transform: scale(1);
+            }
 
-        body.skin-galaxie .orange {
-            background: radial-gradient(circle at 35% 35%, #ff6600 0%, #662200 50%, #0a0300 100%) !important;
-        }
-
-        body.skin-galaxie .violet {
-            background: radial-gradient(circle at 35% 35%, #aa00ff 0%, #3d0066 50%, #07000a 100%) !important;
+            50% {
+                transform: scale(1.08);
+            }
         }
 
         body.skin-galaxie .emp,
         body.skin-galaxie .choix {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.12), inset 0 0 8px rgba(0, 0, 0, 0.6) !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible !important;
         }
 
-        body.skin-galaxie .emp::before,
-        body.skin-galaxie .choix::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1px) 0 0/10px 10px,
-                radial-gradient(circle, rgba(255, 255, 255, 0.55) 1.5px, transparent 1.5px) 5px 5px/16px 16px,
-                radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1px) 3px 7px/13px 13px;
-            animation: rotateGal 10s linear infinite;
-            opacity: 0.9;
-            pointer-events: none;
-        }
-
-        body.skin-galaxie .emp::after,
-        body.skin-galaxie .choix::after {
-            content: '';
-            position: absolute;
-            top: 8%;
-            left: 12%;
-            width: 40%;
-            height: 30%;
-            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35) 0%, transparent 75%);
-            border-radius: 50%;
-            pointer-events: none;
+        body.skin-galaxie .emp svg,
+        body.skin-galaxie .choix svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
         }
 
         /* ══════════════════════════════════════
-   SKIN JETONS CASINO — valeurs gravées
-══════════════════════════════════════ */
-        /* Les valeurs sont injectées via JS dans data-val, affichées via ::after */
+           SKIN CASINO — Jetons Las Vegas SVG
+        ══════════════════════════════════════ */
         body.skin-casino .emp,
         body.skin-casino .choix {
-            position: relative;
-            overflow: hidden;
-            border-radius: 50%;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible !important;
         }
 
-        body.skin-casino .rouge {
-            background: conic-gradient(#cc0000 0deg, #ff4444 30deg, #cc0000 60deg, #ff4444 90deg, #cc0000 120deg, #ff4444 150deg, #cc0000 180deg, #ff4444 210deg, #cc0000 240deg, #ff4444 270deg, #cc0000 300deg, #ff4444 330deg, #cc0000 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #cc0000, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
+        body.skin-casino .emp svg,
+        body.skin-casino .choix svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
         }
 
-        body.skin-casino .bleu {
-            background: conic-gradient(#1d4ed8 0deg, #60a5fa 30deg, #1d4ed8 60deg, #60a5fa 90deg, #1d4ed8 120deg, #60a5fa 150deg, #1d4ed8 180deg, #60a5fa 210deg, #1d4ed8 240deg, #60a5fa 270deg, #1d4ed8 300deg, #60a5fa 330deg, #1d4ed8 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #1d4ed8, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
-        }
-
-        body.skin-casino .vert {
-            background: conic-gradient(#15803d 0deg, #4ade80 30deg, #15803d 60deg, #4ade80 90deg, #15803d 120deg, #4ade80 150deg, #15803d 180deg, #4ade80 210deg, #15803d 240deg, #4ade80 270deg, #15803d 300deg, #4ade80 330deg, #15803d 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #15803d, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
-        }
-
-        body.skin-casino .jaune {
-            background: conic-gradient(#b45309 0deg, #fde68a 30deg, #b45309 60deg, #fde68a 90deg, #b45309 120deg, #fde68a 150deg, #b45309 180deg, #fde68a 210deg, #b45309 240deg, #fde68a 270deg, #b45309 300deg, #fde68a 330deg, #b45309 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #b45309, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
-        }
-
-        body.skin-casino .orange {
-            background: conic-gradient(#c2410c 0deg, #fdba74 30deg, #c2410c 60deg, #fdba74 90deg, #c2410c 120deg, #fdba74 150deg, #c2410c 180deg, #fdba74 210deg, #c2410c 240deg, #fdba74 270deg, #c2410c 300deg, #fdba74 330deg, #c2410c 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #c2410c, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
-        }
-
-        body.skin-casino .violet {
-            background: conic-gradient(#6d28d9 0deg, #c4b5fd 30deg, #6d28d9 60deg, #c4b5fd 90deg, #6d28d9 120deg, #c4b5fd 150deg, #6d28d9 180deg, #c4b5fd 210deg, #6d28d9 240deg, #c4b5fd 270deg, #6d28d9 300deg, #c4b5fd 330deg, #6d28d9 360deg) !important;
-            box-shadow: 0 0 0 3px #fff, 0 0 0 5px #6d28d9, 0 4px 14px rgba(0, 0, 0, 0.7) !important;
-        }
-
-        /* Centre du jeton avec valeur */
-        body.skin-casino .emp::before,
-        body.skin-casino .choix::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 55%;
-            height: 55%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.92);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Valeur affichée */
-        body.skin-casino .emp::after,
-        body.skin-casino .choix::after {
-            content: attr(data-val);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 7px;
-            font-weight: 900;
-            color: #111;
-            font-family: Arial, sans-serif;
-            letter-spacing: -0.5px;
-            pointer-events: none;
-            z-index: 2;
-            text-shadow: none;
-        }
-
-        /* ══════════════════════════════════════
-   SKIN BONBONS — SVG réalistes
-══════════════════════════════════════ */
         body.skin-bonbons .emp,
         body.skin-bonbons .choix {
             display: flex;
@@ -976,7 +911,6 @@
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
-            overflow: hidden;
         }
 
         body.skin-bonbons .emp svg,
@@ -986,9 +920,6 @@
             flex-shrink: 0;
         }
 
-        /* ══════════════════════════════════════
-   SKIN MARIO BROS — têtes SVG
-══════════════════════════════════════ */
         body.skin-mario .emp,
         body.skin-mario .choix {
             display: flex;
@@ -997,7 +928,6 @@
             background: rgba(0, 0, 0, 0.1) !important;
             box-shadow: none !important;
             border: 2px solid rgba(255, 255, 255, 0.12) !important;
-            overflow: hidden;
             padding: 0;
         }
 
@@ -1006,8 +936,6 @@
             width: 26px;
             height: 26px;
         }
-
-        /* On affiche les SVG via ::after avec background-image — mais SVG inline est mieux, donc on les injecte via JS */
 
         #barre-commentaires {
             margin-top: 15px;
@@ -1133,21 +1061,52 @@
 <body>
     <canvas id="snow-canvas"></canvas>
 
-    <!-- LOGIN -->
+    <!-- CASINO BG — scène illustrée SVG -->
+    <div id="casino-bg">
+        <canvas id="casino-canvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+    <div id="arcade-bg" style="display:none;position:fixed;inset:0;z-index:-1;pointer-events:none;">
+        <canvas id="arcade-canvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+
+    <!-- ══ LOGIN ══ -->
     <div id="p-login" class="page active">
         <h1>MASTERMIND</h1>
         <div class="card">
-            <h3 style="margin-top:0;">Connexion</h3>
-            <input type="text" id="pseudo" placeholder="Votre Pseudo">
-            <input type="password" id="mdp" placeholder="Votre Mot de passe">
-            <br><br>
-            <button class="btn-p" onclick="connexion()" style="width:100%;">Jouer</button>
-            <hr style="border-color:var(--glass-border);margin:20px 0;">
-            <button class="btn-s" onclick="jouerInvite()" style="width:100%;">Mode Invité</button>
+            <!-- Toggle Connexion / Créer un compte -->
+            <div class="auth-toggle">
+                <button class="auth-toggle-btn active" id="btn-tab-login" onclick="switchAuthTab('login')">🔑
+                    Connexion</button>
+                <button class="auth-toggle-btn" id="btn-tab-register" onclick="switchAuthTab('register')">✨ Créer un
+                    compte</button>
+            </div>
+
+            <!-- FORMULAIRE CONNEXION -->
+            <div id="form-login" class="auth-form">
+                <p class="auth-subtitle">Content de te revoir !<br>Connecte-toi pour retrouver tes pièces et scores.</p>
+                <input type="text" id="pseudo-login" placeholder="👤 Ton pseudo">
+                <input type="password" id="mdp-login" placeholder="🔒 Ton mot de passe">
+                <button class="btn-p" onclick="connexion()" style="width:100%;margin-top:10px;">Jouer →</button>
+            </div>
+
+            <!-- FORMULAIRE INSCRIPTION -->
+            <div id="form-register" class="auth-form" style="display:none;">
+                <p class="auth-subtitle">Bienvenue !<br>Crée ton compte pour sauvegarder ta progression.</p>
+                <input type="text" id="pseudo-register" placeholder="👤 Choisis un pseudo">
+                <input type="password" id="mdp-register" placeholder="🔒 Choisis un mot de passe">
+                <input type="password" id="mdp-confirm" placeholder="🔒 Confirme le mot de passe">
+                <button class="btn-p" onclick="creerCompte()" style="width:100%;margin-top:10px;">Créer mon compte
+                    🎉</button>
+            </div>
+
+            <div class="auth-divider">ou</div>
+            <button class="btn-s" onclick="jouerInvite()" style="width:100%;">👻 Mode Invité</button>
+            <p style="font-size:0.72rem;color:var(--text-muted);margin-top:8px;margin-bottom:0;">Mode invité :
+                progression non sauvegardée</p>
         </div>
     </div>
 
-    <!-- MENU -->
+    <!-- ══ MENU ══ -->
     <div id="p-menu" class="page">
         <h1 id="txt-bienvenue">Salut !</h1>
         <div id="admin-badge">⚡ MODE ADMIN ACTIF</div>
@@ -1164,7 +1123,7 @@
         </div>
     </div>
 
-    <!-- PARAMÈTRES -->
+    <!-- ══ PARAMÈTRES ══ -->
     <div id="p-params" class="page">
         <h1>Paramètres</h1>
         <div class="card" style="max-width:480px;text-align:left;">
@@ -1180,19 +1139,18 @@
                         onchange="toggleSfx(this.checked)"><span class="toggle-slider"></span></label>
             </div>
             <div class="toggle-row">
-                <div><label>Sons de victoire / défaite</label><span>Fanfare ou buzzer</span></div>
+                <div><label>Sons victoire / défaite</label><span>Fanfare ou buzzer</span></div>
                 <label class="toggle"><input type="checkbox" id="tog-win" checked
                         onchange="toggleWin(this.checked)"><span class="toggle-slider"></span></label>
             </div>
-            <div style="margin-top:12px;">
-                <label style="font-size:0.9rem;color:var(--text-muted);">Volume général</label>
-                <input type="range" id="vol-slider" min="0" max="100" value="60" oninput="setVolume(this.value)">
-            </div>
+            <div style="margin-top:12px;"><label style="font-size:0.9rem;color:var(--text-muted);">Volume
+                    général</label><input type="range" id="vol-slider" min="0" max="100" value="60"
+                    oninput="setVolume(this.value)"></div>
             <button class="btn-s" onclick="nav('p-menu')" style="width:100%;margin-top:24px;">Retour Menu</button>
         </div>
     </div>
 
-    <!-- BOUTIQUE -->
+    <!-- ══ BOUTIQUE ══ -->
     <div id="p-boutique" class="page">
         <h1>BOUTIQUE</h1>
         <div class="coin-banner">Solde : <span id="shop-coins">0</span> 💰</div>
@@ -1211,7 +1169,7 @@
         </div>
     </div>
 
-    <!-- MODE -->
+    <!-- ══ MODE ══ -->
     <div id="p-mode" class="page">
         <h1>Difficulté</h1>
         <div class="card">
@@ -1222,7 +1180,7 @@
         </div>
     </div>
 
-    <!-- JEU -->
+    <!-- ══ JEU ══ -->
     <div id="p-jeu" class="page" style="max-width:950px;">
         <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:20px;">
             <span id="txt-mode" style="font-weight:bold;color:var(--text-muted);">Mode: 4</span>
@@ -1233,9 +1191,8 @@
             <div class="board-section">
                 <div id="lignes-c"></div>
                 <div class="palette" id="pal"></div>
-                <div style="text-align:center;margin-top:20px;">
-                    <button id="btn-v" class="btn-p" onclick="valider()" disabled style="width:80%;">Valider</button>
-                </div>
+                <div style="text-align:center;margin-top:20px;"><button id="btn-v" class="btn-p" onclick="valider()"
+                        disabled style="width:80%;">Valider</button></div>
                 <div id="barre-commentaires">Prêt à jouer ? ⚡</div>
             </div>
             <div class="rules-section">
@@ -1250,14 +1207,13 @@
                     <li
                         style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);padding:10px;border-radius:12px;">
                         <span class="pt blanc"></span><span style="font-size:0.85rem;"><b>Blanc</b> = Mauvaise
-                            place</span>
-                    </li>
+                            place</span></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- SCORES -->
+    <!-- ══ SCORES ══ -->
     <div id="p-score" class="page">
         <h1>Leaderboard</h1>
         <div class="card" style="max-width:600px;">
@@ -1276,7 +1232,7 @@
         </div>
     </div>
 
-    <!-- MODAL FIN -->
+    <!-- ══ MODAL FIN ══ -->
     <div id="modal-fin">
         <div class="card">
             <h1 id="fin-titre" style="color:white;">FIN</h1>
@@ -1294,782 +1250,1199 @@
     <script>
         const $ = id => document.getElementById(id);
 
-        /* ── CANVAS (neige + galaxie) ── */
-        const snowCanvas = $('snow-canvas');
-        const snowCtx = snowCanvas.getContext('2d');
-        let snowFlakes = [], shootingStars = [], bgStars = [];
-        let snowActive = false, galaxyActive = false, snowRAF = null;
-
-        function initSnow() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
-            snowFlakes = [];
-            for (let i = 0; i < 120; i++) {
-                snowFlakes.push({
-                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                    r: Math.random() * 4 + 1, speed: Math.random() * 1.2 + 0.4,
-                    drift: (Math.random() - 0.5) * 0.5, opacity: Math.random() * 0.6 + 0.4,
-                    wobble: Math.random() * Math.PI * 2, wobbleSpeed: Math.random() * 0.03 + 0.01
-                });
-            }
-        }
-        function animateSnow() {
-            if (!snowActive) return;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            snowFlakes.forEach(f => {
-                f.wobble += f.wobbleSpeed; f.y += f.speed; f.x += f.drift + Math.sin(f.wobble) * 0.3;
-                if (f.y > snowCanvas.height) { f.y = -5; f.x = Math.random() * snowCanvas.width; }
-                if (f.x > snowCanvas.width) f.x = 0;
-                if (f.x < 0) f.x = snowCanvas.width;
-                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(255,255,255,${f.opacity})`; snowCtx.fill();
-                snowCtx.beginPath(); snowCtx.arc(f.x - f.r * 0.3, f.y - f.r * 0.3, f.r * 0.4, 0, Math.PI * 2);
-                snowCtx.fillStyle = 'rgba(255,255,255,0.9)'; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateSnow);
+        /* ── AUTH TOGGLE ── */
+        function switchAuthTab(tab) {
+            const isLogin = tab === 'login';
+            $('btn-tab-login').classList.toggle('active', isLogin);
+            $('btn-tab-register').classList.toggle('active', !isLogin);
+            $('form-login').style.display = isLogin ? 'block' : 'none';
+            $('form-register').style.display = isLogin ? 'none' : 'block';
         }
 
-        function initGalaxy() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
-            bgStars = [];
-            for (let i = 0; i < 220; i++) {
-                bgStars.push({
-                    x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                    r: Math.random() * 1.5 + 0.3, opacity: Math.random() * 0.7 + 0.3,
-                    twinkleSpeed: Math.random() * 0.02 + 0.005, twinklePhase: Math.random() * Math.PI * 2
-                });
-            }
-            shootingStars = [];
-            for (let i = 0; i < 6; i++) spawnStar();
-        }
-        function spawnStar() {
-            shootingStars.push({
-                x: Math.random() * snowCanvas.width * 1.3,
-                y: Math.random() * snowCanvas.height * 0.5,
-                len: Math.random() * 120 + 60,
-                speed: Math.random() * 8 + 6,
-                angle: Math.PI / 5 + (Math.random() - 0.5) * 0.3,
-                opacity: 0, fadeIn: true,
-                delay: Math.random() * 200
-            });
-        }
-        function animateGalaxy() {
-            if (!galaxyActive) return;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Fond étoilé fixe
-            bgStars.forEach(s => {
-                s.twinklePhase += s.twinkleSpeed;
-                let op = s.opacity * (0.6 + 0.4 * Math.sin(s.twinklePhase));
-                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(255,255,255,${op})`; snowCtx.fill();
-            });
-            // Nébuleuse subtile
-            let nb = snowCtx.createRadialGradient(snowCanvas.width * 0.3, snowCanvas.height * 0.4, 10, snowCanvas.width * 0.3, snowCanvas.height * 0.4, 300);
-            nb.addColorStop(0, 'rgba(80,0,200,0.04)'); nb.addColorStop(1, 'transparent');
-            snowCtx.fillStyle = nb; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            let nb2 = snowCtx.createRadialGradient(snowCanvas.width * 0.7, snowCanvas.height * 0.6, 10, snowCanvas.width * 0.7, snowCanvas.height * 0.6, 250);
-            nb2.addColorStop(0, 'rgba(0,100,200,0.04)'); nb2.addColorStop(1, 'transparent');
-            snowCtx.fillStyle = nb2; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Étoiles filantes
-            shootingStars.forEach((s, i) => {
-                if (s.delay > 0) { s.delay--; return; }
-                let dx = Math.cos(s.angle) * s.speed, dy = Math.sin(s.angle) * s.speed;
-                if (s.fadeIn) { s.opacity += 0.06; if (s.opacity >= 1) s.fadeIn = false; }
-                else { s.opacity -= 0.025; }
-                if (s.opacity <= 0) { shootingStars[i] = null; return; }
-                let tail = snowCtx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
-                tail.addColorStop(0, `rgba(255,255,255,${s.opacity})`);
-                tail.addColorStop(0.3, `rgba(180,160,255,${s.opacity * 0.6})`);
-                tail.addColorStop(1, 'rgba(100,80,255,0)');
-                snowCtx.beginPath();
-                snowCtx.moveTo(s.x, s.y);
-                snowCtx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
-                snowCtx.strokeStyle = tail; snowCtx.lineWidth = 2; snowCtx.stroke();
-                // Tête lumineuse
-                snowCtx.beginPath(); snowCtx.arc(s.x, s.y, 2, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(255,255,255,${s.opacity})`; snowCtx.fill();
-                s.x += dx; s.y += dy;
-            });
-            shootingStars = shootingStars.filter(Boolean);
-            if (shootingStars.length < 6) spawnStar();
-            snowRAF = requestAnimationFrame(animateGalaxy);
-        }
+        /* ── CANVAS ANIMATIONS ── */
+        const snowCanvas = $('snow-canvas'), snowCtx = snowCanvas.getContext('2d');
+        let snowFlakes = [], shootingStars = [], bgStars = [], snowActive = false, galaxyActive = false, snowRAF = null;
 
-        /* ── FORÊT : lucioles ── */
-        let lucioles = [], foretActive = false;
-        function initForet() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
-            lucioles = [];
-            for (let i = 0; i < 80; i++) lucioles.push({
-                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                r: Math.random() * 2.5 + 1,
-                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-                phase: Math.random() * Math.PI * 2, phaseSpeed: Math.random() * 0.03 + 0.015,
-                hue: Math.random() * 60 + 80 // vert-jaune
-            });
-        }
-        function animateForet() {
-            if (!foretActive) return;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // brume verte subtile en bas
-            let fog = snowCtx.createLinearGradient(0, snowCanvas.height * 0.7, 0, snowCanvas.height);
-            fog.addColorStop(0, 'rgba(0,40,10,0)'); fog.addColorStop(1, 'rgba(0,40,10,0.18)');
-            snowCtx.fillStyle = fog; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            lucioles.forEach(f => {
-                f.phase += f.phaseSpeed; f.x += f.vx + Math.sin(f.phase * 0.7) * 0.3; f.y += f.vy + Math.cos(f.phase * 0.5) * 0.2;
-                if (f.x < 0) f.x = snowCanvas.width; if (f.x > snowCanvas.width) f.x = 0;
-                if (f.y < 0) f.y = snowCanvas.height; if (f.y > snowCanvas.height) f.y = 0;
-                let glow = 0.3 + 0.7 * Math.abs(Math.sin(f.phase));
-                // Halo externe
-                let g = snowCtx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
-                g.addColorStop(0, `hsla(${f.hue},100%,65%,${glow * 0.35})`);
-                g.addColorStop(1, 'transparent');
-                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2);
-                snowCtx.fillStyle = g; snowCtx.fill();
-                // Corps lumineux
-                snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `hsla(${f.hue},100%,80%,${glow})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateForet);
-        }
-
-        /* ── DÉSERT : chaleur + grains de sable ── */
-        let grains = [], heatWaves = [], desertActive = false, desertT = 0;
-        function initDesert() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = snowCanvas.height;
-            grains = [];
-            for (let i = 0; i < 120; i++) grains.push({
-                x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height,
-                r: Math.random() * 1.5 + 0.5,
-                vx: (Math.random() - 0.5) * 1.2, vy: -Math.random() * 0.8 - 0.2,
-                opacity: Math.random() * 0.5 + 0.2, life: Math.random() * 100
-            });
-            heatWaves = [];
-            for (let i = 0; i < 5; i++) heatWaves.push({ y: snowCanvas.height * (0.3 + i * 0.14), phase: Math.random() * Math.PI * 2, amp: Math.random() * 8 + 4, speed: Math.random() * 0.012 + 0.005 });
-            desertT = 0;
-        }
-        function animateDesert() {
-            if (!desertActive) return;
-            desertT++;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Dégradé de chaleur au sol
-            let heat = snowCtx.createLinearGradient(0, snowCanvas.height * 0.6, 0, snowCanvas.height);
-            heat.addColorStop(0, 'rgba(200,80,0,0)'); heat.addColorStop(1, 'rgba(200,80,0,0.07)');
-            snowCtx.fillStyle = heat; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Ondes de chaleur (lignes sinusoïdales semi-transparentes)
-            heatWaves.forEach(w => {
-                w.phase += w.speed;
-                snowCtx.beginPath();
-                for (let x = 0; x < snowCanvas.width; x += 2) {
-                    let y = w.y + Math.sin(x * 0.015 + w.phase) * w.amp + Math.sin(x * 0.03 + w.phase * 1.3) * w.amp * 0.4;
-                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
-                }
-                snowCtx.strokeStyle = 'rgba(255,160,50,0.07)'; snowCtx.lineWidth = 1.5; snowCtx.stroke();
-            });
-            // Grains de sable portés par le vent
-            grains.forEach(g => {
-                g.x += g.vx; g.y += g.vy + Math.sin(desertT * 0.02 + g.x * 0.01) * 0.3;
-                g.life--;
-                if (g.life <= 0 || g.x < 0 || g.x > snowCanvas.width || g.y < 0) {
-                    g.x = Math.random() * snowCanvas.width; g.y = snowCanvas.height;
-                    g.vx = (Math.random() - 0.5) * 1.2; g.vy = -Math.random() * 0.8 - 0.2; g.life = Math.random() * 150 + 50;
-                }
-                snowCtx.beginPath(); snowCtx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(210,160,80,${g.opacity * (g.life / 50).toFixed(2)})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateDesert);
-        }
-
-        /* ── OCÉAN : bulles + vagues ── */
-        let bulles = [], vagues = [], oceanActive = false, oceanT = 0;
-        function initOcean() {
-            snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight;
-            bulles = [];
-            for (let i = 0; i < 60; i++) bulles.push({
-                x: Math.random() * snowCanvas.width,
-                y: snowCanvas.height + Math.random() * 200,
-                r: Math.random() * 4 + 1.5,
-                speed: Math.random() * 0.8 + 0.3,
-                wobble: Math.random() * Math.PI * 2,
-                wobbleSpeed: Math.random() * 0.04 + 0.02,
-                opacity: Math.random() * 0.4 + 0.15
-            });
-            vagues = [];
-            for (let i = 0; i < 4; i++) vagues.push({
-                y: snowCanvas.height * (0.55 + i * 0.12),
-                phase: i * Math.PI / 2,
-                speed: 0.008 + i * 0.003,
-                amp: 12 - i * 2,
-                color: `rgba(30,${120 + i * 15},${200 + i * 10},${0.06 - i * 0.01})`
-            });
-            oceanT = 0;
-        }
-        function animateOcean() {
-            if (!oceanActive) return;
-            oceanT++;
-            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Lueur sous-marine du bas
-            let glow = snowCtx.createLinearGradient(0, snowCanvas.height * 0.5, 0, snowCanvas.height);
-            glow.addColorStop(0, 'rgba(0,60,120,0)'); glow.addColorStop(1, 'rgba(0,60,120,0.12)');
-            snowCtx.fillStyle = glow; snowCtx.fillRect(0, 0, snowCanvas.width, snowCanvas.height);
-            // Vagues lumineuses
-            vagues.forEach(v => {
-                v.phase += v.speed;
-                snowCtx.beginPath();
-                for (let x = 0; x < snowCanvas.width; x += 3) {
-                    let y = v.y + Math.sin(x * 0.012 + v.phase) * v.amp + Math.sin(x * 0.025 + v.phase * 0.7) * v.amp * 0.5;
-                    x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y);
-                }
-                snowCtx.lineTo(snowCanvas.width, snowCanvas.height); snowCtx.lineTo(0, snowCanvas.height); snowCtx.closePath();
-                snowCtx.fillStyle = v.color; snowCtx.fill();
-            });
-            // Bulles
-            bulles.forEach(b => {
-                b.wobble += b.wobbleSpeed; b.y -= b.speed; b.x += Math.sin(b.wobble) * 0.5;
-                if (b.y < -b.r * 2) { b.y = snowCanvas.height + 20; b.x = Math.random() * snowCanvas.width; }
-                // Bulle avec reflet
-                snowCtx.beginPath(); snowCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                snowCtx.strokeStyle = `rgba(100,200,255,${b.opacity})`; snowCtx.lineWidth = 1; snowCtx.stroke();
-                snowCtx.beginPath(); snowCtx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2);
-                snowCtx.fillStyle = `rgba(200,240,255,${b.opacity * 0.8})`; snowCtx.fill();
-            });
-            snowRAF = requestAnimationFrame(animateOcean);
-        }
-
+        function initSnow() { snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight; snowFlakes = []; for (let i = 0; i < 120; i++) snowFlakes.push({ x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height, r: Math.random() * 4 + 1, speed: Math.random() * 1.2 + 0.4, drift: (Math.random() - 0.5) * 0.5, opacity: Math.random() * 0.6 + 0.4, wobble: Math.random() * Math.PI * 2, wobbleSpeed: Math.random() * 0.03 + 0.01 }); }
+        function animateSnow() { if (!snowActive) return; snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); snowFlakes.forEach(f => { f.wobble += f.wobbleSpeed; f.y += f.speed; f.x += f.drift + Math.sin(f.wobble) * 0.3; if (f.y > snowCanvas.height) { f.y = -5; f.x = Math.random() * snowCanvas.width; } if (f.x > snowCanvas.width) f.x = 0; if (f.x < 0) f.x = snowCanvas.width; snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2); snowCtx.fillStyle = `rgba(255,255,255,${f.opacity})`; snowCtx.fill(); }); snowRAF = requestAnimationFrame(animateSnow); }
+        function initGalaxy() { snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight; bgStars = []; for (let i = 0; i < 220; i++) bgStars.push({ x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height, r: Math.random() * 1.5 + 0.3, opacity: Math.random() * 0.7 + 0.3, twinkleSpeed: Math.random() * 0.02 + 0.005, twinklePhase: Math.random() * Math.PI * 2 }); shootingStars = []; for (let i = 0; i < 6; i++) spawnStar(); }
+        function spawnStar() { shootingStars.push({ x: Math.random() * snowCanvas.width * 1.3, y: Math.random() * snowCanvas.height * 0.5, len: Math.random() * 120 + 60, speed: Math.random() * 8 + 6, angle: Math.PI / 5 + (Math.random() - 0.5) * 0.3, opacity: 0, fadeIn: true, delay: Math.random() * 200 }); }
+        function animateGalaxy() { if (!galaxyActive) return; snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); bgStars.forEach(s => { s.twinklePhase += s.twinkleSpeed; snowCtx.beginPath(); snowCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2); snowCtx.fillStyle = `rgba(255,255,255,${s.opacity * (0.6 + 0.4 * Math.sin(s.twinklePhase))})`; snowCtx.fill(); }); shootingStars.forEach((s, i) => { if (s.delay > 0) { s.delay--; return; } let dx = Math.cos(s.angle) * s.speed, dy = Math.sin(s.angle) * s.speed; if (s.fadeIn) { s.opacity += 0.06; if (s.opacity >= 1) s.fadeIn = false; } else { s.opacity -= 0.025; } if (s.opacity <= 0) { shootingStars[i] = null; return; } let tail = snowCtx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len); tail.addColorStop(0, `rgba(255,255,255,${s.opacity})`); tail.addColorStop(1, 'rgba(100,80,255,0)'); snowCtx.beginPath(); snowCtx.moveTo(s.x, s.y); snowCtx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len); snowCtx.strokeStyle = tail; snowCtx.lineWidth = 2; snowCtx.stroke(); snowCtx.beginPath(); snowCtx.arc(s.x, s.y, 2, 0, Math.PI * 2); snowCtx.fillStyle = `rgba(255,255,255,${s.opacity})`; snowCtx.fill(); s.x += dx; s.y += dy; }); shootingStars = shootingStars.filter(Boolean); if (shootingStars.length < 6) spawnStar(); snowRAF = requestAnimationFrame(animateGalaxy); }
+        let lucioles = [], foretActive = false; function initForet() { snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight; lucioles = []; for (let i = 0; i < 80; i++) lucioles.push({ x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height, r: Math.random() * 2.5 + 1, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, phase: Math.random() * Math.PI * 2, phaseSpeed: Math.random() * 0.03 + 0.015, hue: Math.random() * 60 + 80 }); }
+        function animateForet() { if (!foretActive) return; snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); lucioles.forEach(f => { f.phase += f.phaseSpeed; f.x += f.vx + Math.sin(f.phase * 0.7) * 0.3; f.y += f.vy + Math.cos(f.phase * 0.5) * 0.2; if (f.x < 0) f.x = snowCanvas.width; if (f.x > snowCanvas.width) f.x = 0; if (f.y < 0) f.y = snowCanvas.height; if (f.y > snowCanvas.height) f.y = 0; let glow = 0.3 + 0.7 * Math.abs(Math.sin(f.phase)); let g = snowCtx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6); g.addColorStop(0, `hsla(${f.hue},100%,65%,${glow * 0.35})`); g.addColorStop(1, 'transparent'); snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r * 6, 0, Math.PI * 2); snowCtx.fillStyle = g; snowCtx.fill(); snowCtx.beginPath(); snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2); snowCtx.fillStyle = `hsla(${f.hue},100%,80%,${glow})`; snowCtx.fill(); }); snowRAF = requestAnimationFrame(animateForet); }
+        let grains = [], heatWaves = [], desertActive = false, desertT = 0; function initDesert() { snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight; grains = []; for (let i = 0; i < 120; i++) grains.push({ x: Math.random() * snowCanvas.width, y: Math.random() * snowCanvas.height, r: Math.random() * 1.5 + 0.5, vx: (Math.random() - 0.5) * 1.2, vy: -Math.random() * 0.8 - 0.2, opacity: Math.random() * 0.5 + 0.2, life: Math.random() * 100 }); heatWaves = []; for (let i = 0; i < 5; i++) heatWaves.push({ y: snowCanvas.height * (0.3 + i * 0.14), phase: Math.random() * Math.PI * 2, amp: Math.random() * 8 + 4, speed: Math.random() * 0.012 + 0.005 }); desertT = 0; }
+        function animateDesert() { if (!desertActive) return; desertT++; snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); heatWaves.forEach(w => { w.phase += w.speed; snowCtx.beginPath(); for (let x = 0; x < snowCanvas.width; x += 2) { let y = w.y + Math.sin(x * 0.015 + w.phase) * w.amp + Math.sin(x * 0.03 + w.phase * 1.3) * w.amp * 0.4; x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y); } snowCtx.strokeStyle = 'rgba(255,160,50,0.07)'; snowCtx.lineWidth = 1.5; snowCtx.stroke(); }); grains.forEach(g => { g.x += g.vx; g.y += g.vy + Math.sin(desertT * 0.02 + g.x * 0.01) * 0.3; g.life--; if (g.life <= 0 || g.x < 0 || g.x > snowCanvas.width || g.y < 0) { g.x = Math.random() * snowCanvas.width; g.y = snowCanvas.height; g.vx = (Math.random() - 0.5) * 1.2; g.vy = -Math.random() * 0.8 - 0.2; g.life = Math.random() * 150 + 50; } snowCtx.beginPath(); snowCtx.arc(g.x, g.y, g.r, 0, Math.PI * 2); snowCtx.fillStyle = `rgba(210,160,80,${g.opacity * (g.life / 50).toFixed(2)})`; snowCtx.fill(); }); snowRAF = requestAnimationFrame(animateDesert); }
+        let bulles = [], vagues = [], oceanActive = false, oceanT = 0; function initOcean() { snowCanvas.width = window.innerWidth; snowCanvas.height = window.innerHeight; bulles = []; for (let i = 0; i < 60; i++) bulles.push({ x: Math.random() * snowCanvas.width, y: snowCanvas.height + Math.random() * 200, r: Math.random() * 4 + 1.5, speed: Math.random() * 0.8 + 0.3, wobble: Math.random() * Math.PI * 2, wobbleSpeed: Math.random() * 0.04 + 0.02, opacity: Math.random() * 0.4 + 0.15 }); vagues = []; for (let i = 0; i < 4; i++) vagues.push({ y: snowCanvas.height * (0.55 + i * 0.12), phase: i * Math.PI / 2, speed: 0.008 + i * 0.003, amp: 12 - i * 2, color: `rgba(30,${120 + i * 15},${200 + i * 10},${0.06 - i * 0.01})` }); oceanT = 0; }
+        function animateOcean() { if (!oceanActive) return; oceanT++; snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); vagues.forEach(v => { v.phase += v.speed; snowCtx.beginPath(); for (let x = 0; x < snowCanvas.width; x += 3) { let y = v.y + Math.sin(x * 0.012 + v.phase) * v.amp + Math.sin(x * 0.025 + v.phase * 0.7) * v.amp * 0.5; x === 0 ? snowCtx.moveTo(x, y) : snowCtx.lineTo(x, y); } snowCtx.lineTo(snowCanvas.width, snowCanvas.height); snowCtx.lineTo(0, snowCanvas.height); snowCtx.closePath(); snowCtx.fillStyle = v.color; snowCtx.fill(); }); bulles.forEach(b => { b.wobble += b.wobbleSpeed; b.y -= b.speed; b.x += Math.sin(b.wobble) * 0.5; if (b.y < -b.r * 2) { b.y = snowCanvas.height + 20; b.x = Math.random() * snowCanvas.width; } snowCtx.beginPath(); snowCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2); snowCtx.strokeStyle = `rgba(100,200,255,${b.opacity})`; snowCtx.lineWidth = 1; snowCtx.stroke(); snowCtx.beginPath(); snowCtx.arc(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.35, 0, Math.PI * 2); snowCtx.fillStyle = `rgba(200,240,255,${b.opacity * 0.8})`; snowCtx.fill(); }); snowRAF = requestAnimationFrame(animateOcean); }
         function startSnow() { if (snowActive) return; stopCanvas(); snowActive = true; initSnow(); animateSnow(); }
         function startGalaxy() { if (galaxyActive) return; stopCanvas(); galaxyActive = true; initGalaxy(); animateGalaxy(); }
         function startForet() { if (foretActive) return; stopCanvas(); foretActive = true; initForet(); animateForet(); }
         function startDesert() { if (desertActive) return; stopCanvas(); desertActive = true; initDesert(); animateDesert(); }
         function startOcean() { if (oceanActive) return; stopCanvas(); oceanActive = true; initOcean(); animateOcean(); }
-        function stopCanvas() { snowActive = false; galaxyActive = false; foretActive = false; desertActive = false; oceanActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+        function stopCanvas() { snowActive = galaxyActive = foretActive = desertActive = oceanActive = false; cancelAnimationFrame(snowRAF); snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+
+        /* ── CASINO BACKGROUND ── */
+        let casinoRAF = null;
+        function startCasinoBg() {
+            const el = document.getElementById('casino-bg');
+            if (!el) return;
+            el.style.display = 'block';
+            const cv = document.getElementById('casino-canvas');
+            cv.width = window.innerWidth; cv.height = window.innerHeight;
+            const ctx = cv.getContext('2d');
+            const W = cv.width, H = cv.height;
+            let t = 0;
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                // ── Fond sombre casino ──
+                const bg = ctx.createLinearGradient(0, 0, 0, H);
+                bg.addColorStop(0, '#020e04');
+                bg.addColorStop(0.5, '#031206');
+                bg.addColorStop(1, '#020a03');
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, W, H);
+
+                // ── Tapis nid d'abeille (hexagones) ──
+                ctx.strokeStyle = 'rgba(180,145,20,0.18)';
+                ctx.lineWidth = 1;
+                const R = 38; // rayon hexagone
+                const hex_w = R * 2;
+                const hex_h = Math.sqrt(3) * R;
+                for (let row = -1; row < H / hex_h + 2; row++) {
+                    for (let col = -1; col < W / hex_w + 2; col++) {
+                        const ox = col * hex_w * 0.75 + (row % 2 === 0 ? 0 : hex_w * 0.375);
+                        const oy = row * hex_h * 0.5;
+                        ctx.beginPath();
+                        for (let i = 0; i < 6; i++) {
+                            const angle = Math.PI / 180 * (60 * i - 30);
+                            const x = ox + R * Math.cos(angle);
+                            const y = oy + R * Math.sin(angle);
+                            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                        }
+                        ctx.closePath();
+                        ctx.stroke();
+                    }
+                }
+
+                // ── Bordure dorée double ──
+                ctx.strokeStyle = 'rgba(200,160,20,0.55)';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(18, 18, W - 36, H - 36);
+                ctx.strokeStyle = 'rgba(200,160,20,0.25)';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(26, 26, W - 52, H - 52);
+
+                // ── Rosace centrale (derrière le jeu) ──
+                ctx.save();
+                ctx.translate(W / 2, H / 2);
+                for (let i = 0; i < 12; i++) {
+                    ctx.rotate(Math.PI / 6);
+                    ctx.fillStyle = `rgba(160,125,15,${0.03 + (i % 2) * 0.02})`;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(16, H * 0.48);
+                    ctx.lineTo(-16, H * 0.48);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                ctx.restore();
+
+                // ── Cartes dans les coins ──
+                function drawCard(x, y, rank, suit, angle) {
+                    const isRed = suit === '♥' || suit === '♦';
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(angle);
+                    ctx.shadowColor = 'rgba(0,0,0,0.7)';
+                    ctx.shadowBlur = 12;
+                    ctx.fillStyle = 'rgba(248,244,232,0.92)';
+                    ctx.beginPath();
+                    ctx.roundRect(-22, -32, 44, 64, 5);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                    ctx.strokeStyle = 'rgba(180,145,20,0.5)';
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                    // Rang coin haut gauche
+                    ctx.fillStyle = isRed ? 'rgba(180,20,20,0.95)' : 'rgba(10,10,10,0.95)';
+                    ctx.font = 'bold 13px Georgia,serif';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'top';
+                    ctx.fillText(rank, -17, -26);
+                    ctx.font = '11px Georgia,serif';
+                    ctx.fillText(suit, -17, -13);
+                    // Symbole central
+                    ctx.font = 'bold 22px Georgia,serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(suit, 0, 4);
+                    // Rang coin bas droit (inversé)
+                    ctx.save();
+                    ctx.rotate(Math.PI);
+                    ctx.font = 'bold 13px Georgia,serif';
+                    ctx.textAlign = 'left';
+                    ctx.textBaseline = 'top';
+                    ctx.fillText(rank, -17, -26);
+                    ctx.font = '11px Georgia,serif';
+                    ctx.fillText(suit, -17, -13);
+                    ctx.restore();
+                    ctx.restore();
+                }
+
+                // Coins haut gauche
+                drawCard(72, 80, 'A', '♠', -0.28);
+                drawCard(108, 65, 'K', '♥', 0.18);
+                // Coins haut droit
+                drawCard(W - 72, 80, 'Q', '♦', 0.25);
+                drawCard(W - 108, 65, 'J', '♣', -0.15);
+                // Coins bas gauche
+                drawCard(72, H - 80, '10', '♣', 0.22);
+                drawCard(108, H - 65, '9', '♠', -0.12);
+                // Coins bas droit
+                drawCard(W - 72, H - 80, '8', '♥', -0.20);
+                drawCard(W - 108, H - 65, '7', '♦', 0.14);
+
+                // ── Dés dans les coins bas ──
+                function drawDie(x, y, val, angle) {
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(angle);
+                    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+                    ctx.shadowBlur = 8;
+                    ctx.fillStyle = 'rgba(242,238,228,0.90)';
+                    ctx.beginPath();
+                    ctx.roundRect(-20, -20, 40, 40, 6);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                    ctx.strokeStyle = 'rgba(180,145,20,0.55)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    const dots = {
+                        1: [[0, 0]],
+                        2: [[-8, -8], [8, 8]],
+                        3: [[-8, -8], [0, 0], [8, 8]],
+                        4: [[-8, -8], [8, -8], [-8, 8], [8, 8]],
+                        5: [[-8, -8], [8, -8], [0, 0], [-8, 8], [8, 8]],
+                        6: [[-8, -8], [8, -8], [-8, 0], [8, 0], [-8, 8], [8, 8]]
+                    };
+                    ctx.fillStyle = 'rgba(12,8,3,0.90)';
+                    (dots[val] || []).forEach(([dx, dy]) => {
+                        ctx.beginPath();
+                        ctx.arc(dx, dy, 3.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    ctx.restore();
+                }
+
+                drawDie(W - 75, H - 75, 6, 0.12);
+                drawDie(W - 125, H - 70, 4, -0.18);
+                drawDie(75, H - 75, 3, 0.15);
+                drawDie(125, H - 70, 5, -0.10);
+
+                // ── Jetons décoratifs sur les bords ──
+                function drawChip(x, y, col, r) {
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(r);
+                    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                    ctx.shadowBlur = 6;
+                    ctx.fillStyle = col;
+                    ctx.beginPath(); ctx.arc(0, 0, 18, 0, Math.PI * 2); ctx.fill();
+                    ctx.shadowBlur = 0;
+                    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.strokeStyle = col;
+                    ctx.lineWidth = 4;
+                    // Encoches
+                    for (let i = 0; i < 6; i++) {
+                        const a = i * Math.PI / 3;
+                        ctx.beginPath();
+                        ctx.arc(Math.cos(a) * 14, Math.sin(a) * 14, 4, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(248,244,232,0.85)';
+                        ctx.fill();
+                    }
+                    ctx.fillStyle = 'rgba(248,244,232,0.90)';
+                    ctx.beginPath(); ctx.arc(0, 0, 10, 0, Math.PI * 2); ctx.fill();
+                    ctx.restore();
+                }
+
+                drawChip(42, H / 2 - 60, 'rgba(180,20,20,0.85)', 0.1);
+                drawChip(42, H / 2, 'rgba(20,80,180,0.85)', 0.3);
+                drawChip(42, H / 2 + 60, 'rgba(20,130,40,0.85)', -0.2);
+                drawChip(W - 42, H / 2 - 60, 'rgba(175,140,20,0.85)', 0.2);
+                drawChip(W - 42, H / 2, 'rgba(130,20,160,0.85)', -0.1);
+                drawChip(W - 42, H / 2 + 60, 'rgba(180,80,20,0.85)', 0.15);
+
+                // ── Enseigne CASINO en haut ──
+                const flicker = 0.88 + 0.12 * Math.sin(t * 6.5);
+                const pulse = 0.82 + 0.18 * Math.sin(t * 1.6);
+                ctx.save();
+                ctx.textAlign = 'center';
+                ctx.font = 'bold 26px Georgia,serif';
+                ctx.fillStyle = `rgba(220,175,30,${0.92 * flicker * pulse})`;
+                ctx.shadowColor = `rgba(255,210,50,${0.85 * flicker})`;
+                ctx.shadowBlur = 28;
+                ctx.fillText('✦  C A S I N O  ✦', W / 2, 52);
+                ctx.shadowBlur = 0;
+                ctx.restore();
+
+                // ── Vignette bords ──
+                const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.28, W / 2, H / 2, H * 0.80);
+                vig.addColorStop(0, 'rgba(0,0,0,0)');
+                vig.addColorStop(1, 'rgba(0,0,0,0.62)');
+                ctx.fillStyle = vig;
+                ctx.fillRect(0, 0, W, H);
+
+                t += 0.014;
+                casinoRAF = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+        let arcadeRAF = null;
+        function startArcadeBg() {
+            const el = document.getElementById('arcade-bg');
+            if (!el) return;
+            el.style.display = 'block';
+            const cv = document.getElementById('arcade-canvas');
+            cv.width = window.innerWidth; cv.height = window.innerHeight;
+            const ctx = cv.getContext('2d');
+            const W = cv.width, H = cv.height;
+
+            // ── Pixel font helper ──
+            function pxText(txt, x, y, col, sz) {
+                ctx.save();
+                ctx.font = `bold ${sz || 14}px 'Courier New',monospace`;
+                ctx.fillStyle = col;
+                ctx.shadowColor = col;
+                ctx.shadowBlur = 10;
+                ctx.textAlign = 'center';
+                ctx.fillText(txt, x, y);
+                ctx.restore();
+            }
+
+            // ── Dessine un alien style Space Invaders ──
+            function drawAlien(x, y, type, col, frame) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.fillStyle = col;
+                ctx.shadowColor = col;
+                ctx.shadowBlur = 8;
+                const s = 3; // taille pixel
+                // patterns aliens (pixel art 8x8)
+                const patterns = [
+                    // type 0 — classique
+                    [[0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 1, 1, 0, 1], [1, 1, 1, 1, 1, 1], [0, 1, 0, 0, 1, 0]],
+                    // type 1 — crabe
+                    [[0, 1, 1, 1, 1, 0], [1, 1, 0, 0, 1, 1], [1, 1, 1, 1, 1, 1], [0, 1, 0, 0, 1, 0], [1, 0, 0, 0, 0, 1]],
+                    // type 2 — méduse
+                    [[0, 0, 1, 1, 0, 0], [0, 1, 1, 1, 1, 0], [1, 1, 0, 1, 0, 1], [0, 1, 1, 1, 1, 0], [0, 1, 0, 0, 1, 0]],
+                ];
+                const p = patterns[type % 3];
+                const anim = frame % 2; // animation alternée
+                p.forEach((row, ri) => {
+                    row.forEach((bit, ci) => {
+                        if (bit) {
+                            // légère animation
+                            const ox = anim && ri === p.length - 1 ? (ci < 3 ? -s : s) : 0;
+                            ctx.fillRect((ci - row.length / 2) * s + ox, (ri - p.length / 2) * s, s, s);
+                        }
+                    });
+                });
+                ctx.restore();
+            }
+
+            // ── Dessine un vaisseau joueur ──
+            function drawShip(x, y, col) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.fillStyle = col;
+                ctx.shadowColor = col;
+                ctx.shadowBlur = 14;
+                const s = 3;
+                // Pixel art vaisseau
+                const ship = [
+                    [0, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 1, 1, 1, 0, 0],
+                    [0, 1, 1, 1, 1, 1, 0],
+                    [1, 1, 1, 1, 1, 1, 1],
+                ];
+                ship.forEach((row, ri) => {
+                    row.forEach((bit, ci) => {
+                        if (bit) ctx.fillRect((ci - 3) * s, (ri - 2) * s, s, s);
+                    });
+                });
+                ctx.restore();
+            }
+
+            // ── Étoiles ──
+            const stars = Array.from({ length: 120 }, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: Math.random() * 1.5 + 0.3,
+                b: Math.random(),
+            }));
+
+            // ── État du jeu ──
+            // Aliens en grilles
+            const alienRows = 4, alienCols = 10;
+            let aliens = [];
+            for (let r = 0; r < alienRows; r++) {
+                for (let c = 0; c < alienCols; c++) {
+                    aliens.push({
+                        x: 80 + c * 70,
+                        y: 60 + r * 55,
+                        type: r % 3,
+                        col: ['#ff00ff', '#00ffcc', '#ffff00', '#ff4444'][r % 4],
+                        alive: true,
+                        hp: 1,
+                    });
+                }
+            }
+
+            // Vaisseaux joueurs en bas
+            let ships = [
+                { x: W * 0.2, y: H - 60, col: '#00ffcc', dir: 1, speed: 1.2 },
+                { x: W * 0.5, y: H - 60, col: '#ff00ff', dir: -1, speed: 0.9 },
+                { x: W * 0.8, y: H - 60, col: '#00ffff', dir: 1, speed: 1.5 },
+            ];
+
+            // Lasers joueurs et aliens
+            let lasers = [];    // {x, y, dy, col, fromAlien}
+            let explosions = []; // {x, y, t, col}
+            let frame = 0;
+            let alienDir = 1, alienDrop = false;
+            let alienMoveTimer = 0;
+            let score = 0;
+
+            function spawnLaser(x, y, dy, col, fromAlien) {
+                lasers.push({ x, y, dy, col, fromAlien });
+            }
+
+            function spawnExplosion(x, y, col) {
+                explosions.push({ x, y, t: 0, col });
+            }
+
+            function resetAliens() {
+                aliens = [];
+                for (let r = 0; r < alienRows; r++) {
+                    for (let c = 0; c < alienCols; c++) {
+                        aliens.push({
+                            x: 80 + c * 70,
+                            y: 60 + r * 55,
+                            type: r % 3,
+                            col: ['#ff00ff', '#00ffcc', '#ffff00', '#ff4444'][r % 4],
+                            alive: true,
+                        });
+                    }
+                }
+                alienDir = 1;
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                // Fond noir espace
+                ctx.fillStyle = '#03000f';
+                ctx.fillRect(0, 0, W, H);
+
+                // Étoiles scintillantes
+                stars.forEach(s => {
+                    const bright = 0.4 + 0.6 * Math.abs(Math.sin(frame * 0.03 + s.b * 10));
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${bright})`;
+                    ctx.fill();
+                });
+
+                // Sol / barrière bas
+                ctx.fillStyle = 'rgba(0,255,204,0.15)';
+                ctx.fillRect(0, H - 30, W, 2);
+
+                // ── Mouvement aliens ──
+                alienMoveTimer++;
+                const aliveAliens = aliens.filter(a => a.alive);
+                const moveEvery = Math.max(8, 30 - Math.floor(score / 5));
+                if (alienMoveTimer >= moveEvery) {
+                    alienMoveTimer = 0;
+                    // Vérifie si on touche les bords
+                    let minX = Math.min(...aliveAliens.map(a => a.x));
+                    let maxX = Math.max(...aliveAliens.map(a => a.x));
+                    if (alienDir > 0 && maxX > W - 80) { alienDir = -1; alienDrop = true; }
+                    else if (alienDir < 0 && minX < 80) { alienDir = 1; alienDrop = true; }
+
+                    aliveAliens.forEach(a => {
+                        a.x += alienDir * 22;
+                        if (alienDrop) a.y += 18;
+                    });
+                    alienDrop = false;
+                }
+
+                // ── Aliens tirent aléatoirement ──
+                if (frame % 35 === 0 && aliveAliens.length > 0) {
+                    const shooter = aliveAliens[Math.floor(Math.random() * aliveAliens.length)];
+                    spawnLaser(shooter.x, shooter.y + 10, 5, shooter.col, true);
+                }
+
+                // ── Vaisseaux joueurs bougent et tirent ──
+                ships.forEach(ship => {
+                    ship.x += ship.dir * ship.speed;
+                    if (ship.x > W - 40) ship.dir = -1;
+                    if (ship.x < 40) ship.dir = 1;
+                });
+                if (frame % 22 === 0) {
+                    ships.forEach(ship => {
+                        spawnLaser(ship.x, ship.y - 15, -8, ship.col, false);
+                    });
+                }
+
+                // ── Lasers ──
+                lasers = lasers.filter(l => l.y > -10 && l.y < H + 10);
+                lasers.forEach(l => {
+                    l.y += l.dy;
+                    // Collision alien
+                    if (!l.fromAlien) {
+                        aliens.forEach(a => {
+                            if (a.alive && Math.abs(a.x - l.x) < 20 && Math.abs(a.y - l.y) < 18) {
+                                a.alive = false;
+                                spawnExplosion(a.x, a.y, a.col);
+                                l.y = -999;
+                                score++;
+                            }
+                        });
+                    }
+                    // Dessin laser
+                    ctx.save();
+                    ctx.strokeStyle = l.col;
+                    ctx.shadowColor = l.col;
+                    ctx.shadowBlur = 10;
+                    ctx.lineWidth = l.fromAlien ? 2 : 3;
+                    ctx.beginPath();
+                    ctx.moveTo(l.x, l.y);
+                    ctx.lineTo(l.x, l.y + (l.fromAlien ? 12 : -14));
+                    ctx.stroke();
+                    // Pointe
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(l.x, l.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                // ── Explosions ──
+                explosions = explosions.filter(e => e.t < 18);
+                explosions.forEach(e => {
+                    e.t++;
+                    const prog = e.t / 18;
+                    const r = prog * 28;
+                    ctx.save();
+                    ctx.globalAlpha = 1 - prog;
+                    ctx.strokeStyle = e.col;
+                    ctx.shadowColor = e.col;
+                    ctx.shadowBlur = 18;
+                    ctx.lineWidth = 2;
+                    // Étoile d'explosion
+                    for (let i = 0; i < 8; i++) {
+                        const a = (i / 8) * Math.PI * 2;
+                        ctx.beginPath();
+                        ctx.moveTo(e.x + Math.cos(a) * r * 0.3, e.y + Math.sin(a) * r * 0.3);
+                        ctx.lineTo(e.x + Math.cos(a) * r, e.y + Math.sin(a) * r);
+                        ctx.stroke();
+                    }
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(e.x, e.y, (1 - prog) * 5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                // ── Dessine aliens ──
+                aliens.forEach(a => {
+                    if (a.alive) drawAlien(a.x, a.y, a.type, a.col, Math.floor(frame / 8));
+                });
+
+                // ── Dessine vaisseaux ──
+                ships.forEach(ship => drawShip(ship.x, ship.y, ship.col));
+
+                // ── Reset si tous aliens tués ──
+                if (aliveAliens.length === 0) resetAliens();
+
+                // ── HUD ──
+                pxText(`SCORE: ${score.toString().padStart(5, '0')}`, W / 2, 28, '#00ffcc', 16);
+                pxText('SPACE INVADERS', W / 2, H - 8, 'rgba(0,255,204,0.35)', 11);
+
+                // Vignette
+                const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
+                vig.addColorStop(0, 'rgba(0,0,0,0)');
+                vig.addColorStop(1, 'rgba(0,0,16,0.75)');
+                ctx.fillStyle = vig;
+                ctx.fillRect(0, 0, W, H);
+
+                frame++;
+                arcadeRAF = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function stopArcadeBg() {
+            if (arcadeRAF) cancelAnimationFrame(arcadeRAF);
+            arcadeRAF = null;
+            const el = document.getElementById('arcade-bg');
+            if (el) el.style.display = 'none';
+        }
+
+        function stopCasinoBg() {
+            if (casinoRAF) cancelAnimationFrame(casinoRAF);
+            casinoRAF = null;
+            const el = document.getElementById('casino-bg');
+            if (el) el.style.display = 'none';
+        }
         window.addEventListener('resize', () => { if (snowActive) initSnow(); if (galaxyActive) initGalaxy(); if (foretActive) initForet(); if (desertActive) initDesert(); if (oceanActive) initOcean(); });
 
-        /* ── SVG MARIO CHARS ── */
-        // Têtes SVG simplifiées style pixel art
-        const marioSVGs = {
-            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Mario -->
-        <rect x="8" y="2" width="16" height="4" fill="#e63946"/>
-        <rect x="6" y="6" width="20" height="2" fill="#e63946"/>
-        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
-        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
-        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
-        <rect x="10" y="16" width="12" height="2" fill="#c0392b"/>
-        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
-        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
-        <rect x="6" y="22" width="8" height="2" fill="#e63946"/><rect x="18" y="22" width="8" height="2" fill="#e63946"/>
-        <rect x="4" y="24" width="10" height="2" fill="#e63946"/><rect x="18" y="24" width="10" height="2" fill="#e63946"/>
-    </svg>`,
-            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Luigi -->
-        <rect x="8" y="2" width="16" height="4" fill="#2ecc40"/>
-        <rect x="6" y="6" width="20" height="2" fill="#2ecc40"/>
-        <rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/>
-        <rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/>
-        <rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/>
-        <rect x="10" y="16" width="12" height="2" fill="#8B4513"/>
-        <rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/>
-        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
-        <rect x="6" y="22" width="8" height="2" fill="#2ecc40"/><rect x="18" y="22" width="8" height="2" fill="#2ecc40"/>
-        <rect x="4" y="24" width="10" height="2" fill="#2ecc40"/><rect x="18" y="24" width="10" height="2" fill="#2ecc40"/>
-    </svg>`,
-            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Yoshi -->
-        <rect x="6" y="4" width="20" height="14" rx="4" fill="#2ecc40"/>
-        <rect x="8" y="6" width="16" height="10" fill="#2ecc40"/>
-        <rect x="8" y="8" width="4" height="4" fill="#fff"/><rect x="9" y="9" width="2" height="2" fill="#111"/>
-        <rect x="20" y="8" width="4" height="4" fill="#fff"/><rect x="21" y="9" width="2" height="2" fill="#111"/>
-        <rect x="6" y="16" width="20" height="2" fill="#ff6b6b"/>
-        <rect x="10" y="18" width="4" height="2" fill="#ff6b6b"/><rect x="18" y="18" width="4" height="2" fill="#ff6b6b"/>
-        <rect x="8" y="12" width="16" height="2" fill="#1a9e30"/>
-        <rect x="22" y="4" width="6" height="4" rx="1" fill="#e74c3c"/>
-        <rect x="24" y="3" width="2" height="2" fill="#e74c3c"/>
-        <rect x="6" y="20" width="20" height="6" rx="2" fill="#ffe0bd"/>
-        <rect x="12" y="22" width="8" height="2" fill="#ffb3b3"/>
-    </svg>`,
-            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Toad -->
-        <ellipse cx="16" cy="9" rx="12" ry="9" fill="#f5f5f5"/>
-        <circle cx="9" cy="7" r="3" fill="#e63946"/><circle cx="23" cy="7" r="3" fill="#e63946"/>
-        <circle cx="13" cy="5" r="2" fill="#e63946"/><circle cx="19" cy="5" rx="2" ry="2" fill="#e63946"/>
-        <circle cx="16" cy="4" r="2" fill="#e63946"/>
-        <rect x="8" y="14" width="16" height="8" rx="2" fill="#ffe0bd"/>
-        <rect x="10" y="16" width="4" height="3" fill="#222"/><rect x="11" y="17" width="2" height="2" fill="#fff"/>
-        <rect x="18" y="16" width="4" height="3" fill="#222"/><rect x="19" y="17" width="2" height="2" fill="#fff"/>
-        <rect x="12" y="20" width="8" height="1" fill="#c0392b"/>
-        <rect x="8" y="22" width="16" height="4" rx="1" fill="#3498db"/>
-        <rect x="10" y="22" width="12" height="2" fill="#2980b9"/>
-    </svg>`,
-            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Wario -->
-        <rect x="7" y="2" width="18" height="5" fill="#f1c40f"/>
-        <rect x="5" y="7" width="22" height="2" fill="#f1c40f"/>
-        <rect x="4" y="9" width="24" height="9" fill="#ffe0bd"/>
-        <rect x="5" y="10" width="5" height="4" fill="#222"/><rect x="6" y="11" width="3" height="2" fill="#fff"/>
-        <rect x="22" y="10" width="5" height="4" fill="#222"/><rect x="23" y="11" width="3" height="2" fill="#fff"/>
-        <rect x="12" y="13" width="8" height="3" fill="#e8c39a"/>
-        <rect x="10" y="15" width="5" height="3" fill="#c0392b"/><rect x="17" y="15" width="5" height="3" fill="#c0392b"/>
-        <rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/>
-        <rect x="6" y="22" width="8" height="2" fill="#f1c40f"/><rect x="18" y="22" width="8" height="2" fill="#f1c40f"/>
-        <rect x="4" y="24" width="10" height="2" fill="#f1c40f"/><rect x="18" y="24" width="10" height="2" fill="#f1c40f"/>
-        <!-- Moustache W -->
-        <rect x="10" y="14" width="12" height="2" fill="#5d3a1a"/>
-        <rect x="10" y="14" width="2" height="3" fill="#5d3a1a"/>
-        <rect x="14" y="14" width="2" height="3" fill="#5d3a1a"/>
-        <rect x="16" y="14" width="2" height="3" fill="#5d3a1a"/>
-        <rect x="20" y="14" width="2" height="3" fill="#5d3a1a"/>
-    </svg>`,
-            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- Bowser amélioré -->
-        <!-- Carapace verte sur le crâne -->
-        <rect x="7" y="1" width="18" height="6" rx="3" fill="#2d7a1e"/>
-        <rect x="9" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
-        <rect x="19" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/>
-        <rect x="14" y="0" width="4" height="2" rx="1" fill="#2d7a1e"/>
-        <!-- Tête jaune-orange massive -->
-        <rect x="4" y="6" width="24" height="16" rx="4" fill="#e8a020"/>
-        <!-- Sourcils noirs menaçants -->
-        <rect x="5" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(-8,9,8)"/>
-        <rect x="18" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(8,23,8)"/>
-        <!-- Yeux rouges avec pupilles noires -->
-        <ellipse cx="10" cy="13" rx="4" ry="4" fill="#e74c3c"/>
-        <ellipse cx="22" cy="13" rx="4" ry="4" fill="#e74c3c"/>
-        <ellipse cx="10" cy="13" rx="2" ry="2.5" fill="#111"/>
-        <ellipse cx="22" cy="13" rx="2" ry="2.5" fill="#111"/>
-        <rect x="9" y="11" width="1" height="1" fill="#fff"/>
-        <rect x="21" y="11" width="1" height="1" fill="#fff"/>
-        <!-- Museau beige large -->
-        <rect x="9" y="17" width="14" height="8" rx="4" fill="#d4a060"/>
-        <!-- Narines -->
-        <ellipse cx="13" cy="19" rx="2" ry="1.5" fill="#b07840"/>
-        <ellipse cx="19" cy="19" rx="2" ry="1.5" fill="#b07840"/>
-        <!-- Dents blanches qui dépassent -->
-        <rect x="10" y="23" width="5" height="4" rx="1" fill="#fff"/>
-        <rect x="17" y="23" width="5" height="4" rx="1" fill="#fff"/>
-        <rect x="13" y="24" width="3" height="2" fill="#e8a020"/>
-    </svg>`
+        /* ── SVG SKINS ── */
+        /* ── CONFIG — doit être déclaré AVANT les SVGs qui utilisent ALL_S ── */
+        const skins = [{ id: 'default', nom: 'Néon (Base)', px: 0 }, { id: 'zebre', nom: 'Zèbre 🦓', px: 50 }, { id: 'planetes', nom: 'Planètes 🪐', px: 75 }, { id: 'fruits', nom: 'Fruits 🍎', px: 75 }, { id: 'galaxie', nom: 'Galaxie ✨', px: 100 }, { id: 'casino', nom: 'Jetons Casino 🎲', px: 120 }, { id: 'bonbons', nom: 'Bonbons 🍬', px: 100 }, { id: 'mario', nom: 'Mario Bros 🍄', px: 150 }];
+        const themes = [{ id: 'default', nom: 'Défaut (Sombre)', px: 0 }, { id: 'casino', nom: 'Casino 🎰', px: 80 }, { id: 'noel', nom: 'Noël 🎄', px: 80 }, { id: 'arcade', nom: 'Arcade Rétro 👾', px: 80 }, { id: 'galaxy', nom: 'Galaxy 🌌', px: 120 }, { id: 'foret', nom: 'Forêt Enchantée 🌿', px: 100 }, { id: 'desert', nom: 'Désert & Sable 🏜️', px: 100 }, { id: 'ocean', nom: 'Océan 🌊', px: 100 }];
+        const ALL_S = skins.map(s => s.id), ALL_T = themes.map(t => t.id);
+
+        /* ── ZÈBRE SVGs ── */
+        function makeZebreSVG(baseLight, baseDark) {
+            const id = baseLight.replace('#', '');
+            return `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="zbg_${id}" cx="36%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="${baseLight}"/>
+      <stop offset="100%" stop-color="${baseDark}"/>
+    </radialGradient>
+    <radialGradient id="zsh_${id}" cx="30%" cy="25%" r="52%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.38)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <clipPath id="zcp_${id}"><circle cx="20" cy="20" r="18"/></clipPath>
+    <filter id="zbl_${id}"><feGaussianBlur stdDeviation="0.3"/></filter>
+  </defs>
+  <circle cx="21" cy="21.5" r="18" fill="rgba(0,0,0,0.45)"/>
+  <circle cx="20" cy="20" r="18" fill="url(#zbg_${id})"/>
+  <g clip-path="url(#zcp_${id})" filter="url(#zbl_${id})">
+    <!-- Rayures organiques style vrai zèbre -->
+    <path d="M10,2 Q12,6 10,11 Q8,16 11,21 Q13,26 11,31 Q9,36 10,40 L7,40 Q5,35 7,30 Q9,25 7,20 Q5,15 7,10 Q9,5 10,2 Z" fill="rgba(8,6,4,0.88)"/>
+    <path d="M17,0 Q20,5 18,10 Q16,15 19,20 Q21,25 19,30 Q17,35 18,40 L14,40 Q13,35 15,30 Q17,25 15,20 Q13,15 15,10 Q17,5 17,0 Z" fill="rgba(8,6,4,0.82)"/>
+    <path d="M26,0 Q28,4 26,9 Q24,14 27,19 Q29,24 27,30 Q25,35 26,40 L23,40 Q22,35 24,29 Q26,24 24,19 Q22,14 24,9 Q26,4 26,0 Z" fill="rgba(8,6,4,0.85)"/>
+    <path d="M33,1 Q36,6 35,12 Q33,17 36,22 Q38,27 37,33 Q36,37 37,40 L34,40 Q33,37 34,32 Q35,27 33,22 Q31,17 33,12 Q35,6 33,1 Z" fill="rgba(8,6,4,0.78)"/>
+    <path d="M40,3 Q40,8 39,14 Q38,20 40,25 L40,40 L38,40 Q37,34 38,28 Q39,22 38,16 Q37,10 38,4 Z" fill="rgba(8,6,4,0.72)"/>
+  </g>
+  <circle cx="20" cy="20" r="18" fill="url(#zsh_${id})"/>
+  <circle cx="20" cy="20" r="18" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+</svg>`;
+        }
+        const zebreSVGs = {
+            rouge: makeZebreSVG('#dda090', '#7a2010'),
+            bleu: makeZebreSVG('#90b0e0', '#1a3a7a'),
+            vert: makeZebreSVG('#90d8a0', '#1a5c28'),
+            jaune: makeZebreSVG('#f0d878', '#8a6008'),
+            orange: makeZebreSVG('#f0b870', '#8a3808'),
+            violet: makeZebreSVG('#c090e0', '#4a1a8a'),
         };
 
-        // Valeurs jetons par couleur
+        const marioSVGs = { rouge: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="2" width="16" height="4" fill="#e63946"/><rect x="6" y="6" width="20" height="2" fill="#e63946"/><rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/><rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/><rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/><rect x="10" y="16" width="12" height="2" fill="#c0392b"/><rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/><rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/><rect x="6" y="22" width="8" height="2" fill="#e63946"/><rect x="18" y="22" width="8" height="2" fill="#e63946"/><rect x="4" y="24" width="10" height="2" fill="#e63946"/><rect x="18" y="24" width="10" height="2" fill="#e63946"/></svg>', bleu: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="2" width="16" height="4" fill="#2ecc40"/><rect x="6" y="6" width="20" height="2" fill="#2ecc40"/><rect x="4" y="8" width="6" height="2" fill="#8B4513"/><rect x="10" y="8" width="14" height="2" fill="#ffe0bd"/><rect x="24" y="8" width="4" height="2" fill="#8B4513"/><rect x="4" y="10" width="24" height="8" fill="#ffe0bd"/><rect x="6" y="12" width="4" height="4" fill="#222"/><rect x="7" y="13" width="2" height="2" fill="#fff"/><rect x="22" y="12" width="4" height="4" fill="#222"/><rect x="23" y="13" width="2" height="2" fill="#fff"/><rect x="10" y="16" width="12" height="2" fill="#8B4513"/><rect x="12" y="14" width="2" height="2" fill="#8B4513"/><rect x="18" y="14" width="2" height="2" fill="#8B4513"/><rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/><rect x="6" y="22" width="8" height="2" fill="#2ecc40"/><rect x="18" y="22" width="8" height="2" fill="#2ecc40"/><rect x="4" y="24" width="10" height="2" fill="#2ecc40"/><rect x="18" y="24" width="10" height="2" fill="#2ecc40"/></svg>', vert: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="4" width="20" height="14" rx="4" fill="#2ecc40"/><rect x="8" y="6" width="16" height="10" fill="#2ecc40"/><rect x="8" y="8" width="4" height="4" fill="#fff"/><rect x="9" y="9" width="2" height="2" fill="#111"/><rect x="20" y="8" width="4" height="4" fill="#fff"/><rect x="21" y="9" width="2" height="2" fill="#111"/><rect x="6" y="16" width="20" height="2" fill="#ff6b6b"/><rect x="10" y="18" width="4" height="2" fill="#ff6b6b"/><rect x="18" y="18" width="4" height="2" fill="#ff6b6b"/><rect x="8" y="12" width="16" height="2" fill="#1a9e30"/><rect x="22" y="4" width="6" height="4" rx="1" fill="#e74c3c"/><rect x="24" y="3" width="2" height="2" fill="#e74c3c"/><rect x="6" y="20" width="20" height="6" rx="2" fill="#ffe0bd"/><rect x="12" y="22" width="8" height="2" fill="#ffb3b3"/></svg>', jaune: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><ellipse cx="16" cy="9" rx="12" ry="9" fill="#f5f5f5"/><circle cx="9" cy="7" r="3" fill="#e63946"/><circle cx="23" cy="7" r="3" fill="#e63946"/><circle cx="13" cy="5" r="2" fill="#e63946"/><circle cx="19" cy="5" r="2" fill="#e63946"/><circle cx="16" cy="4" r="2" fill="#e63946"/><rect x="8" y="14" width="16" height="8" rx="2" fill="#ffe0bd"/><rect x="10" y="16" width="4" height="3" fill="#222"/><rect x="11" y="17" width="2" height="2" fill="#fff"/><rect x="18" y="16" width="4" height="3" fill="#222"/><rect x="19" y="17" width="2" height="2" fill="#fff"/><rect x="12" y="20" width="8" height="1" fill="#c0392b"/><rect x="8" y="22" width="16" height="4" rx="1" fill="#3498db"/><rect x="10" y="22" width="12" height="2" fill="#2980b9"/></svg>', orange: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="2" width="18" height="5" fill="#f1c40f"/><rect x="5" y="7" width="22" height="2" fill="#f1c40f"/><rect x="4" y="9" width="24" height="9" fill="#ffe0bd"/><rect x="5" y="10" width="5" height="4" fill="#222"/><rect x="6" y="11" width="3" height="2" fill="#fff"/><rect x="22" y="10" width="5" height="4" fill="#222"/><rect x="23" y="11" width="3" height="2" fill="#fff"/><rect x="12" y="13" width="8" height="3" fill="#e8c39a"/><rect x="10" y="15" width="5" height="3" fill="#c0392b"/><rect x="17" y="15" width="5" height="3" fill="#c0392b"/><rect x="8" y="18" width="16" height="4" fill="#ffe0bd"/><rect x="6" y="22" width="8" height="2" fill="#f1c40f"/><rect x="18" y="22" width="8" height="2" fill="#f1c40f"/><rect x="4" y="24" width="10" height="2" fill="#f1c40f"/><rect x="18" y="24" width="10" height="2" fill="#f1c40f"/><rect x="10" y="14" width="12" height="2" fill="#5d3a1a"/><rect x="10" y="14" width="2" height="3" fill="#5d3a1a"/><rect x="14" y="14" width="2" height="3" fill="#5d3a1a"/><rect x="16" y="14" width="2" height="3" fill="#5d3a1a"/><rect x="20" y="14" width="2" height="3" fill="#5d3a1a"/></svg>', violet: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="1" width="18" height="6" rx="3" fill="#2d7a1e"/><rect x="9" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/><rect x="19" y="0" width="4" height="3" rx="1" fill="#2d7a1e"/><rect x="14" y="0" width="4" height="2" rx="1" fill="#2d7a1e"/><rect x="4" y="6" width="24" height="16" rx="4" fill="#e8a020"/><rect x="5" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(-8,9,8)"/><rect x="18" y="7" width="9" height="3" rx="1" fill="#111" transform="rotate(8,23,8)"/><ellipse cx="10" cy="13" rx="4" ry="4" fill="#e74c3c"/><ellipse cx="22" cy="13" rx="4" ry="4" fill="#e74c3c"/><ellipse cx="10" cy="13" rx="2" ry="2.5" fill="#111"/><ellipse cx="22" cy="13" rx="2" ry="2.5" fill="#111"/><rect x="9" y="11" width="1" height="1" fill="#fff"/><rect x="21" y="11" width="1" height="1" fill="#fff"/><rect x="9" y="17" width="14" height="8" rx="4" fill="#d4a060"/><ellipse cx="13" cy="19" rx="2" ry="1.5" fill="#b07840"/><ellipse cx="19" cy="19" rx="2" ry="1.5" fill="#b07840"/><rect x="10" y="23" width="5" height="4" rx="1" fill="#fff"/><rect x="17" y="23" width="5" height="4" rx="1" fill="#fff"/><rect x="13" y="24" width="3" height="2" fill="#e8a020"/></svg>' };
         const casinoVals = { rouge: '10', bleu: '20', vert: '50', jaune: '100', orange: '200', violet: '1000' };
 
-        // SVG bonbons réalistes — chaque couleur = type de bonbon différent
-        const bonbonSVGs = {
-            // rouge = sucette ronde brillante
-            rouge: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="bg_r" cx="38%" cy="32%" r="60%">
-                <stop offset="0%" stop-color="#ffccd6"/>
-                <stop offset="45%" stop-color="#ff4d6d"/>
-                <stop offset="100%" stop-color="#8b0000"/>
-            </radialGradient>
-        </defs>
-        <circle cx="16" cy="13" r="11" fill="url(#bg_r)"/>
-        <path d="M9,10 Q16,6 23,10" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M8,14 Q16,10 24,14" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="11" cy="10" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-30,11,10)"/>
-        <rect x="15" y="23" width="2.5" height="8" rx="1" fill="#8B4513"/>
-        <ellipse cx="16" cy="23" rx="2" ry="1" fill="#6b3410"/>
-    </svg>`,
-            // bleu = bonbon emballé (papillote)
-            bleu: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="bg_b" cx="40%" cy="35%" r="55%">
-                <stop offset="0%" stop-color="#cce8ff"/>
-                <stop offset="50%" stop-color="#3b82f6"/>
-                <stop offset="100%" stop-color="#1e3a8a"/>
-            </radialGradient>
-        </defs>
-        <!-- Corps ovale -->
-        <ellipse cx="16" cy="16" rx="10" ry="7" fill="url(#bg_b)"/>
-        <!-- Papillote gauche -->
-        <ellipse cx="5" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(-15,5,16)"/>
-        <line x1="6" y1="13" x2="4" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
-        <line x1="8" y1="13" x2="6" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
-        <!-- Papillote droite -->
-        <ellipse cx="27" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(15,27,16)"/>
-        <line x1="24" y1="13" x2="26" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
-        <line x1="26" y1="13" x2="28" y2="19" stroke="#1d4ed8" stroke-width="0.8"/>
-        <!-- Reflet -->
-        <ellipse cx="12" cy="13" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-20,12,13)"/>
-        <!-- Rayures -->
-        <ellipse cx="16" cy="16" rx="10" ry="7" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="3,4"/>
-    </svg>`,
-            // vert = bonbon canne de Noël (candy cane)
-            vert: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="cane_g" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#fff"/>
-                <stop offset="40%" stop-color="#fff"/>
-                <stop offset="40%" stop-color="#22c55e"/>
-                <stop offset="60%" stop-color="#22c55e"/>
-                <stop offset="60%" stop-color="#fff"/>
-                <stop offset="100%" stop-color="#fff"/>
-            </linearGradient>
-        </defs>
-        <!-- Canne courbée -->
-        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="url(#cane_g)" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="4,4"/>
-        <!-- Reflet -->
-        <path d="M18,27 L18,11 Q18,5 13,5" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
-    </svg>`,
-            // jaune = bonbon ourson gélatine
-            jaune: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="bg_y" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#fff9c4"/>
-                <stop offset="50%" stop-color="#fbbf24"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </radialGradient>
-        </defs>
-        <!-- Corps ourson -->
-        <ellipse cx="16" cy="18" rx="9" ry="11" fill="url(#bg_y)"/>
-        <!-- Tête -->
-        <circle cx="16" cy="9" r="7" fill="url(#bg_y)"/>
-        <!-- Oreilles -->
-        <circle cx="10" cy="5" r="3.5" fill="#fbbf24"/>
-        <circle cx="22" cy="5" r="3.5" fill="#fbbf24"/>
-        <circle cx="10" cy="5" r="1.5" fill="#f59e0b"/>
-        <circle cx="22" cy="5" r="1.5" fill="#f59e0b"/>
-        <!-- Visage -->
-        <ellipse cx="13" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
-        <ellipse cx="19" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/>
-        <ellipse cx="16" cy="11" rx="3" ry="2" fill="#e8a020"/>
-        <ellipse cx="15" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
-        <ellipse cx="17" cy="11" rx="1" ry="0.8" fill="#7c5c00"/>
-        <!-- Reflet -->
-        <ellipse cx="12" cy="7" rx="2" ry="1.5" fill="rgba(255,255,255,0.55)" transform="rotate(-20,12,7)"/>
-    </svg>`,
-            // orange = M&M / dragée ronde avec lettre
-            orange: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="bg_o" cx="38%" cy="32%" r="60%">
-                <stop offset="0%" stop-color="#fed7aa"/>
-                <stop offset="45%" stop-color="#f97316"/>
-                <stop offset="100%" stop-color="#9a3412"/>
-            </radialGradient>
-        </defs>
-        <ellipse cx="16" cy="16" rx="13" ry="12" fill="url(#bg_o)"/>
-        <!-- Reflet haut -->
-        <ellipse cx="11" cy="10" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-25,11,10)"/>
-        <!-- Lettre M -->
-        <text x="16" y="20" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="11" fill="rgba(255,255,255,0.85)">m</text>
-        <!-- Ombre légère bas -->
-        <ellipse cx="16" cy="25" rx="11" ry="3" fill="rgba(0,0,0,0.15)"/>
-    </svg>`,
-            // violet = macaron français
-            violet: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="mac_top" cx="45%" cy="35%" r="55%">
-                <stop offset="0%" stop-color="#e9d5ff"/>
-                <stop offset="60%" stop-color="#a855f7"/>
-                <stop offset="100%" stop-color="#581c87"/>
-            </radialGradient>
-        </defs>
-        <!-- Disque bas -->
-        <ellipse cx="16" cy="22" rx="12" ry="5" fill="#7e22ce"/>
-        <!-- Crème au milieu -->
-        <rect x="4" y="17" width="24" height="5" rx="1" fill="#f3e8ff"/>
-        <!-- Disque haut -->
-        <ellipse cx="16" cy="14" rx="12" ry="8" fill="url(#mac_top)"/>
-        <!-- Pied (collerette) -->
-        <ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/>
-        <!-- Reflet -->
-        <ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/>
-        <!-- Points déco -->
-        <circle cx="10" cy="12" r="1" fill="rgba(255,255,255,0.3)"/>
-        <circle cx="22" cy="13" r="0.8" fill="rgba(255,255,255,0.3)"/>
-        <circle cx="16" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/>
-    </svg>`
+        /* ── CASINO SVGs — Jetons Las Vegas Poker Club ── */
+        /* ── CASINO SVGs — Jetons Las Vegas Poker Club ── */
+        /* ══════════════════════════════════════════════════════
+           JETONS CASINO — Style exact Las Vegas Poker Club
+        ══════════════════════════════════════════════════════ */
+        function makeCasinoChip(outerCol, accentCol, centerCol, val) {
+            const id = 'jeton_' + val;
+            // Encoches à la façon des vrais jetons: 3 rectangles par paire, en haut/bas/gauche/droite
+            const notchPositions = [
+                { a: 0, label: 'top' },
+                { a: 60, label: 'tr' },
+                { a: 120, label: 'br' },
+                { a: 180, label: 'bot' },
+                { a: 240, label: 'bl' },
+                { a: 300, label: 'tl' },
+            ];
+            const notches = notchPositions.map(({ a }) => {
+                const rad = (a - 90) * Math.PI / 180;
+                const cx = 50 + 41 * Math.cos(rad);
+                const cy = 50 + 41 * Math.sin(rad);
+                // Encoche = petit rectangle blanc arrondi aligné vers le centre
+                return `<rect x="${(cx - 7).toFixed(1)}" y="${(cy - 4).toFixed(1)}"
+                    width="14" height="8" rx="3.5"
+                    fill="${centerCol}" stroke="${outerCol}" stroke-width="1.5"
+                    transform="rotate(${a}, ${cx.toFixed(1)}, ${cy.toFixed(1)})"/>`;
+            }).join('');
+
+            // Couronne en haut (style Las Vegas)
+            const crownPath = `M42,16 L44,22 L47,19 L50,24 L53,19 L56,22 L58,16 L58,27 L42,27 Z`;
+
+            const fs = val.length >= 3 ? 18 : val.length === 2 ? 22 : 28;
+            const yv = val.length >= 3 ? 65 : 64;
+
+            // Dégradés calculés
+            const hex = outerCol.replace('#', '');
+            const r0 = parseInt(hex.slice(0, 2), 16), g0 = parseInt(hex.slice(2, 4), 16), b0 = parseInt(hex.slice(4, 6), 16);
+            const light = `rgb(${Math.min(255, r0 + 80)},${Math.min(255, g0 + 80)},${Math.min(255, b0 + 80)})`;
+            const dark = `rgb(${Math.max(0, r0 - 60)},${Math.max(0, g0 - 60)},${Math.max(0, b0 - 60)})`;
+            const ah = accentCol.replace('#', '');
+            const ra = parseInt(ah.slice(0, 2), 16), ga = parseInt(ah.slice(2, 4), 16), ba = parseInt(ah.slice(4, 6), 16);
+            const alight = `rgb(${Math.min(255, ra + 70)},${Math.min(255, ga + 70)},${Math.min(255, ba + 70)})`;
+            const adark = `rgb(${Math.max(0, ra - 50)},${Math.max(0, ga - 50)},${Math.max(0, ba - 50)})`;
+
+            return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                style="overflow:visible;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.7))">
+  <defs>
+    <radialGradient id="go_${id}" cx="38%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="${light}"/>
+      <stop offset="50%" stop-color="${outerCol}"/>
+      <stop offset="100%" stop-color="${dark}"/>
+    </radialGradient>
+    <radialGradient id="ga_${id}" cx="38%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="${alight}"/>
+      <stop offset="50%" stop-color="${accentCol}"/>
+      <stop offset="100%" stop-color="${adark}"/>
+    </radialGradient>
+    <radialGradient id="gc_${id}" cx="38%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f2f0eb"/>
+      <stop offset="100%" stop-color="#dddad0"/>
+    </radialGradient>
+    <radialGradient id="gshine_${id}" cx="35%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.45)"/>
+      <stop offset="60%" stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <!-- Texture grain subtile -->
+    <filter id="grain_${id}">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0" result="gray"/>
+      <feBlend in="SourceGraphic" in2="gray" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="cclip_${id}"><circle cx="50" cy="50" r="48"/></clipPath>
+  </defs>
+
+  <!-- === FOND BORD EXTÉRIEUR (couleur principale) === -->
+  <circle cx="50" cy="50" r="49" fill="url(#go_${id})"/>
+  <!-- Liseré métallique externe -->
+  <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1"/>
+
+  <!-- === ANNEAU ACCENT (couleur secondaire) === -->
+  <circle cx="50" cy="50" r="43" fill="url(#ga_${id})" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+
+  <!-- === CENTRE BLANC === -->
+  <circle cx="50" cy="50" r="34" fill="url(#gc_${id})" stroke="rgba(180,175,165,0.6)" stroke-width="1"/>
+
+  <!-- === ENCOCHES === -->
+  ${notches}
+
+  <!-- === COURONNE EN HAUT === -->
+  <path d="${crownPath}" fill="${outerCol}" stroke="${dark}" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="41" y="27" width="18" height="3.5" rx="1.5" fill="${dark}"/>
+
+  <!-- === TEXTE LAS VEGAS (arc haut) === -->
+  <path id="atop_${id}" d="M19,50 A31,31 0 0,1 81,50" fill="none"/>
+  <text font-family="Georgia,Times New Roman,serif" font-size="9.5" font-weight="bold"
+    fill="${outerCol}" letter-spacing="1">
+    <textPath href="#atop_${id}" startOffset="10%">LAS VEGAS</textPath>
+  </text>
+
+  <!-- === VALEUR CENTRALE === -->
+  <text x="50" y="${yv}" text-anchor="middle"
+    font-family="Georgia,Times New Roman,serif"
+    font-size="${fs}" font-weight="bold" fill="#111">${val}</text>
+
+  <!-- === TEXTE POKER CLUB (arc bas) === -->
+  <path id="abot_${id}" d="M20,56 A31,31 0 0,0 80,56" fill="none"/>
+  <text font-family="Georgia,Times New Roman,serif" font-size="8.5" font-weight="bold"
+    fill="${outerCol}" letter-spacing="0.8">
+    <textPath href="#abot_${id}" startOffset="11%">POKER CLUB</textPath>
+  </text>
+
+  <!-- === REFLET FINAL === -->
+  <circle cx="50" cy="50" r="49" fill="url(#gshine_${id})"/>
+</svg>`;
+        }
+
+        const casinoSVGs = {
+            rouge: makeCasinoChip('#cc2000', '#c09030', '#f5f0e0', '5'),
+            bleu: makeCasinoChip('#2277cc', '#d4a850', '#f5f0e0', '10'),
+            vert: makeCasinoChip('#226633', '#1a44aa', '#f5f0e0', '50'),
+            jaune: makeCasinoChip('#bb4400', '#1a1a1a', '#f5f0e0', '100'),
+            orange: makeCasinoChip('#bb6600', '#1a1a1a', '#f5f0e0', '200'),
+            violet: makeCasinoChip('#771aaa', '#1a1a1a', '#f5f0e0', '1000'),
         };
 
-        /* ══════════════════════════════════════
-           MOTEUR AUDIO
-        ══════════════════════════════════════ */
+        /* ══════════════════════════════════════════════════════
+           PLANÈTES — SVG photoréaliste avec feTurbulence
+        ══════════════════════════════════════════════════════ */
+        const planeteSVGs = {
+
+            /* ── MARS — surface rougeâtre, poussière, cratères, Valles Marineris ── */
+            rouge: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <!-- Surface de Mars avec turbulence -->
+    <radialGradient id="m_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#ffb07a"/>
+      <stop offset="25%"  stop-color="#e86030"/>
+      <stop offset="55%"  stop-color="#c04020"/>
+      <stop offset="80%"  stop-color="#903010"/>
+      <stop offset="100%" stop-color="#4a0e05"/>
+    </radialGradient>
+    <radialGradient id="m_pole_n" cx="50%" cy="0%" r="35%">
+      <stop offset="0%"   stop-color="#fff8f2" stop-opacity="0.92"/>
+      <stop offset="60%"  stop-color="#fff0e8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffe8dc" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="m_pole_s" cx="50%" cy="100%" r="30%">
+      <stop offset="0%"   stop-color="#fff8f2" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffe8dc" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="m_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.32)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.22)"/>
+    </radialGradient>
+    <filter id="m_blur"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <filter id="m_blur2"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="m_texture">
+      <feTurbulence type="turbulence" baseFrequency="0.04 0.06" numOctaves="6" seed="3" result="noise"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.18  0 0 0 0 0.08  0 0 0 0.35 0" result="col"/>
+      <feBlend in="SourceGraphic" in2="col" mode="multiply"/>
+    </filter>
+    <clipPath id="m_clip"><circle cx="50" cy="50" r="47"/></clipPath>
+  </defs>
+  <!-- Ombre portée -->
+  <circle cx="52" cy="53" r="47" fill="rgba(0,0,0,0.55)"/>
+  <!-- Sphère de base -->
+  <circle cx="50" cy="50" r="47" fill="url(#m_base)"/>
+  <g clip-path="url(#m_clip)">
+    <!-- Texture de surface via turbulence -->
+    <rect x="3" y="3" width="94" height="94" fill="url(#m_base)" filter="url(#m_texture)" opacity="0.6"/>
+    <!-- Valles Marineris — grand canyon -->
+    <path d="M10,48 Q22,42 38,45 Q52,48 65,44 Q78,40 90,43"
+      stroke="rgba(60,10,5,0.80)" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#m_blur)"/>
+    <path d="M12,50 Q24,45 40,47 Q54,50 67,46 Q80,42 90,45"
+      stroke="rgba(50,8,3,0.55)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Volcan Olympus Mons -->
+    <circle cx="24" cy="36" r="9"  fill="rgba(140,35,15,0.55)" filter="url(#m_blur2)"/>
+    <circle cx="24" cy="36" r="5"  fill="rgba(160,40,18,0.70)" filter="url(#m_blur)"/>
+    <circle cx="24" cy="36" r="2.5" fill="rgba(180,50,20,0.80)"/>
+    <!-- Cratère Hellas (grand, au sud) -->
+    <circle cx="68" cy="68" r="11" fill="none" stroke="rgba(60,10,5,0.65)" stroke-width="3" filter="url(#m_blur)"/>
+    <circle cx="68" cy="68" r="7"  fill="rgba(90,20,10,0.45)"/>
+    <circle cx="68" cy="68" r="3"  fill="rgba(70,12,5,0.60)"/>
+    <!-- Petit cratère 1 -->
+    <circle cx="35" cy="28" r="5"  fill="none" stroke="rgba(60,10,5,0.55)" stroke-width="2" filter="url(#m_blur)"/>
+    <circle cx="35" cy="28" r="2.5" fill="rgba(80,18,8,0.50)"/>
+    <!-- Petit cratère 2 -->
+    <circle cx="80" cy="32" r="4"  fill="none" stroke="rgba(60,10,5,0.50)" stroke-width="1.5" filter="url(#m_blur)"/>
+    <circle cx="80" cy="32" r="2"  fill="rgba(75,15,6,0.45)"/>
+    <!-- Petit cratère 3 -->
+    <circle cx="55" cy="72" r="3.5" fill="none" stroke="rgba(60,10,5,0.45)" stroke-width="1.5"/>
+    <!-- Calotte polaire NORD -->
+    <ellipse cx="50" cy="8"  rx="22" ry="10" fill="url(#m_pole_n)"/>
+    <ellipse cx="50" cy="8"  rx="14" ry="6"  fill="rgba(255,252,248,0.75)"/>
+    <!-- Calotte polaire SUD -->
+    <ellipse cx="50" cy="92" rx="16" ry="8"  fill="url(#m_pole_s)"/>
+    <ellipse cx="50" cy="92" rx="10" ry="5"  fill="rgba(255,252,248,0.65)"/>
+    <!-- Poussière atmosphérique rouge -->
+    <circle cx="50" cy="50" r="47" fill="rgba(220,80,30,0.06)"/>
+  </g>
+  <!-- Halo atmosphérique rougeâtre -->
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(220,100,50,0.40)" stroke-width="4"/>
+  <!-- Reflet spéculaire -->
+  <circle cx="50" cy="50" r="47" fill="url(#m_shine)"/>
+</svg>`,
+
+            /* ── TERRE — océans, continents, nuages, pôles ── */
+            bleu: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="e_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#c0e8ff"/>
+      <stop offset="30%"  stop-color="#1888e8"/>
+      <stop offset="65%"  stop-color="#0448b0"/>
+      <stop offset="100%" stop-color="#011840"/>
+    </radialGradient>
+    <radialGradient id="e_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.38)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+    </radialGradient>
+    <filter id="e_blur"><feGaussianBlur stdDeviation="1.5"/></filter>
+    <filter id="e_blur2"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <clipPath id="e_clip"><circle cx="50" cy="50" r="47"/></clipPath>
+  </defs>
+  <circle cx="52" cy="53" r="47" fill="rgba(0,0,0,0.55)"/>
+  <circle cx="50" cy="50" r="47" fill="url(#e_base)"/>
+  <g clip-path="url(#e_clip)">
+    <!-- Europe + Afrique du Nord -->
+    <path d="M36,18 Q44,14 50,18 Q56,22 54,32 Q52,38 46,36 Q38,33 35,26 Z"
+      fill="rgba(50,145,50,0.95)"/>
+    <!-- Afrique -->
+    <path d="M38,36 Q46,32 52,38 Q58,46 56,60 Q54,70 48,68 Q40,65 37,55 Q33,44 38,36 Z"
+      fill="rgba(52,142,52,0.92)"/>
+    <!-- Péninsule ibérique -->
+    <path d="M30,26 Q34,24 36,28 Q37,32 33,33 Q29,32 30,26 Z"
+      fill="rgba(50,145,50,0.85)"/>
+    <!-- Scandinavie -->
+    <path d="M44,10 Q50,8 52,14 Q50,18 46,16 Q43,14 44,10 Z"
+      fill="rgba(50,145,50,0.80)"/>
+    <!-- Asie centrale -->
+    <path d="M54,16 Q68,10 76,18 Q82,26 78,34 Q72,38 64,36 Q56,32 54,22 Z"
+      fill="rgba(52,148,52,0.92)"/>
+    <!-- Asie du sud -->
+    <path d="M60,34 Q68,32 74,38 Q76,46 72,52 Q66,56 60,52 Q55,46 58,38 Z"
+      fill="rgba(50,145,50,0.88)"/>
+    <!-- Péninsule arabique -->
+    <path d="M56,38 Q62,36 64,42 Q64,50 60,52 Q54,50 54,44 Z"
+      fill="rgba(200,170,80,0.85)"/>
+    <!-- Amérique du Nord -->
+    <path d="M8,22 Q16,16 22,22 Q26,28 24,38 Q20,44 14,42 Q8,38 8,30 Z"
+      fill="rgba(52,148,52,0.90)"/>
+    <!-- Amérique centrale -->
+    <path d="M14,42 Q20,40 22,46 Q22,52 18,54 Q13,52 12,46 Z"
+      fill="rgba(50,145,50,0.85)"/>
+    <!-- Amérique du Sud -->
+    <path d="M16,54 Q24,50 28,58 Q30,68 26,78 Q20,84 14,80 Q8,72 10,62 Z"
+      fill="rgba(52,148,52,0.88)"/>
+    <!-- Australie -->
+    <path d="M72,60 Q82,56 86,64 Q88,72 82,76 Q74,78 70,70 Q68,64 72,60 Z"
+      fill="rgba(200,165,75,0.85)"/>
+    <!-- Groenland + calotte nord -->
+    <ellipse cx="50" cy="6"  rx="26" ry="11" fill="rgba(240,248,255,0.90)"/>
+    <ellipse cx="50" cy="6"  rx="16" ry="7"  fill="rgba(252,255,255,0.82)"/>
+    <!-- Antarctique -->
+    <ellipse cx="50" cy="94" rx="22" ry="10" fill="rgba(240,248,255,0.88)"/>
+    <ellipse cx="50" cy="94" rx="14" ry="6"  fill="rgba(252,255,255,0.78)"/>
+    <!-- Nuages (couche au dessus de tout) -->
+    <path d="M8,38 Q18,32 30,36 Q34,38 30,42 Q18,44 8,41 Z"
+      fill="rgba(255,255,255,0.72)" filter="url(#e_blur)"/>
+    <path d="M55,22 Q64,18 72,22 Q74,26 70,28 Q62,30 55,26 Z"
+      fill="rgba(255,255,255,0.68)" filter="url(#e_blur)"/>
+    <path d="M24,56 Q34,52 44,56 Q46,59 42,61 Q32,63 24,59 Z"
+      fill="rgba(255,255,255,0.65)" filter="url(#e_blur)"/>
+    <path d="M58,62 Q68,58 78,62 Q80,66 76,67 Q66,69 58,65 Z"
+      fill="rgba(255,255,255,0.62)" filter="url(#e_blur)"/>
+    <path d="M10,66 Q20,62 28,66 Q29,69 26,70 Q18,72 10,68 Z"
+      fill="rgba(255,255,255,0.58)" filter="url(#e_blur)"/>
+    <!-- Halo atmosphérique bleu -->
+    <circle cx="50" cy="50" r="47" fill="rgba(60,140,255,0.07)"/>
+  </g>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(80,180,255,0.45)" stroke-width="4"/>
+  <circle cx="50" cy="50" r="47" fill="url(#e_shine)"/>
+</svg>`,
+
+            /* ── URANUS — géante de glace bleu-cyan, anneaux verticaux ── */
+            vert: `<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="u_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#d8f4fc"/>
+      <stop offset="28%"  stop-color="#48c8d8"/>
+      <stop offset="60%"  stop-color="#0890a8"/>
+      <stop offset="100%" stop-color="#013848"/>
+    </radialGradient>
+    <radialGradient id="u_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.40)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.22)"/>
+    </radialGradient>
+    <filter id="u_blur"><feGaussianBlur stdDeviation="1.5"/></filter>
+    <clipPath id="u_clip"><circle cx="50" cy="65" r="47"/></clipPath>
+  </defs>
+  <!-- Anneaux DERRIÈRE (moitié haute) -->
+  <ellipse cx="50" cy="65" rx="14" ry="62" fill="none" stroke="rgba(72,200,218,0.50)" stroke-width="6"/>
+  <ellipse cx="50" cy="65" rx="20" ry="70" fill="none" stroke="rgba(60,185,205,0.32)" stroke-width="4"/>
+  <ellipse cx="50" cy="65" rx="8"  ry="55" fill="none" stroke="rgba(90,220,235,0.38)" stroke-width="3"/>
+  <ellipse cx="50" cy="65" rx="25" ry="76" fill="none" stroke="rgba(50,170,190,0.20)" stroke-width="2.5"/>
+  <!-- Planète -->
+  <circle cx="52" cy="68" r="47" fill="rgba(0,0,0,0.50)"/>
+  <circle cx="50" cy="65" r="47" fill="url(#u_base)"/>
+  <g clip-path="url(#u_clip)">
+    <!-- Bandes atmosphériques subtiles -->
+    <path d="M3,58  Q25,54 50,56  Q75,58 97,54"  stroke="rgba(0,160,180,0.42)" stroke-width="5"  fill="none"/>
+    <path d="M3,65  Q25,62 50,64  Q75,66 97,62"  stroke="rgba(0,155,175,0.38)" stroke-width="4.5" fill="none"/>
+    <path d="M3,72  Q25,70 50,72  Q75,74 97,70"  stroke="rgba(0,150,170,0.35)" stroke-width="4"  fill="none"/>
+    <path d="M3,78  Q25,77 50,79  Q75,81 97,77"  stroke="rgba(0,145,165,0.30)" stroke-width="3.5" fill="none"/>
+    <!-- Pôle lumineux (Uranus a une rotation axiale à 90°) -->
+    <circle cx="50" cy="22" r="18" fill="rgba(200,245,252,0.38)" filter="url(#u_blur)"/>
+    <circle cx="50" cy="22" r="10" fill="rgba(220,250,255,0.28)" filter="url(#u_blur)"/>
+    <!-- Quelques nuages fins -->
+    <path d="M18,60 Q26,56 34,60 Q35,63 32,64 Z" fill="rgba(215,248,255,0.60)" filter="url(#u_blur)"/>
+    <path d="M62,70 Q70,66 78,70 Q79,73 76,74 Z" fill="rgba(215,248,255,0.55)" filter="url(#u_blur)"/>
+  </g>
+  <!-- Anneaux DEVANT (moitié basse) -->
+  <path d="M36,65 Q36,127 50,127 Q64,127 64,65" fill="none" stroke="rgba(72,200,218,0.50)" stroke-width="6"/>
+  <path d="M30,65 Q30,135 50,135 Q70,135 70,65" fill="none" stroke="rgba(60,185,205,0.32)" stroke-width="4"/>
+  <path d="M42,65 Q42,120 50,120 Q58,120 58,65" fill="none" stroke="rgba(90,220,235,0.38)" stroke-width="3"/>
+  <path d="M25,65 Q25,141 50,141 Q75,141 75,65" fill="none" stroke="rgba(50,170,190,0.20)" stroke-width="2.5"/>
+  <circle cx="50" cy="65" r="47" fill="none" stroke="rgba(70,210,225,0.32)" stroke-width="3.5"/>
+  <circle cx="50" cy="65" r="47" fill="url(#u_shine)"/>
+</svg>`,
+
+            /* ── SATURNE — anneaux inclinés, bandes, tempête hexagonale ── */
+            jaune: `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="s_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#fff4c0"/>
+      <stop offset="28%"  stop-color="#f0b838"/>
+      <stop offset="60%"  stop-color="#c87018"/>
+      <stop offset="100%" stop-color="#623008"/>
+    </radialGradient>
+    <radialGradient id="s_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.38)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+    </radialGradient>
+    <!-- Anneaux gradient -->
+    <linearGradient id="s_ring1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="rgba(210,160,55,0)"/>
+      <stop offset="8%"   stop-color="rgba(230,185,75,0.72)"/>
+      <stop offset="18%"  stop-color="rgba(255,215,100,0.88)"/>
+      <stop offset="28%"  stop-color="rgba(200,150,50,0.70)"/>
+      <stop offset="38%"  stop-color="rgba(245,200,85,0.82)"/>
+      <stop offset="50%"  stop-color="rgba(175,130,42,0.60)"/>
+      <stop offset="62%"  stop-color="rgba(245,200,85,0.82)"/>
+      <stop offset="72%"  stop-color="rgba(200,150,50,0.70)"/>
+      <stop offset="82%"  stop-color="rgba(255,215,100,0.88)"/>
+      <stop offset="92%"  stop-color="rgba(230,185,75,0.72)"/>
+      <stop offset="100%" stop-color="rgba(210,160,55,0)"/>
+    </linearGradient>
+    <filter id="s_blur"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <clipPath id="s_clip"><circle cx="70" cy="50" r="38"/></clipPath>
+  </defs>
+  <!-- Anneaux DERRIÈRE (arc supérieur) -->
+  <ellipse cx="70" cy="62" rx="72" ry="16" fill="none" stroke="rgba(210,165,60,0.80)" stroke-width="8"/>
+  <ellipse cx="70" cy="62" rx="62" ry="13" fill="none" stroke="rgba(245,205,90,0.70)" stroke-width="6"/>
+  <ellipse cx="70" cy="62" rx="52" ry="10.5" fill="none" stroke="rgba(200,155,52,0.65)" stroke-width="5"/>
+  <ellipse cx="70" cy="62" rx="44" ry="9"   fill="none" stroke="rgba(230,185,72,0.55)" stroke-width="3.5"/>
+  <!-- "Cassini division" — espace sombre entre anneaux B et A -->
+  <ellipse cx="70" cy="62" rx="57" ry="11.5" fill="none" stroke="rgba(10,6,2,0.45)" stroke-width="2.5"/>
+  <!-- Planète -->
+  <circle cx="72" cy="52" r="38" fill="rgba(0,0,0,0.52)"/>
+  <circle cx="70" cy="50" r="38" fill="url(#s_base)"/>
+  <g clip-path="url(#s_clip)">
+    <!-- Bandes caractéristiques de Saturne -->
+    <path d="M32,38 Q51,34 70,36 Q89,38 108,34" stroke="rgba(175,105,14,0.55)" stroke-width="5" fill="none"/>
+    <path d="M32,44 Q51,40 70,42 Q89,44 108,40" stroke="rgba(165,95,12,0.50)" stroke-width="4.5" fill="none"/>
+    <path d="M32,50 Q51,47 70,49 Q89,51 108,47" stroke="rgba(175,105,14,0.48)" stroke-width="4"  fill="none"/>
+    <path d="M32,56 Q51,53 70,55 Q89,57 108,53" stroke="rgba(165,95,12,0.45)" stroke-width="4"  fill="none"/>
+    <path d="M32,62 Q51,60 70,62 Q89,64 108,60" stroke="rgba(175,105,14,0.42)" stroke-width="3.5" fill="none"/>
+    <!-- Tempête hexagonale au pôle nord -->
+    <polygon points="70,15 77,19 77,27 70,31 63,27 63,19"
+      fill="none" stroke="rgba(205,130,18,0.62)" stroke-width="2.2"/>
+    <circle cx="70" cy="23" r="4" fill="rgba(190,115,14,0.55)" filter="url(#s_blur)"/>
+    <!-- Quelques nuages -->
+    <path d="M40,42 Q50,38 58,42 Q59,45 56,46 Z" fill="rgba(255,245,205,0.62)" filter="url(#s_blur)"/>
+    <path d="M76,55 Q86,51 94,55 Q95,58 92,59 Z" fill="rgba(255,245,205,0.58)" filter="url(#s_blur)"/>
+  </g>
+  <!-- Anneaux DEVANT (arc inférieur) -->
+  <path d="M-2,62 Q14,78 70,78 Q126,78 142,62" fill="none" stroke="rgba(210,165,60,0.80)" stroke-width="8"/>
+  <path d="M8,62  Q22,74 70,74 Q118,74 132,62" fill="none" stroke="rgba(245,205,90,0.70)" stroke-width="6"/>
+  <path d="M18,62 Q30,70 70,70 Q110,70 122,62" fill="none" stroke="rgba(200,155,52,0.65)" stroke-width="5"/>
+  <path d="M26,62 Q38,67 70,67 Q102,67 114,62" fill="none" stroke="rgba(230,185,72,0.55)" stroke-width="3.5"/>
+  <path d="M13,62 Q25,72 70,72 Q115,72 127,62" fill="none" stroke="rgba(10,6,2,0.45)" stroke-width="2.5"/>
+  <circle cx="70" cy="50" r="38" fill="none" stroke="rgba(235,185,70,0.30)" stroke-width="2"/>
+  <circle cx="70" cy="50" r="38" fill="url(#s_shine)"/>
+</svg>`,
+
+            /* ── JUPITER — bandes, Grande Tache Rouge, tempêtes ── */
+            orange: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="j_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#ffe5b8"/>
+      <stop offset="30%"  stop-color="#f09040"/>
+      <stop offset="62%"  stop-color="#c04e0e"/>
+      <stop offset="100%" stop-color="#601008"/>
+    </radialGradient>
+    <radialGradient id="j_grs" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="rgba(200,50,15,0.92)"/>
+      <stop offset="50%"  stop-color="rgba(175,30,8,0.75)"/>
+      <stop offset="100%" stop-color="rgba(140,15,5,0.50)"/>
+    </radialGradient>
+    <radialGradient id="j_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.38)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.04)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+    </radialGradient>
+    <filter id="j_blur"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <filter id="j_blur2"><feGaussianBlur stdDeviation="2"/></filter>
+    <clipPath id="j_clip"><circle cx="50" cy="50" r="47"/></clipPath>
+  </defs>
+  <circle cx="52" cy="53" r="47" fill="rgba(0,0,0,0.55)"/>
+  <circle cx="50" cy="50" r="47" fill="url(#j_base)"/>
+  <g clip-path="url(#j_clip)">
+    <!-- Bandes larges de Jupiter — très caractéristiques -->
+    <rect x="3" y="10" width="94" height="9"  fill="rgba(155,55,8,0.62)" rx="2"/>
+    <rect x="3" y="20" width="94" height="7"  fill="rgba(230,160,65,0.45)" rx="1"/>
+    <rect x="3" y="28" width="94" height="9"  fill="rgba(148,50,7,0.58)" rx="2"/>
+    <rect x="3" y="38" width="94" height="6"  fill="rgba(225,155,58,0.42)" rx="1"/>
+    <rect x="3" y="45" width="94" height="9"  fill="rgba(155,55,8,0.60)" rx="2"/>
+    <rect x="3" y="55" width="94" height="6"  fill="rgba(230,160,65,0.42)" rx="1"/>
+    <rect x="3" y="62" width="94" height="8"  fill="rgba(148,50,7,0.55)" rx="2"/>
+    <rect x="3" y="71" width="94" height="6"  fill="rgba(225,155,58,0.40)" rx="1"/>
+    <rect x="3" y="78" width="94" height="8"  fill="rgba(155,55,8,0.52)" rx="2"/>
+    <!-- Grande Tache Rouge — ovale tourbillonnant -->
+    <ellipse cx="66" cy="56" rx="14" ry="9" fill="url(#j_grs)" filter="url(#j_blur)"/>
+    <ellipse cx="66" cy="56" rx="10" ry="6.5" fill="rgba(210,55,18,0.85)"/>
+    <ellipse cx="66" cy="56" rx="7"  ry="4.5" fill="rgba(228,68,22,0.80)"/>
+    <ellipse cx="66" cy="56" rx="4"  ry="2.8" fill="rgba(245,82,28,0.78)"/>
+    <ellipse cx="66" cy="56" rx="2"  ry="1.4" fill="rgba(255,100,38,0.72)"/>
+    <!-- Petite Tache Rouge (Oval BA) -->
+    <ellipse cx="40" cy="64" rx="7" ry="4.5" fill="rgba(195,45,12,0.72)"/>
+    <ellipse cx="40" cy="64" rx="4" ry="2.8" fill="rgba(215,58,18,0.68)"/>
+    <!-- Nuages brillants dans les bandes -->
+    <path d="M5,14  Q14,10 22,14 Q23,17 20,18 Z"  fill="rgba(255,245,218,0.72)" filter="url(#j_blur)"/>
+    <path d="M28,32 Q38,28 48,32 Q49,35 46,36 Z"  fill="rgba(255,245,218,0.68)" filter="url(#j_blur)"/>
+    <path d="M10,67 Q20,63 30,67 Q31,70 28,71 Z"  fill="rgba(255,245,218,0.65)" filter="url(#j_blur)"/>
+    <path d="M72,38 Q82,34 90,38 Q91,41 88,42 Z"  fill="rgba(255,245,218,0.62)" filter="url(#j_blur)"/>
+    <!-- Petite tempête blanche (comme Oval BA avant 2000) -->
+    <circle cx="20" cy="56" r="4" fill="rgba(255,250,225,0.70)" filter="url(#j_blur)"/>
+  </g>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(235,155,55,0.30)" stroke-width="3"/>
+  <circle cx="50" cy="50" r="47" fill="url(#j_shine)"/>
+</svg>`,
+
+            /* ── NEPTUNE — bleu profond, Grande Tache Sombre, nuages de méthane ── */
+            violet: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <defs>
+    <radialGradient id="n_base" cx="38%" cy="32%" r="70%">
+      <stop offset="0%"   stop-color="#b0c8ff"/>
+      <stop offset="28%"  stop-color="#2850e8"/>
+      <stop offset="60%"  stop-color="#0e22a8"/>
+      <stop offset="100%" stop-color="#04083c"/>
+    </radialGradient>
+    <radialGradient id="n_shine" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.40)"/>
+      <stop offset="55%"  stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+    </radialGradient>
+    <filter id="n_blur"><feGaussianBlur stdDeviation="1.5"/></filter>
+    <filter id="n_blur2"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <clipPath id="n_clip"><circle cx="50" cy="50" r="47"/></clipPath>
+  </defs>
+  <circle cx="52" cy="53" r="47" fill="rgba(0,0,0,0.55)"/>
+  <circle cx="50" cy="50" r="47" fill="url(#n_base)"/>
+  <g clip-path="url(#n_clip)">
+    <!-- Bandes atmosphériques -->
+    <path d="M3,34 Q25,30 50,32 Q75,34 97,30" stroke="rgba(18,55,210,0.48)" stroke-width="6" fill="none"/>
+    <path d="M3,44 Q25,41 50,43 Q75,45 97,41" stroke="rgba(18,55,210,0.44)" stroke-width="5.5" fill="none"/>
+    <path d="M3,54 Q25,52 50,54 Q75,56 97,52" stroke="rgba(18,55,210,0.42)" stroke-width="5"  fill="none"/>
+    <path d="M3,64 Q25,62 50,64 Q75,66 97,62" stroke="rgba(18,55,210,0.38)" stroke-width="4.5" fill="none"/>
+    <path d="M3,74 Q25,72 50,74 Q75,76 97,72" stroke="rgba(18,55,210,0.35)" stroke-width="4"  fill="none"/>
+    <!-- Grande Tache Sombre (tempête anticlyclonique) -->
+    <ellipse cx="58" cy="45" rx="13" ry="8" fill="rgba(5,8,75,0.82)" filter="url(#n_blur)"/>
+    <ellipse cx="58" cy="45" rx="9"  ry="5.5" fill="rgba(4,6,60,0.75)"/>
+    <ellipse cx="58" cy="45" rx="5"  ry="3"   fill="rgba(3,4,48,0.70)"/>
+    <!-- Nuages de méthane blancs lumineux (caractéristiques de Neptune) -->
+    <path d="M18,40 Q28,34 38,40 Q40,44 36,46 Z" fill="rgba(205,220,255,0.82)" filter="url(#n_blur)"/>
+    <path d="M62,58 Q72,52 82,58 Q83,62 80,63 Z" fill="rgba(205,220,255,0.78)" filter="url(#n_blur)"/>
+    <path d="M28,62 Q38,56 48,62 Q49,66 46,67 Z" fill="rgba(205,220,255,0.75)" filter="url(#n_blur)"/>
+    <path d="M70,32 Q78,28 86,32 Q87,35 84,36 Z" fill="rgba(205,220,255,0.70)" filter="url(#n_blur)"/>
+    <!-- Petite tache sombre 2 -->
+    <ellipse cx="30" cy="70" rx="7" ry="4.5" fill="rgba(5,8,75,0.65)" filter="url(#n_blur)"/>
+    <!-- Halo froid -->
+    <circle cx="50" cy="50" r="47" fill="rgba(25,60,220,0.07)"/>
+  </g>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(70,110,255,0.42)" stroke-width="4"/>
+  <circle cx="50" cy="50" r="47" fill="url(#n_shine)"/>
+</svg>`,
+        };
+
+
+        /* ── GALAXIE SVGs — nébuleuses colorées avec spirale animée ── */
+        const galaxieSVGs = {
+            _make: (c1, c2, c3, starCol) => `<svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gbg_${c1.replace('#', '')}" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${c1}" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="${c2}" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#000010" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="gcenter_${c1.replace('#', '')}" cx="50%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="${c3}" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="${c3}" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="gclip_${c1.replace('#', '')}"><circle cx="17" cy="17" r="16"/></clipPath>
+    <filter id="gblur_${c1.replace('#', '')}"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <filter id="gblur2_${c1.replace('#', '')}"><feGaussianBlur stdDeviation="2.5"/></filter>
+  </defs>
+  <circle cx="17" cy="17" r="16" fill="url(#gbg_${c1.replace('#', '')})"/>
+  <g clip-path="url(#gclip_${c1.replace('#', '')})">
+    <!-- Nébuleuse diffuse -->
+    <ellipse cx="17" cy="17" rx="14" ry="10" fill="${c2}" opacity="0.12" filter="url(#gblur2_${c1.replace('#', '')})"/>
+    <ellipse cx="12" cy="14" rx="8" ry="5" fill="${c3}" opacity="0.15" filter="url(#gblur2_${c1.replace('#', '')})"/>
+    <!-- Bras spiraux -->
+    <g style="transform-origin:17px 17px;animation:spinGal 18s linear infinite">
+      <path d="M17,17 Q22,10 28,8 Q30,7 31,9 Q29,12 24,14 Q19,16 17,17" fill="${c3}" opacity="0.45" filter="url(#gblur_${c1.replace('#', '')})"/>
+      <path d="M17,17 Q12,24 6,26 Q4,27 3,25 Q5,22 10,20 Q15,18 17,17" fill="${c2}" opacity="0.45" filter="url(#gblur_${c1.replace('#', '')})"/>
+    </g>
+    <g style="transform-origin:17px 17px;animation:spinGal2 22s linear infinite">
+      <path d="M17,17 Q10,10 8,4 Q7,2 9,2 Q12,4 14,9 Q16,14 17,17" fill="${c1}" opacity="0.35" filter="url(#gblur_${c1.replace('#', '')})"/>
+      <path d="M17,17 Q24,24 26,30 Q27,32 25,32 Q22,30 20,25 Q18,20 17,17" fill="${c2}" opacity="0.35" filter="url(#gblur_${c1.replace('#', '')})"/>
+    </g>
+    <!-- Noyau lumineux -->
+    <circle cx="17" cy="17" r="5" fill="url(#gcenter_${c1.replace('#', '')})" filter="url(#gblur_${c1.replace('#', '')})"/>
+    <circle cx="17" cy="17" r="2.5" fill="${c3}" opacity="0.9"/>
+    <circle cx="17" cy="17" r="1" fill="white" opacity="0.95"/>
+    <!-- Étoiles -->
+    <circle cx="7"  cy="6"  r="0.9" fill="${starCol}" opacity="0.95" style="animation:twinkle 2.1s ease-in-out infinite"/>
+    <circle cx="26" cy="7"  r="0.7" fill="${starCol}" opacity="0.85" style="animation:twinkle 3.0s ease-in-out infinite 0.5s"/>
+    <circle cx="5"  cy="22" r="0.8" fill="${starCol}" opacity="0.90" style="animation:twinkle 2.6s ease-in-out infinite 1s"/>
+    <circle cx="28" cy="25" r="0.9" fill="${starCol}" opacity="0.85" style="animation:twinkle 1.9s ease-in-out infinite 0.3s"/>
+    <circle cx="14" cy="4"  r="0.6" fill="${starCol}" opacity="0.80" style="animation:twinkle 3.3s ease-in-out infinite 0.8s"/>
+    <circle cx="24" cy="28" r="0.7" fill="${starCol}" opacity="0.80" style="animation:twinkle 2.4s ease-in-out infinite 1.2s"/>
+    <circle cx="10" cy="29" r="0.6" fill="${starCol}" opacity="0.75" style="animation:twinkle 2.8s ease-in-out infinite 0.6s"/>
+    <circle cx="30" cy="15" r="0.7" fill="${starCol}" opacity="0.80" style="animation:twinkle 2.2s ease-in-out infinite 1.5s"/>
+  </g>
+  <!-- Halo externe -->
+  <circle cx="17" cy="17" r="16" fill="none" stroke="${c2}" stroke-width="2" opacity="0.25"/>
+</svg>`,
+            rouge: null, bleu: null, vert: null, jaune: null, orange: null, violet: null
+        };
+        galaxieSVGs.rouge = galaxieSVGs._make('#3a0010', '#c02040', '#ff8090', '#ffccd6');
+        galaxieSVGs.bleu = galaxieSVGs._make('#00051a', '#1040c0', '#60a8ff', '#c8e0ff');
+        galaxieSVGs.vert = galaxieSVGs._make('#001808', '#108050', '#40e0a0', '#b0ffe0');
+        galaxieSVGs.jaune = galaxieSVGs._make('#180e00', '#b08000', '#ffd060', '#fff0b0');
+        galaxieSVGs.orange = galaxieSVGs._make('#1a0800', '#c04010', '#ff8040', '#ffd0a0');
+        galaxieSVGs.violet = galaxieSVGs._make('#0a0018', '#6020c0', '#c080ff', '#e8c8ff');
+        const bonbonSVGs = { rouge: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg_r" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#ffccd6"/><stop offset="45%" stop-color="#ff4d6d"/><stop offset="100%" stop-color="#8b0000"/></radialGradient></defs><circle cx="16" cy="13" r="11" fill="url(#bg_r)"/><path d="M9,10 Q16,6 23,10" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M8,14 Q16,10 24,14" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="11" cy="10" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-30,11,10)"/><rect x="15" y="23" width="2.5" height="8" rx="1" fill="#8B4513"/><ellipse cx="16" cy="23" rx="2" ry="1" fill="#6b3410"/></svg>', bleu: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg_b" cx="40%" cy="35%" r="55%"><stop offset="0%" stop-color="#cce8ff"/><stop offset="50%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></radialGradient></defs><ellipse cx="16" cy="16" rx="10" ry="7" fill="url(#bg_b)"/><ellipse cx="5" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(-15,5,16)"/><ellipse cx="27" cy="16" rx="5" ry="3" fill="#60a5fa" transform="rotate(15,27,16)"/><ellipse cx="12" cy="13" rx="3" ry="2" fill="rgba(255,255,255,0.5)" transform="rotate(-20,12,13)"/></svg>', vert: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cane_g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fff"/><stop offset="40%" stop-color="#fff"/><stop offset="40%" stop-color="#22c55e"/><stop offset="60%" stop-color="#22c55e"/><stop offset="60%" stop-color="#fff"/><stop offset="100%" stop-color="#fff"/></linearGradient></defs><path d="M20,28 L20,10 Q20,3 13,3 Q6,3 6,10" stroke="url(#cane_g)" stroke-width="5" fill="none" stroke-linecap="round"/></svg>', jaune: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg_y" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="50%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#d97706"/></radialGradient></defs><ellipse cx="16" cy="18" rx="9" ry="11" fill="url(#bg_y)"/><circle cx="16" cy="9" r="7" fill="url(#bg_y)"/><circle cx="10" cy="5" r="3.5" fill="#fbbf24"/><circle cx="22" cy="5" r="3.5" fill="#fbbf24"/><circle cx="10" cy="5" r="1.5" fill="#f59e0b"/><circle cx="22" cy="5" r="1.5" fill="#f59e0b"/><ellipse cx="13" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/><ellipse cx="19" cy="8" rx="1.5" ry="1.8" fill="#7c5c00"/></svg>', orange: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg_o" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fed7aa"/><stop offset="45%" stop-color="#f97316"/><stop offset="100%" stop-color="#9a3412"/></radialGradient></defs><ellipse cx="16" cy="16" rx="13" ry="12" fill="url(#bg_o)"/><ellipse cx="11" cy="10" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-25,11,10)"/><text x="16" y="20" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="11" fill="rgba(255,255,255,0.85)">m</text></svg>', violet: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="mac_top" cx="45%" cy="35%" r="55%"><stop offset="0%" stop-color="#e9d5ff"/><stop offset="60%" stop-color="#a855f7"/><stop offset="100%" stop-color="#581c87"/></radialGradient></defs><ellipse cx="16" cy="22" rx="12" ry="5" fill="#7e22ce"/><rect x="4" y="17" width="24" height="5" rx="1" fill="#f3e8ff"/><ellipse cx="16" cy="14" rx="12" ry="8" fill="url(#mac_top)"/><ellipse cx="16" cy="20" rx="12" ry="3" fill="#9333ea" opacity="0.6"/><ellipse cx="12" cy="11" rx="4" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-20,12,11)"/></svg>' };
+
+        /* ── AUDIO ── */
         let audioCtx = null, masterGain = null, menuOscNodes = [], menuPlaying = false;
         let sndMusique = true, sndSfx = true, sndWin = true, masterVol = 0.6;
         let musicScheduler = null, musicBeat = 0, musicStartTime = 0;
 
-        function getCtx() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                masterGain = audioCtx.createGain();
-                masterGain.gain.value = masterVol;
-                masterGain.connect(audioCtx.destination);
-            }
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            return audioCtx;
+        function getCtx() { if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); masterGain = audioCtx.createGain(); masterGain.gain.value = masterVol; masterGain.connect(audioCtx.destination); } if (audioCtx.state === 'suspended') audioCtx.resume(); return audioCtx; }
+        const N = { A2: 110, B2: 123, C3: 131, D3: 147, E3: 165, F3: 175, G3: 196, GS3: 208, A3: 220, B3: 247, C4: 262, D4: 294, E4: 330, F4: 349, G4: 392, GS4: 415, A4: 440, B4: 494, C5: 523, D5: 587, E5: 659, F5: 698, G5: 784, GS5: 830, A5: 880 };
+        const MEL = [[N.A4, .4, 0], [N.C5, .4, .5], [N.E5, .4, 1], [N.A5, .8, 1.5], [N.G5, .4, 2.5], [N.E5, .4, 3], [N.C5, .4, 3.5], [N.D5, .4, 4], [N.B4, .4, 4.5], [N.GS4, .4, 5], [N.E4, .8, 5.5], [N.F4, .4, 6.5], [N.GS4, .4, 7], [N.A4, .4, 7.5], [N.E5, .8, 10], [N.D5, .4, 11], [N.C5, .4, 11.5], [N.B4, .4, 12], [N.GS4, .4, 12.5], [N.A4, .8, 13], [N.C5, .4, 14], [N.E5, .4, 14.5], [N.A5, .9, 15], [N.A5, .3, 16], [N.G5, .3, 16.5], [N.E5, .3, 17], [N.C5, .3, 17.5], [N.D5, .3, 18], [N.E5, .3, 18.5], [N.F5, .3, 19], [N.E5, .3, 19.5], [N.D5, .3, 20], [N.C5, .3, 20.5], [N.B4, .3, 21], [N.A4, .3, 21.5], [N.GS4, .3, 22], [N.A4, .3, 22.5], [N.B4, .3, 23], [N.C5, .3, 23.5], [N.D5, .4, 24], [N.E5, .4, 24.5], [N.F5, .4, 25], [N.GS5, .4, 25.5], [N.A5, 1.2, 26], [N.G5, .4, 27.5], [N.E5, .4, 28], [N.D5, .4, 28.5], [N.C5, .4, 29], [N.B4, .4, 29.5], [N.A4, .4, 30], [N.C5, .4, 30.5], [N.E5, .9, 31]];
+        const CMID = [[N.E4, .4, 0], [N.G4, .4, .5], [N.C5, .4, 1], [N.E5, .8, 1.5], [N.D5, .4, 2.5], [N.C5, .4, 3], [N.A4, .4, 3.5], [N.B3, .4, 4], [N.GS3, .4, 4.5], [N.E3, .4, 5], [N.C4, .8, 5.5], [N.D4, .4, 6.5], [N.E4, .4, 7], [N.F4, .4, 7.5], [N.F4, 1.6, 8], [N.A4, .8, 10], [N.G4, .4, 11], [N.F4, .4, 11.5], [N.E4, .4, 12], [N.F4, .4, 12.5], [N.E4, .8, 13], [N.G4, .4, 14], [N.C5, .4, 14.5], [N.E5, .9, 15]];
+        const BASS = [[N.A2, .3, 0], [N.A2, .3, .5], [N.A3, .3, 1], [N.A2, .3, 1.5], [N.A2, .3, 2], [N.E3, .3, 2.5], [N.A2, .3, 3], [N.GS3, .3, 3.5], [N.A2, .3, 4], [N.A2, .3, 4.5], [N.D3, .3, 5], [N.A2, .3, 5.5], [N.F3, .3, 6], [N.E3, .3, 6.5], [N.A2, .3, 7], [N.E3, .3, 7.5], [N.A2, .3, 8], [N.C3, .3, 8.5], [N.E3, .3, 9], [N.A2, .3, 9.5], [N.A2, .3, 10], [N.E3, .3, 10.5], [N.A2, .3, 11], [N.GS3, .3, 11.5], [N.A2, .3, 12], [N.A2, .3, 12.5], [N.E3, .3, 13], [N.A2, .3, 13.5], [N.F3, .3, 14], [N.E3, .3, 14.5], [N.A2, .3, 15], [N.A3, .3, 15.5], [N.A2, .3, 16], [N.A2, .3, 16.5], [N.A3, .3, 17], [N.A2, .3, 17.5], [N.A2, .3, 18], [N.E3, .3, 18.5], [N.A2, .3, 19], [N.GS3, .3, 19.5], [N.D3, .3, 20], [N.D3, .3, 20.5], [N.A3, .3, 21], [N.D3, .3, 21.5], [N.E3, .3, 22], [N.E3, .3, 22.5], [N.B3, .3, 23], [N.E3, .3, 23.5], [N.A2, .3, 24], [N.C3, .3, 24.5], [N.E3, .3, 25], [N.A3, .3, 25.5], [N.A2, .3, 26], [N.E3, .3, 26.5], [N.A3, .3, 27], [N.E3, .3, 27.5], [N.A2, .3, 28], [N.A2, .3, 28.5], [N.E3, .3, 29], [N.A2, .3, 29.5], [N.A2, .3, 30], [N.C3, .3, 30.5], [N.E3, .3, 31], [N.A3, .25, 31.5]];
+        const ARP = [N.A3, N.E4, N.A4, N.E4, N.A3, N.E4, N.C5, N.E4, N.D4, N.A4, N.D5, N.A4, N.E4, N.B4, N.E5, N.B4];
+
+        function mkOsc(c, t, f, tm, d, g, fh = null) { let o = c.createOscillator(), gn = c.createGain(); o.type = t; o.frequency.value = f; gn.gain.setValueAtTime(0, tm); gn.gain.linearRampToValueAtTime(g, tm + .012); gn.gain.setValueAtTime(g, tm + d - .025); gn.gain.linearRampToValueAtTime(0, tm + d); if (fh) { let fl = c.createBiquadFilter(); fl.type = 'lowpass'; fl.frequency.value = fh; o.connect(fl); fl.connect(gn); } else o.connect(gn); gn.connect(masterGain); o.start(tm); o.stop(tm + d + .05); menuOscNodes.push(o); }
+        function mkNz(c, g, t, d, fh) { let l = Math.max(1, Math.ceil(c.sampleRate * d)), b = c.createBuffer(1, l, c.sampleRate), dt = b.getChannelData(0); for (let i = 0; i < dt.length; i++)dt[i] = (Math.random() * 2 - 1) * Math.pow(Math.max(0, 1 - i / dt.length), 1.3); let s = c.createBufferSource(), f = c.createBiquadFilter(), gn = c.createGain(); f.type = 'highpass'; f.frequency.value = fh; gn.gain.setValueAtTime(g, t); gn.gain.exponentialRampToValueAtTime(.001, t + d); s.buffer = b; s.connect(f); f.connect(gn); gn.connect(masterGain); s.start(t); menuOscNodes.push(s); }
+        function schedBeat(b, t, c, bt) {
+            MEL.forEach(m => { if (Math.abs(b - m[2]) < .001) { mkOsc(c, 'square', m[0], t, m[1] * bt, .14); mkOsc(c, 'square', m[0] / 2, t, m[1] * bt, .05, 1200); } });
+            CMID.forEach(m => { if (Math.abs(b - m[2]) < .001) mkOsc(c, 'triangle', m[0], t, m[1] * bt, .08); });
+            BASS.forEach(m => { if (Math.abs(b - m[2]) < .001 || Math.abs(b - m[2] - .5) < .001) { let o = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain(); o.type = 'sawtooth'; o.frequency.value = m[0]; f.type = 'lowpass'; f.Q.value = 5; f.frequency.setValueAtTime(300, t); f.frequency.linearRampToValueAtTime(1500, t + .018); f.frequency.exponentialRampToValueAtTime(400, t + m[1] * bt); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.38, t + .012); g.gain.setValueAtTime(.38, t + m[1] * bt - .02); g.gain.linearRampToValueAtTime(0, t + m[1] * bt); o.connect(f); f.connect(g); g.connect(masterGain); o.start(t); o.stop(t + m[1] * bt + .04); menuOscNodes.push(o); } });
+            if (b === Math.floor(b)) { let a = Math.floor(b) % 16; mkOsc(c, 'square', ARP[a], t, bt * .45, .04, 2000); mkOsc(c, 'square', ARP[(a + 1) % 16], t + bt * .5, bt * .45, .04, 2000); }
+            if (b % 4 === 0 || b % 4 === 2.75) { let k = c.createOscillator(), kg = c.createGain(); k.type = 'sine'; k.frequency.setValueAtTime(160, t); k.frequency.exponentialRampToValueAtTime(30, t + .15); kg.gain.setValueAtTime(.8, t); kg.gain.exponentialRampToValueAtTime(.001, t + .18); k.connect(kg); kg.connect(masterGain); k.start(t); k.stop(t + .2); menuOscNodes.push(k); }
+            if (b % 4 === 2) { mkNz(c, .35, t, .12, 2000); mkOsc(c, 'triangle', 200, t, .07, .2); }
+            if (b === Math.floor(b) || (b * 2 === Math.floor(b * 2))) mkNz(c, .05, t, .025, 9000);
+            if (Math.abs((b % 2) - 1.5) < .001) mkNz(c, .07, t, .12, 7000);
+            if (b % 8 === 4 || b % 8 === 6.5) mkOsc(c, 'sine', N.A5 * 2, t, .08, .06);
         }
-
-        /* ══════════════════════════════════════
-           MUSIQUE ARCADE — style Pac-Man / Galaga / OutRun
-           Mélodie entraînante, beat punchy, basse rebondissante
-        ══════════════════════════════════════ */
-
-        // Gamme en La mineur harmonique — son arcade classique
-        // Toutes les notes utilisées dans le morceau
-        const N = {
-            A2: 110, B2: 123, C3: 131, D3: 147, E3: 165, F3: 175, G3: 196, GS3: 208,
-            A3: 220, B3: 247, C4: 262, D4: 294, E4: 330, F4: 349, G4: 392, GS4: 415,
-            A4: 440, B4: 494, C5: 523, D5: 587, E5: 659, F5: 698, G5: 784, GS5: 830, A5: 880
-        };
-
-        // MÉLODIE PRINCIPALE — accrocheuse et joyeuse style Pac-Man/Galaga
-        // Format: [note, beat (0-31), durée en beats]
-        const MEL = [
-            // Phrase A (mesures 1-2) : montée énergique
-            [N.A4, 0, 0.4], [N.C5, 0.5, 0.4], [N.E5, 1, 0.4], [N.A5, 1.5, 0.8],
-            [N.G5, 2.5, 0.4], [N.E5, 3, 0.4], [N.C5, 3.5, 0.4],
-            // Phrase B (mesures 3-4) : descente avec rebond
-            [N.D5, 4, 0.4], [N.B4, 4.5, 0.4], [N.GS4, 5, 0.4], [N.E4, 5.5, 0.8],
-            [N.F4, 6.5, 0.4], [N.GS4, 7, 0.4], [N.A4, 7.5, 0.4],
-            // Phrase C (mesures 5-6) : tension montante
-            [N.A4, 8, 0.4], [N.B4, 8.5, 0.4], [N.C5, 9, 0.4], [N.D5, 9.5, 0.4],
-            [N.E5, 10, 0.8], [N.D5, 11, 0.4], [N.C5, 11.5, 0.4],
-            // Phrase D (mesures 7-8) : résolution joyeuse
-            [N.B4, 12, 0.4], [N.GS4, 12.5, 0.4], [N.A4, 13, 0.8],
-            [N.C5, 14, 0.4], [N.E5, 14.5, 0.4], [N.A5, 15, 0.9],
-            // Phrase E (mesures 9-10) : variation plus rapide
-            [N.A5, 16, 0.3], [N.G5, 16.5, 0.3], [N.E5, 17, 0.3], [N.C5, 17.5, 0.3],
-            [N.D5, 18, 0.3], [N.E5, 18.5, 0.3], [N.F5, 19, 0.3], [N.E5, 19.5, 0.3],
-            // Phrase F (mesures 11-12)
-            [N.D5, 20, 0.3], [N.C5, 20.5, 0.3], [N.B4, 21, 0.3], [N.A4, 21.5, 0.3],
-            [N.GS4, 22, 0.3], [N.A4, 22.5, 0.3], [N.B4, 23, 0.3], [N.C5, 23.5, 0.3],
-            // Phrase G (mesures 13-14) : montée finale
-            [N.D5, 24, 0.4], [N.E5, 24.5, 0.4], [N.F5, 25, 0.4], [N.GS5, 25.5, 0.4],
-            [N.A5, 26, 1.2], [N.G5, 27.5, 0.4],
-            // Phrase H (mesure 15-16) : coda percutante
-            [N.E5, 28, 0.4], [N.D5, 28.5, 0.4], [N.C5, 29, 0.4], [N.B4, 29.5, 0.4],
-            [N.A4, 30, 0.4], [N.C5, 30.5, 0.4], [N.E5, 31, 0.9],
-        ];
-
-        // CONTRE-MÉLODIE — harmonise à la tierce
-        const CMID = [
-            [N.E4, 0, 0.4], [N.G4, 0.5, 0.4], [N.C5, 1, 0.4], [N.E5, 1.5, 0.8],
-            [N.D5, 2.5, 0.4], [N.C5, 3, 0.4], [N.A4, 3.5, 0.4],
-            [N.B3, 4, 0.4], [N.GS3, 4.5, 0.4], [N.E3, 5, 0.4], [N.C4, 5.5, 0.8],
-            [N.D4, 6.5, 0.4], [N.E4, 7, 0.4], [N.F4, 7.5, 0.4],
-            [N.F4, 8, 1.6], [N.A4, 10, 0.8], [N.G4, 11, 0.4], [N.F4, 11.5, 0.4],
-            [N.E4, 12, 0.4], [N.F4, 12.5, 0.4], [N.E4, 13, 0.8],
-            [N.G4, 14, 0.4], [N.C5, 14.5, 0.4], [N.E5, 15, 0.9],
-        ];
-
-        // BASSE REBONDISSANTE — style OutRun / arcade funk
-        const BASS = [
-            [N.A2, 0, 0.3], [N.A2, 0.5, 0.3], [N.A3, 1, 0.3], [N.A2, 1.5, 0.3],
-            [N.A2, 2, 0.3], [N.E3, 2.5, 0.3], [N.A2, 3, 0.3], [N.GS3, 3.5, 0.3],
-            [N.A2, 4, 0.3], [N.A2, 4.5, 0.3], [N.D3, 5, 0.3], [N.A2, 5.5, 0.3],
-            [N.F3, 6, 0.3], [N.E3, 6.5, 0.3], [N.A2, 7, 0.3], [N.E3, 7.5, 0.3],
-            [N.A2, 8, 0.3], [N.C3, 8.5, 0.3], [N.E3, 9, 0.3], [N.A2, 9.5, 0.3],
-            [N.A2, 10, 0.3], [N.E3, 10.5, 0.3], [N.A2, 11, 0.3], [N.GS3, 11.5, 0.3],
-            [N.A2, 12, 0.3], [N.A2, 12.5, 0.3], [N.E3, 13, 0.3], [N.A2, 13.5, 0.3],
-            [N.F3, 14, 0.3], [N.E3, 14.5, 0.3], [N.A2, 15, 0.3], [N.A3, 15.5, 0.3],
-            // repeat basse
-            [N.A2, 16, 0.3], [N.A2, 16.5, 0.3], [N.A3, 17, 0.3], [N.A2, 17.5, 0.3],
-            [N.A2, 18, 0.3], [N.E3, 18.5, 0.3], [N.A2, 19, 0.3], [N.GS3, 19.5, 0.3],
-            [N.D3, 20, 0.3], [N.D3, 20.5, 0.3], [N.A3, 21, 0.3], [N.D3, 21.5, 0.3],
-            [N.E3, 22, 0.3], [N.E3, 22.5, 0.3], [N.B3, 23, 0.3], [N.E3, 23.5, 0.3],
-            [N.A2, 24, 0.3], [N.C3, 24.5, 0.3], [N.E3, 25, 0.3], [N.A3, 25.5, 0.3],
-            [N.A2, 26, 0.3], [N.E3, 26.5, 0.3], [N.A3, 27, 0.3], [N.E3, 27.5, 0.3],
-            [N.A2, 28, 0.3], [N.A2, 28.5, 0.3], [N.E3, 29, 0.3], [N.A2, 29.5, 0.3],
-            [N.A2, 30, 0.3], [N.C3, 30.5, 0.3], [N.E3, 31, 0.3], [N.A3, 31.5, 0.25],
-        ];
-
-        // ARPÈGE EN FOND — shimmer style Galaga
-        const ARP = [N.A3, N.E4, N.A4, N.E4, N.A3, N.E4, N.C5, N.E4,
-        N.D4, N.A4, N.D5, N.A4, N.E4, N.B4, N.E5, N.B4];
-
-        const BPM = 148;
-        const LOOP = 32; // beats par boucle
-
-        function mkOsc(ctx, type, freq, t, dur, gain, filtHz = null, filtQ = 1) {
-            const osc = ctx.createOscillator();
-            const g = ctx.createGain();
-            osc.type = type;
-            osc.frequency.value = freq;
-            g.gain.setValueAtTime(0, t);
-            g.gain.linearRampToValueAtTime(gain, t + 0.012);
-            g.gain.setValueAtTime(gain, t + dur - 0.025);
-            g.gain.linearRampToValueAtTime(0, t + dur);
-            if (filtHz) {
-                const f = ctx.createBiquadFilter();
-                f.type = 'lowpass'; f.frequency.value = filtHz; f.Q.value = filtQ;
-                osc.connect(f); f.connect(g);
-            } else { osc.connect(g); }
-            g.connect(masterGain);
-            osc.start(t); osc.stop(t + dur + 0.05);
-            menuOscNodes.push(osc);
-        }
-
-        function mkNoise(ctx, gainVal, t, dur, filtType, filtHz, filtQ = 1) {
-            const len = Math.max(1, Math.ceil(ctx.sampleRate * dur));
-            const buf = ctx.createBuffer(1, len, ctx.sampleRate);
-            const d = buf.getChannelData(0);
-            for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(Math.max(0, 1 - i / d.length), 1.3);
-            const src = ctx.createBufferSource();
-            const filt = ctx.createBiquadFilter(); filt.type = filtType; filt.frequency.value = filtHz; filt.Q.value = filtQ;
-            const g = ctx.createGain(); g.gain.setValueAtTime(gainVal, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-            src.buffer = buf; src.connect(filt); filt.connect(g); g.connect(masterGain); src.start(t);
-            menuOscNodes.push(src);
-        }
-
-        function scheduleMusicBeat(b, t, ctx, beat) {
-            // ── MÉLODIE (onde carrée brillante — son arcade pur) ──
-            MEL.forEach(([freq, start, dur]) => {
-                if (Math.abs(b - start) < 0.001) {
-                    // Couche principale
-                    mkOsc(ctx, 'square', freq, t, dur * beat, 0.14);
-                    // Octave basse pour la richesse
-                    mkOsc(ctx, 'square', freq / 2, t, dur * beat, 0.05, 1200, 1);
-                }
-            });
-
-            // ── CONTRE-MÉLODIE (triangle doux — harmonie) ──
-            CMID.forEach(([freq, start, dur]) => {
-                if (Math.abs(b - start) < 0.001) {
-                    mkOsc(ctx, 'triangle', freq, t, dur * beat, 0.08);
-                }
-            });
-
-            // ── BASSE (sawtooth filtré — rebondissant) ──
-            BASS.forEach(([freq, start, dur]) => {
-                if (Math.abs(b - start) < 0.001 || Math.abs(b - start - 0.5) < 0.001) {
-                    const osc = ctx.createOscillator();
-                    const filt = ctx.createBiquadFilter();
-                    const g = ctx.createGain();
-                    osc.type = 'sawtooth'; osc.frequency.value = freq;
-                    filt.type = 'lowpass'; filt.Q.value = 5;
-                    filt.frequency.setValueAtTime(300, t);
-                    filt.frequency.linearRampToValueAtTime(1500, t + 0.018);
-                    filt.frequency.exponentialRampToValueAtTime(400, t + dur * beat);
-                    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.38, t + 0.012);
-                    g.gain.setValueAtTime(0.38, t + dur * beat - 0.02); g.gain.linearRampToValueAtTime(0, t + dur * beat);
-                    osc.connect(filt); filt.connect(g); g.connect(masterGain);
-                    osc.start(t); osc.stop(t + dur * beat + 0.04);
-                    menuOscNodes.push(osc);
-                }
-            });
-
-            // ── ARPÈGE SHIMMER (onde pulse — brillant en arrière-plan) ──
-            if (b === Math.floor(b)) {
-                const arpIdx = Math.floor(b) % ARP.length;
-                mkOsc(ctx, 'square', ARP[arpIdx], t, beat * 0.45, 0.04, 2000, 1);
-                mkOsc(ctx, 'square', ARP[(arpIdx + 1) % ARP.length], t + beat * 0.5, beat * 0.45, 0.04, 2000, 1);
-            }
-
-            // ── BATTERIE ARCADE ──
-            // Kick (sine sweep — boom classique)
-            if (b % 4 === 0 || b % 4 === 2.75) {
-                const k = ctx.createOscillator(); const kg = ctx.createGain();
-                k.type = 'sine';
-                k.frequency.setValueAtTime(160, t); k.frequency.exponentialRampToValueAtTime(30, t + 0.15);
-                kg.gain.setValueAtTime(0.8, t); kg.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
-                k.connect(kg); kg.connect(masterGain); k.start(t); k.stop(t + 0.2);
-                menuOscNodes.push(k);
-            }
-
-            // Snare (sur les temps 2 et 4)
-            if (b % 4 === 2) {
-                mkNoise(ctx, 0.35, t, 0.12, 'bandpass', 2000, 0.8);
-                mkOsc(ctx, 'triangle', 200, t, 0.07, 0.2);
-            }
-
-            // Hi-hat fermé (chaque demi-beat)
-            if (b === Math.floor(b) || (b * 2 === Math.floor(b * 2))) {
-                mkNoise(ctx, 0.05, t, 0.025, 'highpass', 9000, 0.5);
-            }
-
-            // Hi-hat ouvert (contretemps — groove arcade)
-            if (Math.abs((b % 2) - 1.5) < 0.001) {
-                mkNoise(ctx, 0.07, t, 0.12, 'highpass', 7000, 0.5);
-            }
-
-            // Cloche arcade (petite note aiguë sur certains temps — feeling bonus/coin)
-            if (b % 8 === 4 || b % 8 === 6.5) {
-                mkOsc(ctx, 'sine', N.A5 * 2, t, 0.08, 0.06);
-            }
-        }
-
-        function playChiptune() {
-            if (!sndMusique || menuPlaying) return;
-            const ctx = getCtx();
-            menuPlaying = true;
-            musicBeat = 0;
-            musicStartTime = ctx.currentTime + 0.08;
-            const beat = 60 / BPM;
-            const ahead = 0.15;
-            const interval = 40;
-
-            function tick() {
-                if (!menuPlaying) return;
-                const now = ctx.currentTime;
-                while (musicBeat * beat < (now - musicStartTime) + ahead) {
-                    const b = musicBeat % LOOP;
-                    const t = musicStartTime + musicBeat * beat;
-                    scheduleMusicBeat(b, t, ctx, beat);
-                    musicBeat++;
-                }
-                musicScheduler = setTimeout(tick, interval);
-            }
-            tick();
-        }
-
-        function stopChiptune() {
-            menuPlaying = false;
-            clearTimeout(musicScheduler);
-            menuOscNodes.forEach(n => { try { n.stop(); } catch (e) { } });
-            menuOscNodes = [];
-            musicBeat = 0;
-        }
-
-        /* ── SFX : clic bois ── */
-        function playWoodClick() {
-            if (!sndSfx) return;
-            const ctx = getCtx();
-            const t = ctx.currentTime;
-            const buf = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.12), ctx.sampleRate);
-            const d = buf.getChannelData(0);
-            for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3);
-            const src = ctx.createBufferSource();
-            const filt = ctx.createBiquadFilter(); filt.type = 'lowpass'; filt.frequency.value = 800; filt.Q.value = 2;
-            const g = ctx.createGain(); g.gain.setValueAtTime(0.5, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-            src.buffer = buf; src.connect(filt); filt.connect(g); g.connect(masterGain); src.start(t);
-            const buf2 = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.015), ctx.sampleRate);
-            const d2 = buf2.getChannelData(0);
-            for (let i = 0; i < d2.length; i++) d2[i] = (Math.random() * 2 - 1);
-            const src2 = ctx.createBufferSource();
-            const g2 = ctx.createGain(); g2.gain.setValueAtTime(0.3, t); g2.gain.exponentialRampToValueAtTime(0.001, t + 0.015);
-            src2.buffer = buf2; src2.connect(g2); g2.connect(masterGain); src2.start(t);
-        }
-
-        /* ── SFX : victoire ── */
-        function playVictoire() {
-            if (!sndWin) return;
-            const ctx = getCtx(); const t = ctx.currentTime + 0.05;
-            [N.A4, N.C5, N.E5, N.A5].forEach((f, i) => {
-                const o = ctx.createOscillator(), g = ctx.createGain();
-                o.type = 'square'; o.frequency.value = f;
-                g.gain.setValueAtTime(0, t + i * 0.1); g.gain.linearRampToValueAtTime(0.18, t + i * 0.1 + 0.02);
-                g.gain.linearRampToValueAtTime(0, t + i * 0.1 + 0.18);
-                o.connect(g); g.connect(masterGain); o.start(t + i * 0.1); o.stop(t + i * 0.1 + 0.2);
-            });
-        }
-
-        /* ── SFX : défaite ── */
-        function playDefaite() {
-            if (!sndWin) return;
-            const ctx = getCtx(); const t = ctx.currentTime + 0.05;
-            [N.A4, N.GS4, N.G4, N.F4, N.E4].forEach((f, i) => {
-                const o = ctx.createOscillator(), g = ctx.createGain();
-                o.type = 'sawtooth'; o.frequency.value = f;
-                g.gain.setValueAtTime(0.15, t + i * 0.15); g.gain.exponentialRampToValueAtTime(0.001, t + i * 0.15 + 0.2);
-                o.connect(g); g.connect(masterGain); o.start(t + i * 0.15); o.stop(t + i * 0.15 + 0.22);
-            });
-        }
-
-        /* ── Contrôles paramètres ── */
-        function toggleMusique(on) { sndMusique = on; if (on) playChiptune(); else stopChiptune(); }
+        function playChiptune() { if (!sndMusique || menuPlaying) return; let c = getCtx(); menuPlaying = true; musicBeat = 0; musicStartTime = c.currentTime + .08; let bt = 60 / 148; function tk() { if (!menuPlaying) return; let n = c.currentTime; while (musicBeat * bt < (n - musicStartTime) + .15) { schedBeat(musicBeat % 32, musicStartTime + musicBeat * bt, c, bt); musicBeat++; } musicScheduler = setTimeout(tk, 40); } tk(); }
+        function stopChiptune() { menuPlaying = false; clearTimeout(musicScheduler); menuOscNodes.forEach(n => { try { n.stop(); } catch (e) { } }); menuOscNodes = []; musicBeat = 0; }
+        function playWoodClick() { if (!sndSfx) return; let c = getCtx(), t = c.currentTime, b = c.createBuffer(1, Math.ceil(c.sampleRate * .12), c.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++)d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3); let s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(); f.type = 'lowpass'; f.frequency.value = 800; f.Q.value = 2; g.gain.setValueAtTime(.5, t); g.gain.exponentialRampToValueAtTime(.001, t + .12); s.buffer = b; s.connect(f); f.connect(g); g.connect(masterGain); s.start(t); }
+        function playVictoire() { if (!sndWin) return; let c = getCtx(), t = c.currentTime + .05;[N.A4, N.C5, N.E5, N.A5].forEach((f, i) => { let o = c.createOscillator(), g = c.createGain(); o.type = 'square'; o.frequency.value = f; g.gain.setValueAtTime(0, t + i * .1); g.gain.linearRampToValueAtTime(.18, t + i * .1 + .02); g.gain.linearRampToValueAtTime(0, t + i * .1 + .18); o.connect(g); g.connect(masterGain); o.start(t + i * .1); o.stop(t + i * .1 + .2); }); }
+        function playDefaite() { if (!sndWin) return; let c = getCtx(), t = c.currentTime + .05;[N.A4, N.GS4, N.G4, N.F4, N.E4].forEach((f, i) => { let o = c.createOscillator(), g = c.createGain(); o.type = 'sawtooth'; o.frequency.value = f; g.gain.setValueAtTime(.15, t + i * .15); g.gain.exponentialRampToValueAtTime(.001, t + i * .15 + .2); o.connect(g); g.connect(masterGain); o.start(t + i * .15); o.stop(t + i * .15 + .22); }); }
+        function toggleMusique(on) { sndMusique = on; on ? playChiptune() : stopChiptune(); }
         function toggleSfx(on) { sndSfx = on; }
         function toggleWin(on) { sndWin = on; }
         function setVolume(v) { masterVol = v / 100; if (masterGain) masterGain.gain.value = masterVol; }
@@ -2079,28 +2452,6 @@
         let cfg = { nb: 4 }, jeu = { cod: [], ess: [], t: 0, tim: null, deb: 0, win: false };
         const cols = ['rouge', 'bleu', 'vert', 'jaune', 'orange', 'violet'];
         const phrases = ["C'est parti !", "Continue comme ça.", "Pas mal.", "La logique fait le reste.", "Moitié du chemin.", "Tu te rapproches.", "Le moment de vérité.", "Avant-dernière chance !", "Dernier essai !"];
-
-        const skins = [
-            { id: 'default', nom: 'Néon (Base)', px: 0 },
-            { id: 'zebre', nom: 'Zèbre 🦓', px: 50 },
-            { id: 'planetes', nom: 'Planètes 🪐', px: 75 },
-            { id: 'fruits', nom: 'Fruits 🍎', px: 75 },
-            { id: 'galaxie', nom: 'Galaxie ✨', px: 100 },
-            { id: 'casino', nom: 'Jetons Casino 🎲', px: 120 },
-            { id: 'bonbons', nom: 'Bonbons 🍬', px: 100 },
-            { id: 'mario', nom: 'Mario Bros 🍄', px: 150 },
-        ];
-        const themes = [
-            { id: 'default', nom: 'Défaut (Sombre)', px: 0 },
-            { id: 'casino', nom: 'Casino 🎰', px: 80 },
-            { id: 'noel', nom: 'Noël 🎄', px: 80 },
-            { id: 'arcade', nom: 'Arcade Rétro 👾', px: 80 },
-            { id: 'galaxy', nom: 'Galaxy 🌌', px: 120 },
-            { id: 'foret', nom: 'Forêt Enchantée 🌿', px: 100 },
-            { id: 'desert', nom: 'Désert & Sable 🏜️', px: 100 },
-            { id: 'ocean', nom: 'Océan 🌊', px: 100 },
-        ];
-        const ALL_S = skins.map(s => s.id), ALL_T = themes.map(t => t.id);
 
         function applyVisuals() {
             let cls = document.body.className.split(' ').filter(c => !c.startsWith('skin-') && !c.startsWith('theme-')).join(' ').trim();
@@ -2113,32 +2464,38 @@
             else if (user.th === 'desert') startDesert();
             else if (user.th === 'ocean') startOcean();
             else stopCanvas();
-            // Refresh pions si on est en jeu
+            if (user.th === 'casino') startCasinoBg(); else stopCasinoBg();
+            if (user.th === 'arcade') startArcadeBg(); else stopArcadeBg();
             refreshPions();
+        }
+
+        function getSkinHTML(col) {
+            if (user.eq === 'mario' && marioSVGs[col]) return marioSVGs[col];
+            if (user.eq === 'bonbons' && bonbonSVGs[col]) return bonbonSVGs[col];
+            if (user.eq === 'zebre' && zebreSVGs[col]) return zebreSVGs[col];
+            if (user.eq === 'planetes' && planeteSVGs[col]) return planeteSVGs[col];
+            if (user.eq === 'galaxie' && galaxieSVGs[col]) return galaxieSVGs[col];
+            if (user.eq === 'casino' && casinoSVGs[col]) return casinoSVGs[col];
+            return '';
         }
 
         function refreshPions() {
             document.querySelectorAll('.emp,.choix').forEach(el => {
                 const col = cols.find(c => el.classList.contains(c));
                 if (!col) return;
-                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
-                else el.removeAttribute('data-val');
-                el.innerHTML = '';
-                if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
-                if (user.eq === 'bonbons' && bonbonSVGs[col]) el.innerHTML = bonbonSVGs[col];
+                el.removeAttribute('data-val');
+                el.innerHTML = getSkinHTML(col);
             });
         }
 
         function nav(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             $(id).classList.add('active');
-            if (id === 'p-menu' || id === 'p-boutique' || id === 'p-score' || id === 'p-params' || id === 'p-mode') {
+            if (['p-menu', 'p-boutique', 'p-score', 'p-params', 'p-mode'].includes(id)) {
                 $('menu-coins') && ($('menu-coins').innerText = user.c);
                 $('shop-coins') && ($('shop-coins').innerText = user.c);
                 if (!menuPlaying) playChiptune();
-            } else {
-                stopChiptune();
-            }
+            } else { stopChiptune(); }
             if (id === 'p-boutique') renderShop();
         }
 
@@ -2163,13 +2520,29 @@
             applyVisuals(); nav('p-menu');
         }
 
+        /* ══ CONNEXION — vérifie que le compte existe ══ */
         function connexion() {
-            let p = $('pseudo').value.trim(), m = $('mdp').value;
-            if (!p || !m) return alert("Remplissez tout !");
+            let p = $('pseudo-login').value.trim(), m = $('mdp-login').value;
+            if (!p || !m) return alert("Remplis tous les champs !");
             if (p === 'admin' && m === '1234') return finishAuth(p, true);
             let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
-            if (bdd[p]) { if (bdd[p].m !== m) return alert("Mauvais MDP !"); user = bdd[p]; }
-            else { user = { p, m, c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false }; save(); }
+            if (!bdd[p]) return alert("Compte introuvable !\nUtilise l'onglet « Créer un compte » pour t'inscrire.");
+            if (bdd[p].m !== m) return alert("Mauvais mot de passe !");
+            user = bdd[p];
+            finishAuth(p, false);
+        }
+
+        /* ══ CRÉATION DE COMPTE ══ */
+        function creerCompte() {
+            let p = $('pseudo-register').value.trim(), m = $('mdp-register').value, mc = $('mdp-confirm').value;
+            if (!p || !m || !mc) return alert("Remplis tous les champs !");
+            if (m !== mc) return alert("Les mots de passe ne correspondent pas !");
+            if (m.length < 3) return alert("Mot de passe trop court (3 caractères minimum) !");
+            if (p.toLowerCase() === 'admin') return alert("Ce pseudo est réservé !");
+            let bdd = JSON.parse(localStorage.getItem('mm_v7') || "{}");
+            if (bdd[p]) return alert("Ce pseudo est déjà pris !\nChoisis-en un autre.");
+            user = { p, m, c: 0, s: ['default'], th: 'default', eq: 'default', themes: ['default'], adm: false };
+            save();
             finishAuth(p, false);
         }
 
@@ -2179,36 +2552,14 @@
         }
 
         function renderShop() {
-            let hS = '';
-            skins.forEach(k => {
-                let pos = user.adm || user.s.includes(k.id), eq = user.eq === k.id;
-                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpSkin('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achSkin('${k.id}',${k.px})">Acheter</button>`);
-                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
-                hS += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
-            });
-            $('shop-skins').innerHTML = hS;
-            let hT = '';
-            themes.forEach(k => {
-                let pos = user.adm || (user.themes || ['default']).includes(k.id), eq = (user.th || 'default') === k.id;
-                let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpTheme('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achTheme('${k.id}',${k.px})">Acheter</button>`);
-                let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰");
-                hT += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`;
-            });
-            $('shop-themes').innerHTML = hT;
+            let hS = '';[...skins].sort((a, b) => a.px - b.px).forEach(k => { let pos = user.adm || user.s.includes(k.id), eq = user.eq === k.id; let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpSkin('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achSkin('${k.id}',${k.px})">Acheter</button>`); let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰"); hS += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`; }); $('shop-skins').innerHTML = hS;
+            let hT = '';[...themes].sort((a, b) => a.px - b.px).forEach(k => { let pos = user.adm || (user.themes || ['default']).includes(k.id), eq = (user.th || 'default') === k.id; let btn = eq ? `<button class="btn-s" disabled>Équipé</button>` : (pos ? `<button class="btn-s" onclick="eqpTheme('${k.id}')">Équiper</button>` : `<button class="btn-p" onclick="achTheme('${k.id}',${k.px})">Acheter</button>`); let txt = pos ? "Possédé" : (user.adm ? "Gratuit" : k.px + " 💰"); hT += `<div class="shop-item"><div><h4>${k.nom}</h4><p>${txt}</p></div><div>${btn}</div></div>`; }); $('shop-themes').innerHTML = hT;
         }
 
         function achSkin(id, px) { if (user.c >= px) { user.c -= px; user.s.push(id); eqpSkin(id); } else alert("Pas assez de pièces !"); }
         function eqpSkin(id) { user.eq = id; applyVisuals(); save(); renderShop(); }
         function achTheme(id, px) { if (user.c >= px) { user.c -= px; if (!user.themes) user.themes = ['default']; user.themes.push(id); eqpTheme(id); } else alert("Pas assez de pièces !"); }
         function eqpTheme(id) { user.th = id; applyVisuals(); save(); renderShop(); }
-
-        function makePion(col) {
-            let el = document.createElement('div');
-            el.className = 'emp ' + col;
-            if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[col] || '');
-            if (user.eq === 'mario' && marioSVGs[col]) el.innerHTML = marioSVGs[col];
-            return el.outerHTML;
-        }
 
         function lancer(n) {
             cfg.nb = n;
@@ -2219,36 +2570,23 @@
                 let pions = Array(n).fill(0).map(() => `<div class="emp"></div>`).join('');
                 $('lignes-c').innerHTML = `<div class="ligne" id="t-${i}"><div class="pions-container">${pions}</div><div class="bloc-ind" style="grid-template-columns:repeat(${n == 6 ? 3 : 2},1fr)">${Array(n).fill('<div class="pt"></div>').join('')}</div></div>` + $('lignes-c').innerHTML;
             }
-            $('pal').innerHTML = cols.map(c => {
-                let inner = '';
-                if (user.eq === 'mario' && marioSVGs[c]) inner = marioSVGs[c];
-                if (user.eq === 'bonbons' && bonbonSVGs[c]) inner = bonbonSVGs[c];
-                return `<div class="choix ${c}" onclick="add('${c}')"${user.eq === 'casino' ? ' data-val="' + casinoVals[c] + '"' : ''}>${inner}</div>`;
-            }).join('');
+            $('pal').innerHTML = cols.map(c => `<div class="choix ${c}" onclick="add('${c}')">${getSkinHTML(c)}</div>`).join('');
             clearInterval(jeu.tim); jeu.tim = setInterval(() => { let s = Math.floor((Date.now() - jeu.deb) / 1000); $('chrono').innerText = Math.floor(s / 60).toString().padStart(2, '0') + ":" + (s % 60).toString().padStart(2, '0'); }, 1000);
             nav('p-jeu');
         }
 
         function add(c) {
-            if (jeu.ess.length < cfg.nb) {
-                jeu.ess.push(c);
-                let el = $('t-' + jeu.t).querySelectorAll('.emp')[jeu.ess.length - 1];
-                el.className = 'emp ' + c;
-                if (user.eq === 'casino') el.setAttribute('data-val', casinoVals[c] || '');
-                if (user.eq === 'mario' && marioSVGs[c]) el.innerHTML = marioSVGs[c];
-                if (user.eq === 'bonbons' && bonbonSVGs[c]) el.innerHTML = bonbonSVGs[c];
-                playWoodClick();
-            }
+            if (jeu.ess.length < cfg.nb) { jeu.ess.push(c); let el = $('t-' + jeu.t).querySelectorAll('.emp')[jeu.ess.length - 1]; el.className = 'emp ' + c; el.innerHTML = getSkinHTML(c); playWoodClick(); }
             $('btn-v').disabled = jeu.ess.length !== cfg.nb;
         }
 
         function valider() {
             let n = 0, b = 0, cS = [...jeu.cod], cE = [...jeu.ess];
-            for (let i = 0; i < cfg.nb; i++) if (cE[i] === cS[i]) { n++; cS[i] = cE[i] = null; }
-            for (let i = 0; i < cfg.nb; i++) if (cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])] = null; }
+            for (let i = 0; i < cfg.nb; i++)if (cE[i] === cS[i]) { n++; cS[i] = cE[i] = null; }
+            for (let i = 0; i < cfg.nb; i++)if (cE[i] && cS.includes(cE[i])) { b++; cS[cS.indexOf(cE[i])] = null; }
             let pts = $('t-' + jeu.t).querySelectorAll('.pt');
-            for (let i = 0; i < n; i++) pts[i].className = 'pt noir';
-            for (let i = 0; i < b; i++) pts[n + i].className = 'pt blanc';
+            for (let i = 0; i < n; i++)pts[i].className = 'pt noir';
+            for (let i = 0; i < b; i++)pts[n + i].className = 'pt blanc';
             if (n === cfg.nb) end(true); else if (jeu.t === 9) end(false); else { $('barre-commentaires').innerText = phrases[jeu.t]; jeu.t++; jeu.ess = []; $('btn-v').disabled = true; }
         }
 
@@ -2271,9 +2609,7 @@
         function voirScores() {
             let sc = JSON.parse(localStorage.getItem('mm_scores') || "[]");
             sc.sort((a, b) => b.mode - a.mode || a.essais - b.essais || a.sec - b.sec);
-            $('corps-scores').innerHTML = sc.length === 0
-                ? '<tr><td colspan="4" style="text-align:center;color:#64748b;padding:20px;">Aucun score pour l\'instant 🎮</td></tr>'
-                : sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
+            $('corps-scores').innerHTML = sc.length === 0 ? '<tr><td colspan="4" style="text-align:center;color:#64748b;padding:20px;">Aucun score pour l\'instant 🎮</td></tr>' : sc.map(s => `<tr><td>${s.pseudo}</td><td>${s.mode === 6 ? 'HARD' : 'NORM'}</td><td>${s.essais}</td><td>${s.temps}</td></tr>`).join('');
             nav('p-score');
         }
     </script>
